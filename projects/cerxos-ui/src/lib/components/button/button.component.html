@@ -1,0 +1,15 @@
+<button
+  [class]="buttonClass"
+  [attr.type]="type"
+  [disabled]="isDisabled"
+  [attr.aria-busy]="loading ? 'true' : null"
+>
+  <span
+    *ngIf="loading"
+    class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+    aria-hidden="true"
+  ></span>
+  <span class="truncate">
+    <ng-content></ng-content>
+  </span>
+</button>
