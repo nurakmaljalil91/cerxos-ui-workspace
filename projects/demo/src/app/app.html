@@ -1,7 +1,7 @@
-<main class="min-h-screen bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)]">
+<main class="min-h-screen bg-(--cxs-color-surface) text-(--cxs-color-on-surface)">
   <section class="mx-auto flex max-w-4xl flex-col gap-6 px-6 py-16">
     <header class="flex flex-col gap-2">
-      <p class="text-sm uppercase tracking-[0.25em] text-[var(--cxs-color-primary)]">Cerxos UI</p>
+      <p class="text-sm uppercase tracking-[0.25em] text-(--cxs-color-primary)">Cerxos UI</p>
       <h1 class="text-3xl font-semibold">Component preview</h1>
       <p class="max-w-xl text-sm text-slate-600">
         This demo app renders the library components with Tailwind + tokens.
@@ -16,6 +16,13 @@
       <cxs-button size="lg">Large</cxs-button>
       <cxs-button [loading]="true">Loading</cxs-button>
       <cxs-button [disabled]="true">Disabled</cxs-button>
+    </div>
+
+    <div class="grid gap-3 max-w-sm">
+      <cxs-input placeholder="Email address" type="email"></cxs-input>
+      <cxs-input placeholder="Search" type="search" variant="filled"></cxs-input>
+      <cxs-input placeholder="Disabled input" [disabled]="true"></cxs-input>
+      <cxs-input placeholder="Invalid input" [invalid]="true" value="Invalid"></cxs-input>
     </div>
   </section>
 </main>

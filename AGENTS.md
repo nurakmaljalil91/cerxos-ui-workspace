@@ -31,7 +31,7 @@ Non-goals:
    - Basic unit tests (or a clear reason why not)
    - Storybook stories
    - Documentation notes (README or component docs)
-
+   - Add the component preview to the demo project
 ---
 
 ## Architecture Rules
@@ -62,7 +62,7 @@ Token guidelines:
 
 ### 4) Accessibility Baseline
 Every interactive component must:
-- Be fully usable with keyboard (Tab, Enter, Space, Escape where applicable)
+- Be fully usable with a keyboard (Tab, Enter, Space, Escape where applicable)
 - Have visible focus styles
 - Provide ARIA attributes when semantic HTML is insufficient
 - Follow label/description patterns for form controls

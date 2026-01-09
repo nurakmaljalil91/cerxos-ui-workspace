@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CxsButtonComponent } from 'cerxos-ui';
+import {CxsButtonComponent, CxsInputComponent} from 'cerxos-ui';
 
 @Component({
   selector: 'app-root',
-  imports: [CxsButtonComponent],
+  imports: [CxsButtonComponent, CxsInputComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

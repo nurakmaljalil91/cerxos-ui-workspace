@@ -1,0 +1,62 @@
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+
+import { CxsInputComponent } from './input.component';
+
+describe('CxsInputComponent', () => {
+  let fixture: ComponentFixture<TestHostComponent>;
+  let host: TestHostComponent;
+
+  @Component({
+    selector: 'cxs-test-host',
+    standalone: true,
+    imports: [FormsModule, CxsInputComponent],
+    template: `<cxs-input [(ngModel)]="value" placeholder="Email"></cxs-input>`
+  })
+  class TestHostComponent {
+    value = 'initial';
+  }
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TestHostComponent]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TestHostComponent);
+    host = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('renders the provided value', () => {
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    expect(input.value).toBe('initial');
+  });
+
+  it('updates value on input', () => {
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    input.value = 'next';
+    input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(host.value).toBe('next');
+  });
+
+  it('reflects invalid state in aria attributes', () => {
+    const component = fixture.debugElement.children[0].componentInstance as CxsInputComponent;
+    component.invalid = true;
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    expect(input.getAttribute('aria-invalid')).toBe('true');
+  });
+
+  it('disables when disabled input is true', () => {
+    const component = fixture.debugElement.children[0].componentInstance as CxsInputComponent;
+    component.disabled = true;
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    expect(input.disabled).toBeTrue();
+  });
+});
