@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   CxsAlertComponent,
+  CxsBadgeComponent,
   CxsButtonComponent,
   CxsCheckboxComponent,
+  CxsDatepickerComponent,
   CxsInputComponent,
   CxsRadioComponent,
   CxsSelectComponent
@@ -14,8 +16,10 @@ import {
   imports: [
     FormsModule,
     CxsAlertComponent,
+    CxsBadgeComponent,
     CxsButtonComponent,
     CxsCheckboxComponent,
+    CxsDatepickerComponent,
     CxsInputComponent,
     CxsRadioComponent,
     CxsSelectComponent
@@ -28,4 +32,6 @@ export class App {
   newsletter = true;
   alerts = false;
   partial = true;
+  selectedDate = '2024-04-01';
+  customDate = '2024-03-10';
 }

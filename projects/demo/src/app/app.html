@@ -30,6 +30,21 @@
       </cxs-alert>
     </div>
 
+    <div class="flex flex-wrap items-center gap-2 max-w-lg">
+      <cxs-badge>Beta</cxs-badge>
+      <cxs-badge variant="neutral">Neutral</cxs-badge>
+      <cxs-badge variant="danger">Blocked</cxs-badge>
+      <cxs-badge size="sm">Small</cxs-badge>
+    </div>
+
+    <div class="grid gap-2 max-w-xs">
+      <cxs-datepicker [(ngModel)]="selectedDate"></cxs-datepicker>
+      <cxs-datepicker variant="filled"></cxs-datepicker>
+      <cxs-datepicker [invalid]="true"></cxs-datepicker>
+      <cxs-datepicker [disabled]="true"></cxs-datepicker>
+      <cxs-datepicker [useNative]="false" [(ngModel)]="customDate"></cxs-datepicker>
+    </div>
+
     <div class="grid gap-3 max-w-sm">
       <cxs-input placeholder="Email address" type="email"></cxs-input>
       <cxs-input placeholder="Search" type="search" variant="filled"></cxs-input>

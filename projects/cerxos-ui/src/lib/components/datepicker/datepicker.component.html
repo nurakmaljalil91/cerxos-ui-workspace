@@ -1,0 +1,80 @@
+@if (useNative) {
+  <input
+    type="date"
+    [class]="inputClass"
+    [attr.id]="id"
+    [attr.name]="name"
+    [attr.min]="min"
+    [attr.max]="max"
+    [attr.placeholder]="placeholder"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-describedby]="ariaDescribedby"
+    [attr.autofocus]="autofocus ? true : null"
+    [value]="value"
+    [disabled]="isDisabled"
+    [readonly]="readonly"
+    [required]="required"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+} @else {
+  <div class="relative w-full">
+    <input
+      type="text"
+      [class]="inputClass"
+      [attr.id]="id"
+      [attr.name]="name"
+      [attr.placeholder]="placeholder"
+      [attr.aria-label]="ariaLabel"
+      [attr.aria-describedby]="ariaDescribedby"
+      [attr.aria-expanded]="isOpen ? 'true' : 'false'"
+      [attr.aria-controls]="panelId"
+      [attr.autofocus]="autofocus ? true : null"
+      [attr.data-cxs-datepicker]="panelId"
+      [value]="value"
+      [disabled]="isDisabled"
+      [readonly]="true"
+      [required]="required"
+      (click)="toggle()"
+      (focus)="open()"
+      (blur)="onBlur()"
+    />
+    @if (isOpen) {
+      <div [class]="popoverClass" [attr.id]="panelId" role="dialog" aria-label="Choose date">
+        <div class="flex items-center justify-between">
+          <button type="button" [class]="navButtonClass" aria-label="Previous month" (click)="prevMonth()">
+            <
+          </button>
+          <div class="text-sm font-semibold text-[var(--cxs-color-on-surface)]">
+            {{ displayMonthLabel }}
+          </div>
+          <button type="button" [class]="navButtonClass" aria-label="Next month" (click)="nextMonth()">
+            >
+          </button>
+        </div>
+
+        <div class="mt-3 grid grid-cols-7 gap-1 text-center text-xs text-[var(--cxs-color-on-surface-muted)]">
+          @for (label of weekDayLabels; track label) {
+            <div>{{ label }}</div>
+          }
+        </div>
+
+        <div class="mt-2 grid grid-cols-7 gap-1" role="grid">
+          @for (day of calendarDays; track day.key) {
+            <button
+              type="button"
+              [class]="dayButtonClass(day)"
+              [disabled]="day.disabled"
+              [attr.data-date]="day.key"
+              [attr.aria-selected]="day.key === value ? 'true' : 'false'"
+              [attr.aria-current]="day.isToday ? 'date' : null"
+              (click)="onDateSelect(day)"
+            >
+              {{ day.label }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}
