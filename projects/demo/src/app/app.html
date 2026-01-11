@@ -18,6 +18,18 @@
       <cxs-button [disabled]="true">Disabled</cxs-button>
     </div>
 
+    <div class="grid gap-3 max-w-lg">
+      <cxs-alert title="Update available">
+        A new version is ready to install. Please refresh the page.
+      </cxs-alert>
+      <cxs-alert variant="neutral" title="Heads up">
+        This is a neutral notice for general info.
+      </cxs-alert>
+      <cxs-alert variant="danger" title="Action required" [dismissible]="true">
+        Access expired. Contact your admin to restore permissions.
+      </cxs-alert>
+    </div>
+
     <div class="grid gap-3 max-w-sm">
       <cxs-input placeholder="Email address" type="email"></cxs-input>
       <cxs-input placeholder="Search" type="search" variant="filled"></cxs-input>
@@ -61,6 +73,13 @@
       <cxs-radio [(ngModel)]="tier" name="tier" value="custom" [invalid]="true">
         Custom (invalid)
       </cxs-radio>
+    </div>
+
+    <div class="grid gap-2 max-w-sm">
+      <cxs-checkbox [(ngModel)]="newsletter" label="Product updates"></cxs-checkbox>
+      <cxs-checkbox [(ngModel)]="alerts" label="Security alerts"></cxs-checkbox>
+      <cxs-checkbox [indeterminate]="partial">Partially selected</cxs-checkbox>
+      <cxs-checkbox [disabled]="true" label="Disabled option"></cxs-checkbox>
     </div>
   </section>
 </main>

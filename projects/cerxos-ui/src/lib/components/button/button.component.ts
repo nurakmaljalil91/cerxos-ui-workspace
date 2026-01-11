@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { Attribute, ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 export type CxsButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type CxsButtonSize = 'sm' | 'md' | 'lg';
@@ -29,7 +28,6 @@ const SIZE_CLASSES: Record<CxsButtonSize, string> = {
 @Component({
   selector: 'cxs-button',
   standalone: true,
-  imports: [NgIf],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -40,11 +38,15 @@ export class CxsButtonComponent {
   @Input() loading = false;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
 
+  constructor(@Attribute('class') private readonly hostClass: string | null) {}
+
   get isDisabled(): boolean {
     return this.disabled || this.loading;
   }
 
   get buttonClass(): string {
-    return [BASE_CLASSES, SIZE_CLASSES[this.size], VARIANT_CLASSES[this.variant]].join(' ');
+    return [BASE_CLASSES, SIZE_CLASSES[this.size], VARIANT_CLASSES[this.variant], this.hostClass]
+      .filter(Boolean)
+      .join(' ');
   }
 }

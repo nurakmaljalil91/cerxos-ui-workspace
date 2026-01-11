@@ -10,7 +10,7 @@ describe('CxsButtonComponent', () => {
     selector: 'cxs-test-host',
     standalone: true,
     imports: [CxsButtonComponent],
-    template: `<cxs-button>Save</cxs-button>`
+    template: `<cxs-button class="w-full">Save</cxs-button>`
   })
   class TestHostComponent {}
 
@@ -36,5 +36,10 @@ describe('CxsButtonComponent', () => {
     const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
     expect(button.disabled).toBeTrue();
     expect(button.getAttribute('aria-busy')).toBe('true');
+  });
+
+  it('forwards host classes to the button', () => {
+    const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+    expect(button.classList.contains('w-full')).toBeTrue();
   });
 });

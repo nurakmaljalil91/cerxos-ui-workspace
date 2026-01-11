@@ -1,0 +1,26 @@
+<label [class]="wrapperClass">
+  <input
+    class="peer sr-only"
+    type="checkbox"
+    [attr.id]="id"
+    [attr.name]="name"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-describedby]="ariaDescribedby"
+    [attr.aria-checked]="ariaChecked"
+    [attr.autofocus]="autofocus ? true : null"
+    [checked]="checked"
+    [indeterminate]="indeterminate"
+    [disabled]="isDisabled"
+    [required]="required"
+    (change)="onCheckboxChange($event)"
+    (blur)="onBlur()"
+  />
+  <span [class]="controlClass" aria-hidden="true"></span>
+  @if (label) {
+    <span [class]="labelClass">{{ label }}</span>
+  } @else {
+    <span [class]="labelClass">
+      <ng-content></ng-content>
+    </span>
+  }
+</label>
