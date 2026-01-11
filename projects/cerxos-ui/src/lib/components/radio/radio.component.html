@@ -1,0 +1,22 @@
+<label [class]="wrapperClass">
+  <input
+    class="peer sr-only"
+    type="radio"
+    [attr.id]="id"
+    [attr.name]="name"
+    [attr.value]="value"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-describedby]="ariaDescribedby"
+    [attr.aria-invalid]="invalid ? 'true' : null"
+    [attr.autofocus]="autofocus ? true : null"
+    [checked]="isChecked"
+    [disabled]="isDisabled"
+    [required]="required"
+    (change)="onRadioChange($event)"
+    (blur)="onBlur()"
+  />
+  <span [class]="controlClass" aria-hidden="true"></span>
+  <span [class]="labelClass">
+    <ng-content></ng-content>
+  </span>
+</label>

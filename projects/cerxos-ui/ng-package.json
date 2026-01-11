@@ -5,7 +5,15 @@
     "entryFile": "src/public-api.ts"
   },
   "assets": [
-    "src/lib/styles/tailwind.css",
-    "src/lib/tokens/theme-default.css"
+    {
+      "input": "src/lib/styles",
+      "glob": "tailwind.css",
+      "output": "styles"
+    },
+    {
+      "input": "src/lib/tokens",
+      "glob": "theme-default.css",
+      "output": "tokens"
+    }
   ]
 }

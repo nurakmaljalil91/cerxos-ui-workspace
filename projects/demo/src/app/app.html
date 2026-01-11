@@ -24,5 +24,43 @@
       <cxs-input placeholder="Disabled input" [disabled]="true"></cxs-input>
       <cxs-input placeholder="Invalid input" [invalid]="true" value="Invalid"></cxs-input>
     </div>
+
+    <div class="grid gap-3 max-w-sm">
+      <cxs-select placeholder="Select a team">
+        <option value="platform">Platform</option>
+        <option value="design">Design</option>
+        <option value="product">Product</option>
+        <option value="sales">Sales</option>
+      </cxs-select>
+      <cxs-select placeholder="Select a team" variant="filled">
+        <option value="platform">Platform</option>
+        <option value="design">Design</option>
+        <option value="product">Product</option>
+        <option value="sales">Sales</option>
+      </cxs-select>
+      <cxs-select placeholder="Disabled select" [disabled]="true">
+        <option value="platform">Platform</option>
+        <option value="design">Design</option>
+        <option value="product">Product</option>
+        <option value="sales">Sales</option>
+      </cxs-select>
+      <cxs-select placeholder="Invalid select" [invalid]="true">
+        <option value="platform">Platform</option>
+        <option value="design">Design</option>
+        <option value="product">Product</option>
+        <option value="sales">Sales</option>
+      </cxs-select>
+    </div>
+
+    <div class="grid gap-2 max-w-sm">
+      <cxs-radio [(ngModel)]="tier" name="tier" value="starter">Starter</cxs-radio>
+      <cxs-radio [(ngModel)]="tier" name="tier" value="team">Team</cxs-radio>
+      <cxs-radio [(ngModel)]="tier" name="tier" value="enterprise" [disabled]="true">
+        Enterprise (disabled)
+      </cxs-radio>
+      <cxs-radio [(ngModel)]="tier" name="tier" value="custom" [invalid]="true">
+        Custom (invalid)
+      </cxs-radio>
+    </div>
   </section>
 </main>

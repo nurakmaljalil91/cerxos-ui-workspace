@@ -313,6 +313,842 @@
             "templateData": "<button\n  [class]=\"buttonClass\"\n  [attr.type]=\"type\"\n  [disabled]=\"isDisabled\"\n  [attr.aria-busy]=\"loading ? 'true' : null\"\n>\n  <span\n    *ngIf=\"loading\"\n    class=\"h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent\"\n    aria-hidden=\"true\"\n  ></span>\n  <span class=\"truncate\">\n    <ng-content></ng-content>\n  </span>\n</button>\n"
         },
         {
+            "name": "CxsInputComponent",
+            "id": "component-CxsInputComponent-a4e47b2aefd9c943bd338bfbf5801a282373059f187ee0745a0c962bc1866e416ba47f6433cbb1736e066ee4c41e3f6ffc2e1af97e5590570fba4fe40d5c44e1",
+            "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": ")"
+                }
+            ],
+            "selector": "cxs-input",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "ariaDescribedby",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 76,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 75,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "autocomplete",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 72,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "autofocus",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 67,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 63,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 69,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "inputmode",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 73,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "invalid",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 66,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 70,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 71,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "readonly",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 64,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "required",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 65,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'md'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 62,
+                    "type": "CxsInputSize",
+                    "decorators": []
+                },
+                {
+                    "name": "spellcheck",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 74,
+                    "type": "boolean | null",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 60,
+                    "type": "CxsInputType",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 59,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "'outline'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 61,
+                    "type": "CxsInputVariant",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "valueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 78,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "disabledFromControl",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 80,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 81,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 82,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 124,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onInput",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 115,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "deprecated": false,
+                                    "deprecationMessage": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 103,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "deprecated": false,
+                                    "deprecationMessage": ""
+                                }
+                            ],
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": []
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 107,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [],
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 111,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string | null",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 99,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string | null",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  forwardRef,\n  Input,\n  Output\n} from '@angular/core';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n\nexport type CxsInputVariant = 'outline' | 'filled';\nexport type CxsInputSize = 'sm' | 'md' | 'lg';\nexport type CxsInputType =\n  | 'text'\n  | 'email'\n  | 'password'\n  | 'search'\n  | 'tel'\n  | 'url'\n  | 'number';\n\nconst BASE_CLASSES =\n  'w-full rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n  'placeholder:text-[var(--cxs-color-on-surface-muted)] transition-colors ' +\n  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +\n  'focus-visible:outline-[var(--cxs-color-focus)] focus-visible:border-[var(--cxs-color-focus)] ' +\n  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60';\n\nconst VARIANT_CLASSES: Record<CxsInputVariant, string> = {\n  outline: 'bg-[var(--cxs-color-surface)]',\n  filled: 'bg-[var(--cxs-color-surface-hover)]'\n};\n\nconst SIZE_CLASSES: Record<CxsInputSize, string> = {\n  sm: 'h-8 px-3 text-sm',\n  md: 'h-10 px-3 text-sm',\n  lg: 'h-12 px-4 text-base'\n};\n\nconst INVALID_CLASSES =\n  'border-[var(--cxs-color-danger)] focus-visible:border-[var(--cxs-color-danger)] ' +\n  'focus-visible:outline-[var(--cxs-color-danger)]';\n\n@Component({\n  selector: 'cxs-input',\n  standalone: true,\n  templateUrl: './input.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => CxsInputComponent),\n      multi: true\n    }\n  ]\n})\nexport class CxsInputComponent implements ControlValueAccessor {\n  @Input() value = '';\n  @Input() type: CxsInputType = 'text';\n  @Input() variant: CxsInputVariant = 'outline';\n  @Input() size: CxsInputSize = 'md';\n  @Input() disabled = false;\n  @Input() readonly = false;\n  @Input() required = false;\n  @Input() invalid = false;\n  @Input() autofocus = false;\n\n  @Input() id?: string;\n  @Input() name?: string;\n  @Input() placeholder?: string;\n  @Input() autocomplete?: string;\n  @Input() inputmode?: string;\n  @Input() spellcheck: boolean | null = null;\n  @Input() ariaLabel?: string;\n  @Input() ariaDescribedby?: string;\n\n  @Output() valueChange = new EventEmitter<string>();\n\n  private disabledFromControl = false;\n  private onChange: (value: string) => void = () => {};\n  private onTouched: () => void = () => {};\n\n  get isDisabled(): boolean {\n    return this.disabled || this.disabledFromControl;\n  }\n\n  get inputClass(): string {\n    return [\n      BASE_CLASSES,\n      SIZE_CLASSES[this.size],\n      VARIANT_CLASSES[this.variant],\n      this.invalid ? INVALID_CLASSES : ''\n    ]\n      .filter(Boolean)\n      .join(' ');\n  }\n\n  writeValue(value: string | null): void {\n    this.value = value ?? '';\n  }\n\n  registerOnChange(fn: (value: string) => void): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: () => void): void {\n    this.onTouched = fn;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabledFromControl = isDisabled;\n  }\n\n  onInput(event: Event): void {\n    const target = event.target as HTMLInputElement;\n    const nextValue = target.value;\n\n    this.value = nextValue;\n    this.onChange(nextValue);\n    this.valueChange.emit(nextValue);\n  }\n\n  onBlur(): void {\n    this.onTouched();\n  }\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "ControlValueAccessor"
+            ],
+            "accessors": {
+                "isDisabled": {
+                    "name": "isDisabled",
+                    "getSignature": {
+                        "name": "isDisabled",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 84
+                    }
+                },
+                "inputClass": {
+                    "name": "inputClass",
+                    "getSignature": {
+                        "name": "inputClass",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 88
+                    }
+                }
+            },
+            "templateData": "<input\n  [class]=\"inputClass\"\n  [attr.id]=\"id\"\n  [attr.name]=\"name\"\n  [attr.type]=\"type\"\n  [attr.placeholder]=\"placeholder\"\n  [attr.autocomplete]=\"autocomplete\"\n  [attr.inputmode]=\"inputmode\"\n  [attr.spellcheck]=\"spellcheck === null ? null : spellcheck\"\n  [attr.aria-label]=\"ariaLabel\"\n  [attr.aria-describedby]=\"ariaDescribedby\"\n  [attr.aria-invalid]=\"invalid ? 'true' : null\"\n  [attr.autofocus]=\"autofocus ? true : null\"\n  [disabled]=\"isDisabled\"\n  [readonly]=\"readonly\"\n  [required]=\"required\"\n  [value]=\"value\"\n  (input)=\"onInput($event)\"\n  (blur)=\"onBlur()\"\n/>\r\n"
+        },
+        {
+            "name": "CxsSelectComponent",
+            "id": "component-CxsSelectComponent-33dd06a22278f1eec6f734715e865482c11fe51a36e5c4511444fe2ecdfaa7243d329636b4df84c8e4f49b39abc11374fb4cfdec45efab76c4eda86cd3f2bb20",
+            "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": ")"
+                }
+            ],
+            "selector": "cxs-select",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./select.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "ariaDescribedby",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 65,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 64,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 56,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 62,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "invalid",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 58,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 63,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 59,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholderValue",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 60,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "required",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 57,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'md'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 55,
+                    "type": "CxsSelectSize",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 53,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "'outline'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 54,
+                    "type": "CxsSelectVariant",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "valueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 67,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "disabledFromControl",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 69,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 70,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 71,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 121,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onSelectChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 112,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "deprecated": false,
+                                    "deprecationMessage": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 100,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "deprecated": false,
+                                    "deprecationMessage": ""
+                                }
+                            ],
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": []
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 104,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [],
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 108,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string | null",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 96,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string | null",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgIf"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  forwardRef,\n  Input,\n  Output\n} from '@angular/core';\nimport { NgIf } from '@angular/common';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n\nexport type CxsSelectVariant = 'outline' | 'filled';\nexport type CxsSelectSize = 'sm' | 'md' | 'lg';\n\nconst BASE_CLASSES =\n  'w-full appearance-none rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n  'placeholder:text-[var(--cxs-color-on-surface-muted)] transition-colors ' +\n  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +\n  'focus-visible:outline-[var(--cxs-color-focus)] focus-visible:border-[var(--cxs-color-focus)] ' +\n  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60';\n\nconst VARIANT_CLASSES: Record<CxsSelectVariant, string> = {\n  outline: 'bg-[var(--cxs-color-surface)]',\n  filled: 'bg-[var(--cxs-color-surface-hover)]'\n};\n\nconst SIZE_CLASSES: Record<CxsSelectSize, string> = {\n  sm: 'h-8 pl-3 pr-9 text-sm',\n  md: 'h-10 pl-3 pr-9 text-sm',\n  lg: 'h-12 pl-4 pr-10 text-base'\n};\n\nconst INVALID_CLASSES =\n  'border-[var(--cxs-color-danger)] focus-visible:border-[var(--cxs-color-danger)] ' +\n  'focus-visible:outline-[var(--cxs-color-danger)]';\n\n@Component({\n  selector: 'cxs-select',\n  standalone: true,\n  imports: [NgIf],\n  templateUrl: './select.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => CxsSelectComponent),\n      multi: true\n    }\n  ]\n})\nexport class CxsSelectComponent implements ControlValueAccessor {\n  @Input() value = '';\n  @Input() variant: CxsSelectVariant = 'outline';\n  @Input() size: CxsSelectSize = 'md';\n  @Input() disabled = false;\n  @Input() required = false;\n  @Input() invalid = false;\n  @Input() placeholder?: string;\n  @Input() placeholderValue = '';\n\n  @Input() id?: string;\n  @Input() name?: string;\n  @Input() ariaLabel?: string;\n  @Input() ariaDescribedby?: string;\n\n  @Output() valueChange = new EventEmitter<string>();\n\n  private disabledFromControl = false;\n  private onChange: (value: string) => void = () => {};\n  private onTouched: () => void = () => {};\n\n  get isDisabled(): boolean {\n    return this.disabled || this.disabledFromControl;\n  }\n\n  get selectClass(): string {\n    return [\n      BASE_CLASSES,\n      SIZE_CLASSES[this.size],\n      VARIANT_CLASSES[this.variant],\n      this.invalid ? INVALID_CLASSES : ''\n    ]\n      .filter(Boolean)\n      .join(' ');\n  }\n\n  get selectValue(): string {\n    if (this.placeholder && this.value === '') {\n      return this.placeholderValue;\n    }\n\n    return this.value;\n  }\n\n  writeValue(value: string | null): void {\n    this.value = value ?? '';\n  }\n\n  registerOnChange(fn: (value: string) => void): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: () => void): void {\n    this.onTouched = fn;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabledFromControl = isDisabled;\n  }\n\n  onSelectChange(event: Event): void {\n    const target = event.target as HTMLSelectElement;\n    const nextValue = target.value;\n\n    this.value = nextValue;\n    this.onChange(nextValue);\n    this.valueChange.emit(nextValue);\n  }\n\n  onBlur(): void {\n    this.onTouched();\n  }\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "ControlValueAccessor"
+            ],
+            "accessors": {
+                "isDisabled": {
+                    "name": "isDisabled",
+                    "getSignature": {
+                        "name": "isDisabled",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 73
+                    }
+                },
+                "selectClass": {
+                    "name": "selectClass",
+                    "getSignature": {
+                        "name": "selectClass",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 77
+                    }
+                },
+                "selectValue": {
+                    "name": "selectValue",
+                    "getSignature": {
+                        "name": "selectValue",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 88
+                    }
+                }
+            },
+            "templateData": "<div class=\"relative\">\n  <select\n    [class]=\"selectClass\"\n    [attr.id]=\"id\"\n    [attr.name]=\"name\"\n    [attr.aria-label]=\"ariaLabel\"\n    [attr.aria-describedby]=\"ariaDescribedby\"\n    [attr.aria-invalid]=\"invalid ? 'true' : null\"\n    [disabled]=\"isDisabled\"\n    [required]=\"required\"\n    [value]=\"selectValue\"\n    (change)=\"onSelectChange($event)\"\n    (blur)=\"onBlur()\"\n  >\n    <option *ngIf=\"placeholder\" [value]=\"placeholderValue\" disabled>\n      {{ placeholder }}\n    </option>\n    <ng-content></ng-content>\n  </select>\n  <span\n    class=\"pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--cxs-color-on-surface-muted)]\"\n    aria-hidden=\"true\"\n  >\n    <svg viewBox=\"0 0 20 20\" fill=\"currentColor\" class=\"h-4 w-4\">\n      <path\n        fill-rule=\"evenodd\"\n        d=\"M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08Z\"\n        clip-rule=\"evenodd\"\n      />\n    </svg>\n  </span>\n</div>\r\n"
+        },
+        {
             "name": "HeaderComponent",
             "id": "component-HeaderComponent-48b9abe37706bc42f20cfa97ed9f943678344ea7d254c0c82183c657750c2191b43486fe730c778627b2ea6aa0e2f33a7abcf3ce08b68ad18b062ad99ea97acb",
             "file": "projects/cerxos-ui/src/stories/header.component.ts",
@@ -500,11 +1336,61 @@
                 "name": "BASE_CLASSES",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "unknown",
+                "defaultValue": "'w-full rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n  'placeholder:text-[var(--cxs-color-on-surface-muted)] transition-colors ' +\n  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +\n  'focus-visible:outline-[var(--cxs-color-focus)] focus-visible:border-[var(--cxs-color-focus)] ' +\n  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60'"
+            },
+            {
+                "name": "BASE_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/cerxos-ui/src/lib/components/button/button.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "unknown",
                 "defaultValue": "'relative inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors ' +\n  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +\n  'focus-visible:outline-[var(--cxs-color-focus)] disabled:pointer-events-none disabled:opacity-50'"
+            },
+            {
+                "name": "BASE_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "unknown",
+                "defaultValue": "'w-full appearance-none rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n  'placeholder:text-[var(--cxs-color-on-surface-muted)] transition-colors ' +\n  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +\n  'focus-visible:outline-[var(--cxs-color-focus)] focus-visible:border-[var(--cxs-color-focus)] ' +\n  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60'"
+            },
+            {
+                "name": "INVALID_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "unknown",
+                "defaultValue": "'border-[var(--cxs-color-danger)] focus-visible:border-[var(--cxs-color-danger)] ' +\n  'focus-visible:outline-[var(--cxs-color-danger)]'"
+            },
+            {
+                "name": "INVALID_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "unknown",
+                "defaultValue": "'border-[var(--cxs-color-danger)] focus-visible:border-[var(--cxs-color-danger)] ' +\n  'focus-visible:outline-[var(--cxs-color-danger)]'"
+            },
+            {
+                "name": "SIZE_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Record<CxsInputSize, string>",
+                "defaultValue": "{\n  sm: 'h-8 px-3 text-sm',\n  md: 'h-10 px-3 text-sm',\n  lg: 'h-12 px-4 text-base'\n}"
             },
             {
                 "name": "SIZE_CLASSES",
@@ -517,6 +1403,26 @@
                 "defaultValue": "{\n  sm: 'h-8 px-3 text-sm rounded-[var(--cxs-radius-md)]',\n  md: 'h-10 px-4 text-sm rounded-[var(--cxs-radius-md)]',\n  lg: 'h-12 px-5 text-base rounded-[var(--cxs-radius-md)]'\n}"
             },
             {
+                "name": "SIZE_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Record<CxsSelectSize, string>",
+                "defaultValue": "{\n  sm: 'h-8 pl-3 pr-9 text-sm',\n  md: 'h-10 pl-3 pr-9 text-sm',\n  lg: 'h-12 pl-4 pr-10 text-base'\n}"
+            },
+            {
+                "name": "VARIANT_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Record<CxsInputVariant, string>",
+                "defaultValue": "{\n  outline: 'bg-[var(--cxs-color-surface)]',\n  filled: 'bg-[var(--cxs-color-surface-hover)]'\n}"
+            },
+            {
                 "name": "VARIANT_CLASSES",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -525,6 +1431,16 @@
                 "deprecationMessage": "",
                 "type": "Record<CxsButtonVariant, string>",
                 "defaultValue": "{\n  primary:\n    'bg-[var(--cxs-color-primary)] text-[var(--cxs-color-on-primary)] ' +\n    'hover:bg-[var(--cxs-color-primary-hover)] shadow-[var(--cxs-shadow-sm)]',\n  secondary:\n    'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n    'border border-[var(--cxs-color-border)] hover:bg-[var(--cxs-color-surface-hover)]',\n  ghost:\n    'bg-transparent text-[var(--cxs-color-primary)] hover:bg-[var(--cxs-color-primary-ghost)]'\n}"
+            },
+            {
+                "name": "VARIANT_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Record<CxsSelectVariant, string>",
+                "defaultValue": "{\n  outline: 'bg-[var(--cxs-color-surface)]',\n  filled: 'bg-[var(--cxs-color-surface-hover)]'\n}"
             }
         ],
         "functions": [],
@@ -550,10 +1466,107 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 193
+            },
+            {
+                "name": "CxsInputSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"sm\" | \"md\" | \"lg\"",
+                "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "CxsInputType",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"text\" | \"email\" | \"password\" | \"search\" | \"tel\" | \"url\" | \"number\"",
+                "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "CxsInputVariant",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"outline\" | \"filled\"",
+                "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "CxsSelectSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"sm\" | \"md\" | \"lg\"",
+                "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "CxsSelectVariant",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"outline\" | \"filled\"",
+                "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
             }
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/cerxos-ui/src/lib/components/input/input.component.ts": [
+                {
+                    "name": "BASE_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "defaultValue": "'w-full rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n  'placeholder:text-[var(--cxs-color-on-surface-muted)] transition-colors ' +\n  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +\n  'focus-visible:outline-[var(--cxs-color-focus)] focus-visible:border-[var(--cxs-color-focus)] ' +\n  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60'"
+                },
+                {
+                    "name": "INVALID_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "defaultValue": "'border-[var(--cxs-color-danger)] focus-visible:border-[var(--cxs-color-danger)] ' +\n  'focus-visible:outline-[var(--cxs-color-danger)]'"
+                },
+                {
+                    "name": "SIZE_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<CxsInputSize, string>",
+                    "defaultValue": "{\n  sm: 'h-8 px-3 text-sm',\n  md: 'h-10 px-3 text-sm',\n  lg: 'h-12 px-4 text-base'\n}"
+                },
+                {
+                    "name": "VARIANT_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<CxsInputVariant, string>",
+                    "defaultValue": "{\n  outline: 'bg-[var(--cxs-color-surface)]',\n  filled: 'bg-[var(--cxs-color-surface-hover)]'\n}"
+                }
+            ],
             "projects/cerxos-ui/src/lib/components/button/button.component.ts": [
                 {
                     "name": "BASE_CLASSES",
@@ -585,6 +1598,48 @@
                     "type": "Record<CxsButtonVariant, string>",
                     "defaultValue": "{\n  primary:\n    'bg-[var(--cxs-color-primary)] text-[var(--cxs-color-on-primary)] ' +\n    'hover:bg-[var(--cxs-color-primary-hover)] shadow-[var(--cxs-shadow-sm)]',\n  secondary:\n    'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n    'border border-[var(--cxs-color-border)] hover:bg-[var(--cxs-color-surface-hover)]',\n  ghost:\n    'bg-transparent text-[var(--cxs-color-primary)] hover:bg-[var(--cxs-color-primary-ghost)]'\n}"
                 }
+            ],
+            "projects/cerxos-ui/src/lib/components/select/select.component.ts": [
+                {
+                    "name": "BASE_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "defaultValue": "'w-full appearance-none rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n  'placeholder:text-[var(--cxs-color-on-surface-muted)] transition-colors ' +\n  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +\n  'focus-visible:outline-[var(--cxs-color-focus)] focus-visible:border-[var(--cxs-color-focus)] ' +\n  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60'"
+                },
+                {
+                    "name": "INVALID_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "defaultValue": "'border-[var(--cxs-color-danger)] focus-visible:border-[var(--cxs-color-danger)] ' +\n  'focus-visible:outline-[var(--cxs-color-danger)]'"
+                },
+                {
+                    "name": "SIZE_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<CxsSelectSize, string>",
+                    "defaultValue": "{\n  sm: 'h-8 pl-3 pr-9 text-sm',\n  md: 'h-10 pl-3 pr-9 text-sm',\n  lg: 'h-12 pl-4 pr-10 text-base'\n}"
+                },
+                {
+                    "name": "VARIANT_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<CxsSelectVariant, string>",
+                    "defaultValue": "{\n  outline: 'bg-[var(--cxs-color-surface)]',\n  filled: 'bg-[var(--cxs-color-surface-hover)]'\n}"
+                }
             ]
         },
         "groupedFunctions": {},
@@ -613,6 +1668,65 @@
                     "description": "",
                     "kind": 193
                 }
+            ],
+            "projects/cerxos-ui/src/lib/components/input/input.component.ts": [
+                {
+                    "name": "CxsInputSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"sm\" | \"md\" | \"lg\"",
+                    "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                },
+                {
+                    "name": "CxsInputType",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"text\" | \"email\" | \"password\" | \"search\" | \"tel\" | \"url\" | \"number\"",
+                    "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                },
+                {
+                    "name": "CxsInputVariant",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"outline\" | \"filled\"",
+                    "file": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                }
+            ],
+            "projects/cerxos-ui/src/lib/components/select/select.component.ts": [
+                {
+                    "name": "CxsSelectSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"sm\" | \"md\" | \"lg\"",
+                    "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                },
+                {
+                    "name": "CxsSelectVariant",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"outline\" | \"filled\"",
+                    "file": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                }
             ]
         }
     },
@@ -622,7 +1736,7 @@
         "children": []
     },
     "coverage": {
-        "count": 7,
+        "count": 3,
         "status": "low",
         "files": [
             {
@@ -689,6 +1803,154 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
                 "name": "CxsButtonVariant",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CxsInputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/28",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BASE_CLASSES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "INVALID_CLASSES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SIZE_CLASSES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "VARIANT_CLASSES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "CxsInputSize",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "CxsInputType",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/input/input.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "CxsInputVariant",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CxsSelectComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/23",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BASE_CLASSES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "INVALID_CLASSES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SIZE_CLASSES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "VARIANT_CLASSES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "CxsSelectSize",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/cerxos-ui/src/lib/components/select/select.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "CxsSelectVariant",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
