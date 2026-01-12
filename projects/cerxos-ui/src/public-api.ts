@@ -7,6 +7,7 @@ export * from './lib/components/alert/alert.component';
 export * from './lib/components/badge/badge.component';
 export * from './lib/components/breadcrumb/breadcrumb.component';
 export * from './lib/components/button/button.component';
+export * from './lib/components/card/card.component';
 export * from './lib/components/checkbox/checkbox.component';
 export * from './lib/components/datepicker/datepicker.component';
 export * from './lib/components/input/input.component';

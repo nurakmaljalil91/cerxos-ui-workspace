@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:cerxos-ui": "ng build cerxos-ui --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "storybook": "ng run cerxos-ui:storybook",
