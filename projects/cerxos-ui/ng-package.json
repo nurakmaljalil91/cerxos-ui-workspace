@@ -12,7 +12,7 @@
     },
     {
       "input": "src/lib/tokens",
-      "glob": "theme-default.css",
+      "glob": "theme-*.css",
       "output": "tokens"
     }
   ]

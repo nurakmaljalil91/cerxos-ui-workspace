@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../../cerxos-ui/src/lib/tokens/theme-default.css";
+@import "../../cerxos-ui/src/lib/tokens/theme-dark.css";
 
 :root {
   color-scheme: light;

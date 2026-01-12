@@ -18,6 +18,7 @@
       "default": "./package.json"
     },
     "./styles/tailwind.css": "./styles/tailwind.css",
-    "./tokens/theme-default.css": "./tokens/theme-default.css"
+    "./tokens/theme-default.css": "./tokens/theme-default.css",
+    "./tokens/theme-dark.css": "./tokens/theme-dark.css"
   }
 }

@@ -1,0 +1,29 @@
+<nav [attr.aria-label]="ariaLabel">
+  <ol [class]="listClass">
+    @for (item of items; track item; let last = $last) {
+      <li [class]="itemClass">
+      @if (isLink(item, last)) {
+        <a
+          [class]="getLinkClass(item)"
+          [attr.href]="item.href"
+          [attr.target]="item.target ?? null"
+          [attr.rel]="getItemRel(item)"
+          [attr.aria-label]="item.ariaLabel ?? null"
+        >
+          {{ item.label }}
+        </a>
+      } @else {
+        <span
+          [class]="getLabelClass(item, last)"
+          [attr.aria-current]="last ? 'page' : null"
+        >
+          {{ item.label }}
+        </span>
+      }
+      @if (!last && separator) {
+        <span [class]="separatorClass" aria-hidden="true">{{ separator }}</span>
+      }
+      </li>
+    }
+  </ol>
+</nav>
