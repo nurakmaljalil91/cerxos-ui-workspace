@@ -54,6 +54,12 @@ const NAV_BUTTON_CLASSES =
   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +
   'focus-visible:outline-[var(--cxs-color-focus)]';
 
+const SELECT_CLASSES =
+  'h-8 rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +
+  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] text-xs px-2 ' +
+  'transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +
+  'focus-visible:outline-[var(--cxs-color-focus)]';
+
 const DAY_BUTTON_BASE =
   'flex h-8 w-8 items-center justify-center rounded-[var(--cxs-radius-md)] text-xs ' +
   'transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +
@@ -108,6 +114,10 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
   displayMonth = new Date();
   calendarDays: CxsCalendarDay[] = [];
   readonly weekDayLabels = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  readonly monthOptions = Array.from({ length: 12 }, (_, index) => ({
+    value: index,
+    label: new Date(2020, index, 1).toLocaleString('en-US', { month: 'short' })
+  }));
 
   get isDisabled(): boolean {
     return this.disabled || this.disabledFromControl;
@@ -136,8 +146,23 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
     return NAV_BUTTON_CLASSES;
   }
 
+  get selectClass(): string {
+    return SELECT_CLASSES;
+  }
+
   get displayMonthLabel(): string {
     return this.displayMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+  }
+
+  get yearOptions(): number[] {
+    const baseYear = this.displayMonth.getFullYear();
+    const minYear = this.parseDate(this.min)?.getFullYear() ?? baseYear - 10;
+    const maxYear = this.parseDate(this.max)?.getFullYear() ?? baseYear + 10;
+
+    const start = Math.min(minYear, maxYear);
+    const end = Math.max(minYear, maxYear);
+
+    return Array.from({ length: end - start + 1 }, (_, index) => start + index);
   }
 
   writeValue(value: string | null): void {
@@ -205,6 +230,26 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
 
   nextMonth(): void {
     this.displayMonth = new Date(this.displayMonth.getFullYear(), this.displayMonth.getMonth() + 1, 1);
+    this.updateCalendar();
+  }
+
+  onMonthChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const nextMonth = Number(target.value);
+    if (Number.isNaN(nextMonth)) {
+      return;
+    }
+    this.displayMonth = new Date(this.displayMonth.getFullYear(), nextMonth, 1);
+    this.updateCalendar();
+  }
+
+  onYearChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const nextYear = Number(target.value);
+    if (Number.isNaN(nextYear)) {
+      return;
+    }
+    this.displayMonth = new Date(nextYear, this.displayMonth.getMonth(), 1);
     this.updateCalendar();
   }
 
