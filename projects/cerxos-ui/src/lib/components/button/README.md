@@ -8,6 +8,17 @@ Token-driven button component for Cerxos UI.
 <cxs-button variant="primary" size="md">Save</cxs-button>
 ```
 
+With icon:
+
+```html
+<cxs-button variant="secondary">
+  <svg cxsButtonIcon aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+  </svg>
+  Continue
+</cxs-button>
+```
+
 ## Inputs
 
 - `variant`: `primary` | `secondary` | `ghost` (default: `primary`)

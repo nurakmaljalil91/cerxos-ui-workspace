@@ -51,3 +51,21 @@ export const Disabled: Story = {
 export const Loading: Story = {
   args: { loading: true }
 };
+
+export const WithIcon: Story = {
+  render: () => ({
+    template: `
+      <cxs-button variant="outline">
+        <svg
+          cxsButtonIcon
+          aria-hidden="true"
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+        </svg>
+        Continue
+      </cxs-button>
+    `
+  })
+};

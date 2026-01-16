@@ -1,0 +1,38 @@
+<div [class]="itemClass">
+  <button
+    type="button"
+    [class]="headerClass"
+    [id]="buttonId"
+    [disabled]="disabled"
+    [attr.aria-expanded]="expanded"
+    [attr.aria-controls]="contentId"
+    (click)="toggle()"
+  >
+    <span class="flex min-w-0 flex-1 items-center gap-2">
+      <ng-content select="[cxsAccordionTitle]"></ng-content>
+      @if (title) {
+        <span class="truncate">{{ title }}</span>
+      }
+    </span>
+    <svg aria-hidden="true" [class]="iconClass" viewBox="0 0 20 20">
+      <path
+        d="M5 7l5 5 5-5"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+      ></path>
+    </svg>
+  </button>
+
+  <div
+    [id]="contentId"
+    role="region"
+    [attr.aria-labelledby]="buttonId"
+    [class]="contentClass"
+    [hidden]="!expanded"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

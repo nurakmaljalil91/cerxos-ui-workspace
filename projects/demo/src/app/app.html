@@ -1,244 +1,29 @@
 <main class="min-h-screen bg-(--cxs-color-surface) text-(--cxs-color-on-surface)" [cxsTheme]="themeMode">
-  <section class="mx-auto flex max-w-4xl flex-col gap-6 px-6 py-16">
-    <header class="flex flex-col gap-2">
-      <p class="text-sm uppercase tracking-[0.25em] text-(--cxs-color-primary)">Cerxos UI</p>
-      <h1 class="text-3xl font-semibold">Component preview</h1>
-      <p class="max-w-xl text-sm text-slate-600">
-        This demo app renders the library components with Tailwind + tokens.
-      </p>
-      <div class="flex flex-wrap items-center gap-3 pt-2">
-        <cxs-button variant="secondary" [disabled]="themeMode === 'light'" (click)="setTheme('light')">
-          Light
-        </cxs-button>
-        <cxs-button variant="secondary" [disabled]="themeMode === 'dark'" (click)="setTheme('dark')">
-          Dark
-        </cxs-button>
-        <cxs-button variant="secondary" [disabled]="themeMode === 'system'" (click)="setTheme('system')">
-          System
-        </cxs-button>
-        <span class="text-xs text-(--cxs-color-on-surface-muted)">
-          System preference: {{ systemPrefersDark ? 'Dark' : 'Light' }}
-        </span>
-      </div>
-    </header>
-
-    <cxs-card size="lg">
-      <div class="grid gap-6">
-        <div class="flex flex-wrap items-center justify-between gap-4">
-          <div class="flex flex-wrap items-center gap-2">
-            <cxs-badge>Secure access</cxs-badge>
-            <span class="text-xs text-(--cxs-color-on-surface-muted)">Tenant: cerxos-prod</span>
-          </div>
-          <cxs-breadcrumb [items]="loginBreadcrumbs" size="sm"></cxs-breadcrumb>
-        </div>
-
-        <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div class="flex flex-col gap-4">
-            <div class="space-y-2">
-              <h2 class="text-2xl font-semibold">Sign in to your workspace</h2>
-              <p class="text-sm text-(--cxs-color-on-surface-muted)">
-                Use your Cerxos account to continue. Your admin can manage access and policies.
-              </p>
-            </div>
-
-            <cxs-alert variant="neutral" title="Single sign-on ready">
-              Use SSO when available to unlock device checks and conditional access.
-            </cxs-alert>
-
-            <div class="rounded-(--cxs-radius-md) border border-(--cxs-color-border) p-4">
-              <div class="flex items-center gap-2">
-                <cxs-badge variant="neutral">Tips</cxs-badge>
-                <span class="text-sm text-(--cxs-color-on-surface-muted)">Faster access</span>
-              </div>
-              <p class="mt-2 text-sm text-(--cxs-color-on-surface-muted)">
-                Save your region and account type for future logins.
-              </p>
-            </div>
-          </div>
-
-          <form class="grid gap-4" autocomplete="on">
-            <div class="grid gap-2">
-              <label class="text-sm font-medium text-(--cxs-color-on-surface)" for="login-email">
-                Email
-              </label>
-              <cxs-input
-                id="login-email"
-                type="email"
-                placeholder="you@cerxos.ai"
-                [(ngModel)]="loginEmail"
-                name="loginEmail"
-              ></cxs-input>
-            </div>
-
-            <div class="grid gap-2">
-              <label class="text-sm font-medium text-(--cxs-color-on-surface)" for="login-password">
-                Password
-              </label>
-              <cxs-input
-                id="login-password"
-                type="password"
-                placeholder="Enter password"
-                [(ngModel)]="loginPassword"
-                name="loginPassword"
-              ></cxs-input>
-            </div>
-
-            <div class="grid gap-2">
-              <label class="text-sm font-medium text-(--cxs-color-on-surface)" for="login-region">
-                Region
-              </label>
-              <cxs-select
-                id="login-region"
-                placeholder="Select region"
-                [(ngModel)]="loginRegion"
-                name="loginRegion"
-              >
-                <option value="us-east">US East</option>
-                <option value="eu-west">EU West</option>
-                <option value="apac">APAC</option>
-              </cxs-select>
-            </div>
-
-            <div class="grid gap-2">
-              <span class="text-sm font-medium text-(--cxs-color-on-surface)">Account type</span>
-              <div class="flex flex-wrap items-center gap-4">
-                <cxs-radio name="login-account-type" value="personal" [(ngModel)]="loginAccountType">
-                  Personal
-                </cxs-radio>
-                <cxs-radio name="login-account-type" value="team" [(ngModel)]="loginAccountType">
-                  Team
-                </cxs-radio>
-                <cxs-radio name="login-account-type" value="enterprise" [(ngModel)]="loginAccountType">
-                  Enterprise
-                </cxs-radio>
-              </div>
-            </div>
-
-            <div class="grid gap-2">
-              <label class="text-sm font-medium text-(--cxs-color-on-surface)" for="login-start-date">
-                Start date
-              </label>
-              <cxs-datepicker
-                id="login-start-date"
-                [useNative]="false"
-                [(ngModel)]="loginStartDate"
-                name="loginStartDate"
-              ></cxs-datepicker>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <cxs-checkbox [(ngModel)]="loginRemember" name="loginRemember" label="Remember me">
-              </cxs-checkbox>
-              <cxs-checkbox [(ngModel)]="loginAgree" name="loginAgree">
-                I agree to the access policy
-              </cxs-checkbox>
-            </div>
-
-            <cxs-alert variant="danger" title="Login blocked">
-              Too many failed attempts. Please reset your password or contact support.
-            </cxs-alert>
-
-            <div class="flex flex-wrap items-center gap-3">
-              <cxs-button size="lg">Sign in</cxs-button>
-              <cxs-button variant="secondary" size="lg">Use SSO</cxs-button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </cxs-card>
-
-    <div class="grid gap-3">
-      <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
-      <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>
+  <header class="mx-auto flex max-w-4xl flex-col gap-2 px-6 py-16">
+    <p class="text-sm uppercase tracking-[0.25em] text-(--cxs-color-primary)">Cerxos UI</p>
+    <h1 class="text-3xl font-semibold">Component preview</h1>
+    <p class="max-w-xl text-sm text-slate-600">
+      This demo app renders the library components with Tailwind + tokens.
+    </p>
+    <div class="flex flex-wrap items-center gap-3 pt-2">
+      <cxs-button variant="secondary" [disabled]="themeMode === 'light'" (click)="setTheme('light')">
+        Light
+      </cxs-button>
+      <cxs-button variant="secondary" [disabled]="themeMode === 'dark'" (click)="setTheme('dark')">
+        Dark
+      </cxs-button>
+      <cxs-button variant="secondary" [disabled]="themeMode === 'system'" (click)="setTheme('system')">
+        System
+      </cxs-button>
+      <span class="text-xs text-(--cxs-color-on-surface-muted)">
+        System preference: {{ systemPrefersDark ? 'Dark' : 'Light' }}
+      </span>
     </div>
-
-    <div class="flex flex-wrap items-center gap-4">
-      <cxs-button>Primary</cxs-button>
-      <cxs-button variant="secondary">Secondary</cxs-button>
-      <cxs-button variant="ghost">Ghost</cxs-button>
-      <cxs-button size="sm">Small</cxs-button>
-      <cxs-button size="lg">Large</cxs-button>
-      <cxs-button [loading]="true">Loading</cxs-button>
-      <cxs-button [disabled]="true">Disabled</cxs-button>
+    <div class="flex flex-wrap items-center gap-3 pt-4">
+      <cxs-button size="sm" variant="secondary" routerLink="/">Components</cxs-button>
+      <cxs-button size="sm" variant="ghost" routerLink="/login">Login page</cxs-button>
     </div>
+  </header>
 
-    <div class="grid gap-3 max-w-lg">
-      <cxs-alert title="Update available">
-        A new version is ready to install. Please refresh the page.
-      </cxs-alert>
-      <cxs-alert variant="neutral" title="Heads up">
-        This is a neutral notice for general info.
-      </cxs-alert>
-      <cxs-alert variant="danger" title="Action required" [dismissible]="true">
-        Access expired. Contact your admin to restore permissions.
-      </cxs-alert>
-    </div>
-
-    <div class="flex flex-wrap items-center gap-2 max-w-lg">
-      <cxs-badge>Beta</cxs-badge>
-      <cxs-badge variant="neutral">Neutral</cxs-badge>
-      <cxs-badge variant="danger">Blocked</cxs-badge>
-      <cxs-badge size="sm">Small</cxs-badge>
-    </div>
-
-    <div class="grid gap-2 max-w-xs">
-      <cxs-datepicker [(ngModel)]="selectedDate"></cxs-datepicker>
-      <cxs-datepicker variant="filled"></cxs-datepicker>
-      <cxs-datepicker [invalid]="true"></cxs-datepicker>
-      <cxs-datepicker [disabled]="true"></cxs-datepicker>
-      <cxs-datepicker [useNative]="false" [(ngModel)]="customDate"></cxs-datepicker>
-    </div>
-
-    <div class="grid gap-3 max-w-sm">
-      <cxs-input placeholder="Email address" type="email"></cxs-input>
-      <cxs-input placeholder="Search" type="search" variant="filled"></cxs-input>
-      <cxs-input placeholder="Disabled input" [disabled]="true"></cxs-input>
-      <cxs-input placeholder="Invalid input" [invalid]="true" value="Invalid"></cxs-input>
-    </div>
-
-    <div class="grid gap-3 max-w-sm">
-      <cxs-select placeholder="Select a team">
-        <option value="platform">Platform</option>
-        <option value="design">Design</option>
-        <option value="product">Product</option>
-        <option value="sales">Sales</option>
-      </cxs-select>
-      <cxs-select placeholder="Select a team" variant="filled">
-        <option value="platform">Platform</option>
-        <option value="design">Design</option>
-        <option value="product">Product</option>
-        <option value="sales">Sales</option>
-      </cxs-select>
-      <cxs-select placeholder="Disabled select" [disabled]="true">
-        <option value="platform">Platform</option>
-        <option value="design">Design</option>
-        <option value="product">Product</option>
-        <option value="sales">Sales</option>
-      </cxs-select>
-      <cxs-select placeholder="Invalid select" [invalid]="true">
-        <option value="platform">Platform</option>
-        <option value="design">Design</option>
-        <option value="product">Product</option>
-        <option value="sales">Sales</option>
-      </cxs-select>
-    </div>
-
-    <div class="grid gap-2 max-w-sm">
-      <cxs-radio [(ngModel)]="tier" name="tier" value="starter">Starter</cxs-radio>
-      <cxs-radio [(ngModel)]="tier" name="tier" value="team">Team</cxs-radio>
-      <cxs-radio [(ngModel)]="tier" name="tier" value="enterprise" [disabled]="true">
-        Enterprise (disabled)
-      </cxs-radio>
-      <cxs-radio [(ngModel)]="tier" name="tier" value="custom" [invalid]="true">
-        Custom (invalid)
-      </cxs-radio>
-    </div>
-
-    <div class="grid gap-2 max-w-sm">
-      <cxs-checkbox [(ngModel)]="newsletter" label="Product updates"></cxs-checkbox>
-      <cxs-checkbox [(ngModel)]="alerts" label="Security alerts"></cxs-checkbox>
-      <cxs-checkbox [indeterminate]="partial">Partially selected</cxs-checkbox>
-      <cxs-checkbox [disabled]="true" label="Disabled option"></cxs-checkbox>
-    </div>
-  </section>
+  <router-outlet></router-outlet>
 </main>

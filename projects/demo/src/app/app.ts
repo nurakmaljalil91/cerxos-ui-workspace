@@ -1,69 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import {
-  CxsAlertComponent,
-  CxsBadgeComponent,
-  CxsBreadcrumbComponent,
-  CxsButtonComponent,
-  CxsCardComponent,
-  CxsCheckboxComponent,
-  CxsDatepickerComponent,
-  CxsInputComponent,
-  CxsRadioComponent,
-  CxsSelectComponent,
-  CxsThemeDirective,
-  CxsThemeMode
-} from 'cerxos-ui';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CxsButtonComponent, CxsThemeDirective, CxsThemeMode } from 'cerxos-ui';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    FormsModule,
-    CxsAlertComponent,
-    CxsBadgeComponent,
-    CxsBreadcrumbComponent,
-    CxsButtonComponent,
-    CxsCardComponent,
-    CxsCheckboxComponent,
-    CxsDatepickerComponent,
-    CxsInputComponent,
-    CxsRadioComponent,
-    CxsSelectComponent,
-    CxsThemeDirective
-  ],
+  imports: [RouterOutlet, RouterLink, CxsButtonComponent, CxsThemeDirective],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App implements OnInit, OnDestroy {
   themeMode: CxsThemeMode = 'light';
   systemPrefersDark = false;
-  loginEmail = '';
-  loginPassword = '';
-  loginRegion = '';
-  loginAccountType = 'personal';
-  loginStartDate = '2024-03-10';
-  loginRemember = true;
-  loginAgree = false;
-  loginBreadcrumbs = [
-    { label: 'Cerxos', href: '#' },
-    { label: 'Access', href: '#' },
-    { label: 'Sign in' }
-  ];
-  breadcrumbs = [
-    { label: 'Home', href: '#' },
-    { label: 'Accounts', href: '#' },
-    { label: 'Growth' }
-  ];
-  breadcrumbMuted = [
-    { label: 'Workspace', href: '#' },
-    { label: 'Settings' }
-  ];
-  tier = 'starter';
-  newsletter = true;
-  alerts = false;
-  partial = true;
-  selectedDate = '2024-04-01';
-  customDate = '2024-03-10';
 
   private mediaQuery: MediaQueryList | null = null;
   private mediaListener: ((event: MediaQueryListEvent) => void) | null = null;

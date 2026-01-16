@@ -1,0 +1,113 @@
+<section class="mx-auto flex max-w-4xl flex-col gap-6 px-6 pb-16">
+  <div class="grid gap-3">
+    <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
+    <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-4">
+    <cxs-button>Primary</cxs-button>
+    <cxs-button variant="secondary">Secondary</cxs-button>
+    <cxs-button variant="ghost">Ghost</cxs-button>
+    <cxs-button variant="secondary">
+      <svg cxsButtonIcon aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+      </svg>
+      With icon
+    </cxs-button>
+    <cxs-button size="sm">Small</cxs-button>
+    <cxs-button size="lg">Large</cxs-button>
+    <cxs-button [loading]="true">Loading</cxs-button>
+    <cxs-button [disabled]="true">Disabled</cxs-button>
+  </div>
+
+  <cxs-accordion>
+    <cxs-accordion-item title="Security checks" [expanded]="true">
+      We automatically assess device posture and session risk before access.
+    </cxs-accordion-item>
+    <cxs-accordion-item title="Conditional access">
+      Set policies based on location, role, or SSO status.
+    </cxs-accordion-item>
+    <cxs-accordion-item title="Audit trail" [disabled]="true">
+      View audit logs for every login event.
+    </cxs-accordion-item>
+  </cxs-accordion>
+
+  <div class="grid gap-3 max-w-lg">
+    <cxs-alert title="Update available">
+      A new version is ready to install. Please refresh the page.
+    </cxs-alert>
+    <cxs-alert variant="neutral" title="Heads up">
+      This is a neutral notice for general info.
+    </cxs-alert>
+    <cxs-alert variant="danger" title="Action required" [dismissible]="true">
+      Access expired. Contact your admin to restore permissions.
+    </cxs-alert>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-2 max-w-lg">
+    <cxs-badge>Beta</cxs-badge>
+    <cxs-badge variant="neutral">Neutral</cxs-badge>
+    <cxs-badge variant="danger">Blocked</cxs-badge>
+    <cxs-badge size="sm">Small</cxs-badge>
+  </div>
+
+  <div class="grid gap-2 max-w-xs">
+    <cxs-datepicker [(ngModel)]="selectedDate"></cxs-datepicker>
+    <cxs-datepicker variant="filled"></cxs-datepicker>
+    <cxs-datepicker [invalid]="true"></cxs-datepicker>
+    <cxs-datepicker [disabled]="true"></cxs-datepicker>
+    <cxs-datepicker [useNative]="false" [(ngModel)]="customDate"></cxs-datepicker>
+  </div>
+
+  <div class="grid gap-3 max-w-sm">
+    <cxs-input placeholder="Email address" type="email"></cxs-input>
+    <cxs-input placeholder="Search" type="search" variant="filled"></cxs-input>
+    <cxs-input placeholder="Disabled input" [disabled]="true"></cxs-input>
+    <cxs-input placeholder="Invalid input" [invalid]="true" value="Invalid"></cxs-input>
+  </div>
+
+  <div class="grid gap-3 max-w-sm">
+    <cxs-select placeholder="Select a team">
+      <option value="platform">Platform</option>
+      <option value="design">Design</option>
+      <option value="product">Product</option>
+      <option value="sales">Sales</option>
+    </cxs-select>
+    <cxs-select placeholder="Select a team" variant="filled">
+      <option value="platform">Platform</option>
+      <option value="design">Design</option>
+      <option value="product">Product</option>
+      <option value="sales">Sales</option>
+    </cxs-select>
+    <cxs-select placeholder="Disabled select" [disabled]="true">
+      <option value="platform">Platform</option>
+      <option value="design">Design</option>
+      <option value="product">Product</option>
+      <option value="sales">Sales</option>
+    </cxs-select>
+    <cxs-select placeholder="Invalid select" [invalid]="true">
+      <option value="platform">Platform</option>
+      <option value="design">Design</option>
+      <option value="product">Product</option>
+      <option value="sales">Sales</option>
+    </cxs-select>
+  </div>
+
+  <div class="grid gap-2 max-w-sm">
+    <cxs-radio [(ngModel)]="tier" name="tier" value="starter">Starter</cxs-radio>
+    <cxs-radio [(ngModel)]="tier" name="tier" value="team">Team</cxs-radio>
+    <cxs-radio [(ngModel)]="tier" name="tier" value="enterprise" [disabled]="true">
+      Enterprise (disabled)
+    </cxs-radio>
+    <cxs-radio [(ngModel)]="tier" name="tier" value="custom" [invalid]="true">
+      Custom (invalid)
+    </cxs-radio>
+  </div>
+
+  <div class="grid gap-2 max-w-sm">
+    <cxs-checkbox [(ngModel)]="newsletter" label="Product updates"></cxs-checkbox>
+    <cxs-checkbox [(ngModel)]="alerts" label="Security alerts"></cxs-checkbox>
+    <cxs-checkbox [indeterminate]="partial">Partially selected</cxs-checkbox>
+    <cxs-checkbox [disabled]="true" label="Disabled option"></cxs-checkbox>
+  </div>
+</section>
