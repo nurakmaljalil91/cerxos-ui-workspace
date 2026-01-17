@@ -49,6 +49,18 @@
     <cxs-toggle size="lg" label="Large toggle"></cxs-toggle>
   </div>
 
+  <div class="flex flex-wrap items-center gap-3">
+    <cxs-tooltip text="View notifications" position="top">
+      <cxs-button size="sm" variant="ghost">Notifications</cxs-button>
+    </cxs-tooltip>
+    <cxs-tooltip text="Add teammate" position="right">
+      <cxs-button size="sm" variant="secondary">Invite</cxs-button>
+    </cxs-tooltip>
+    <cxs-tooltip text="Settings" position="bottom">
+      <cxs-button size="sm">Settings</cxs-button>
+    </cxs-tooltip>
+  </div>
+
   <div class="grid gap-3">
     <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
     <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>

@@ -16,7 +16,8 @@ import {
   CxsRadioComponent,
   CxsSelectComponent,
   CxsToggleComponent,
-  CxsToastComponent
+  CxsToastComponent,
+  CxsTooltipComponent
 } from 'cerxos-ui';
 
 @Component({
@@ -38,7 +39,8 @@ import {
     CxsRadioComponent,
     CxsSelectComponent,
     CxsToggleComponent,
-    CxsToastComponent
+    CxsToastComponent,
+    CxsTooltipComponent
   ],
   templateUrl: './home-page.html'
 })

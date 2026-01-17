@@ -1,0 +1,10 @@
+<span [class]="wrapperClass">
+  <span [attr.aria-describedby]="describedBy">
+    <ng-content></ng-content>
+  </span>
+  @if (open) {
+    <span [id]="tooltipId" role="tooltip" [class]="tooltipClass">
+      {{ text }}
+    </span>
+  }
+</span>
