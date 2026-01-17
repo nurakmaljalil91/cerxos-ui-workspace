@@ -15,6 +15,7 @@ import {
   CxsMenubarComponent,
   CxsRadioComponent,
   CxsSelectComponent,
+  CxsToggleComponent,
   CxsToastComponent
 } from 'cerxos-ui';
 
@@ -36,6 +37,7 @@ import {
     CxsMenubarComponent,
     CxsRadioComponent,
     CxsSelectComponent,
+    CxsToggleComponent,
     CxsToastComponent
   ],
   templateUrl: './home-page.html'
@@ -43,6 +45,7 @@ import {
 export class HomePageComponent {
   toastOpen = false;
   dialogOpen = false;
+  notificationsEnabled = true;
 
   showToast(): void {
     this.toastOpen = true;

@@ -39,6 +39,16 @@
     </cxs-toast>
   </div>
 
+  <div class="grid gap-3 max-w-sm">
+    <cxs-toggle
+      [(checked)]="notificationsEnabled"
+      label="Enable notifications"
+    ></cxs-toggle>
+    <cxs-toggle [disabled]="true" label="Disabled toggle"></cxs-toggle>
+    <cxs-toggle size="sm" label="Small toggle"></cxs-toggle>
+    <cxs-toggle size="lg" label="Large toggle"></cxs-toggle>
+  </div>
+
   <div class="grid gap-3">
     <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
     <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>

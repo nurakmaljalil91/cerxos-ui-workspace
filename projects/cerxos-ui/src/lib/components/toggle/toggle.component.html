@@ -1,0 +1,17 @@
+<div [class]="wrapperClass">
+  <button
+    type="button"
+    [class]="trackClass"
+    role="switch"
+    [disabled]="disabled"
+    [attr.aria-checked]="checked ? 'true' : 'false'"
+    [attr.aria-labelledby]="label ? labelId : null"
+    [attr.aria-label]="ariaLabelValue"
+    (click)="toggle()"
+  >
+    <span [class]="thumbClass" aria-hidden="true"></span>
+  </button>
+  @if (label) {
+    <span [id]="labelId" [class]="labelClass">{{ label }}</span>
+  }
+</div>
