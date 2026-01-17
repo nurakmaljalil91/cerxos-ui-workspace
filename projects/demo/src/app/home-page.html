@@ -1,5 +1,9 @@
 <section class="mx-auto flex max-w-4xl flex-col gap-6 px-6 pb-16">
   <div class="grid gap-3">
+    <cxs-menubar [items]="menubarItems" variant="surface"></cxs-menubar>
+  </div>
+
+  <div class="grid gap-3">
     <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
     <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>
   </div>

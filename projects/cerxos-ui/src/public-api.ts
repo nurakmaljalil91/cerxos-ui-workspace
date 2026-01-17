@@ -13,6 +13,7 @@ export * from './lib/components/card/card.component';
 export * from './lib/components/checkbox/checkbox.component';
 export * from './lib/components/datepicker/datepicker.component';
 export * from './lib/components/input/input.component';
+export * from './lib/components/menubar/menubar.component';
 export * from './lib/components/radio/radio.component';
 export * from './lib/components/select/select.component';
 export * from './lib/directives/theme/theme.directive';

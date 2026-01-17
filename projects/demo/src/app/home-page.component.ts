@@ -10,6 +10,7 @@ import {
   CxsCheckboxComponent,
   CxsDatepickerComponent,
   CxsInputComponent,
+  CxsMenubarComponent,
   CxsRadioComponent,
   CxsSelectComponent
 } from 'cerxos-ui';
@@ -27,12 +28,20 @@ import {
     CxsCheckboxComponent,
     CxsDatepickerComponent,
     CxsInputComponent,
+    CxsMenubarComponent,
     CxsRadioComponent,
     CxsSelectComponent
   ],
   templateUrl: './home-page.html'
 })
 export class HomePageComponent {
+  menubarItems = [
+    { label: 'Overview', href: '#', active: true },
+    { label: 'People', href: '#' },
+    { label: 'Billing', href: '#' },
+    { label: 'Create' },
+    { label: 'Disabled', href: '#', disabled: true }
+  ];
   breadcrumbs = [
     { label: 'Home', href: '#' },
     { label: 'Accounts', href: '#' },

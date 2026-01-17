@@ -1,0 +1,40 @@
+<nav [attr.aria-label]="ariaLabel">
+  <ul [class]="menubarClass" role="menubar" (keydown)="onKeydown($event)">
+    @for (item of items; track item) {
+      <li>
+        @if (item.href) {
+          <a
+            #menuItem
+            role="menuitem"
+            [class]="getItemClass(item)"
+            [attr.href]="getItemHref(item)"
+            [attr.target]="item.target ?? null"
+            [attr.rel]="getItemRel(item)"
+            [attr.aria-label]="item.ariaLabel ?? null"
+            [attr.aria-current]="item.active ? 'page' : null"
+            [attr.aria-disabled]="isItemDisabled(item) ? 'true' : null"
+            [attr.tabindex]="isItemDisabled(item) ? -1 : null"
+            [attr.data-disabled]="isItemDisabled(item) ? '' : null"
+            (click)="onItemClick(item, $event)"
+          >
+            {{ item.label }}
+          </a>
+        } @else {
+          <button
+            #menuItem
+            type="button"
+            role="menuitem"
+            [class]="getItemClass(item)"
+            [disabled]="isItemDisabled(item)"
+            [attr.aria-label]="item.ariaLabel ?? null"
+            [attr.aria-current]="item.active ? 'page' : null"
+            [attr.data-disabled]="isItemDisabled(item) ? '' : null"
+            (click)="onItemClick(item, $event)"
+          >
+            {{ item.label }}
+          </button>
+        }
+      </li>
+    }
+  </ul>
+</nav>
