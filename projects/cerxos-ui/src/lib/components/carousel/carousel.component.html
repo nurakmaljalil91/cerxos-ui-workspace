@@ -1,0 +1,64 @@
+<div [class]="wrapperClass" [attr.aria-label]="ariaLabel">
+  <div [class]="trackClass" [style.transform]="trackStyle">
+    @for (item of items; track item) {
+      <div [class]="slideClass">
+        @if (item.image) {
+          <img
+            [class]="imageClass"
+            [attr.src]="item.image"
+            [attr.alt]="item.alt ?? item.title ?? 'Carousel image'"
+          />
+        }
+        @if (item.title || item.description) {
+          <div [class]="contentClass">
+            @if (item.title) {
+              <div class="text-base font-semibold">{{ item.title }}</div>
+            }
+            @if (item.description) {
+              <div class="text-sm text-white/80">{{ item.description }}</div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  @if (showControls && items.length > 1) {
+    <button
+      type="button"
+      [class]="controlClass"
+      style="left: 12px"
+      aria-label="Previous slide"
+      (click)="previous()"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+    <button
+      type="button"
+      [class]="controlClass"
+      style="right: 12px"
+      aria-label="Next slide"
+      (click)="next()"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+      </svg>
+
+    </button>
+  }
+
+  @if (showIndicators && items.length > 1) {
+    <div [class]="indicatorContainerClass">
+      @for (item of items; track item; let index = $index) {
+        <button
+          type="button"
+          [class]="indicatorClass(index === activeIndex)"
+          [attr.aria-label]="'Go to slide ' + (index + 1)"
+          (click)="goTo(index)"
+        ></button>
+      }
+    </div>
+  }
+</div>

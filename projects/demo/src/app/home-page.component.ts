@@ -10,6 +10,7 @@ import {
   CxsButtonComponent,
   CxsDialogComponent,
   CxsCheckboxComponent,
+  CxsCarouselComponent,
   CxsDatepickerComponent,
   CxsDataTableComponent,
   CxsInputComponent,
@@ -35,6 +36,7 @@ import {
     CxsButtonComponent,
     CxsDialogComponent,
     CxsCheckboxComponent,
+    CxsCarouselComponent,
     CxsDatepickerComponent,
     CxsDataTableComponent,
     CxsInputComponent,
@@ -63,16 +65,37 @@ export class HomePageComponent {
     {name: 'Gamma', status: 'Active', updated: 'Just now'}
   ];
   dataTableColumns: CxsDataTableColumn[] = [
+    {key: 'id', label: 'Id', sortable: true},
     {key: 'team', label: 'Team', sortable: true},
     {key: 'owner', label: 'Owner'},
     {key: 'updated', label: 'Updated', align: 'right', sortable: true}
   ];
   dataTableRows = [
-    {team: 'Platform', owner: 'Avery', updated: 'Just now'},
-    {team: 'Design', owner: 'Blake', updated: '1h ago'},
-    {team: 'Product', owner: 'Casey', updated: 'Yesterday'},
-    {team: 'Growth', owner: 'Devin', updated: '2d ago'},
-    {team: 'Sales', owner: 'Emery', updated: 'Last week'}
+    {id: 1, team: 'Platform', owner: 'Avery', updated: 'Just now'},
+    {id: 2, team: 'Design', owner: 'Blake', updated: '1h ago'},
+    {id: 3, team: 'Product', owner: 'Casey', updated: 'Yesterday'},
+    {id: 4, team: 'Growth', owner: 'Devin', updated: '2d ago'},
+    {id: 5, team: 'Sales', owner: 'Emery', updated: 'Last week'}
+  ];
+  carouselItems = [
+    {
+      title: 'Workspace analytics',
+      description: 'Track adoption across teams.',
+      image: 'https://picsum.photos/900/400?4',
+      alt: 'Analytics preview'
+    },
+    {
+      title: 'Security posture',
+      description: 'Review access trends in minutes.',
+      image: 'https://picsum.photos/900/400?5',
+      alt: 'Security preview'
+    },
+    {
+      title: 'Automations',
+      description: 'Save time with reusable workflows.',
+      image: 'https://picsum.photos/900/400?6',
+      alt: 'Automation preview'
+    }
   ];
 
   showToast(): void {

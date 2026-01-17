@@ -43,7 +43,9 @@
       <div [class]="popoverClass" [attr.id]="panelId" role="dialog" aria-label="Choose date">
         <div class="flex items-center justify-between">
           <button type="button" [class]="navButtonClass" aria-label="Previous month" (click)="prevMonth()">
-            <
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
           </button>
           <div class="flex items-center gap-2">
             <select
@@ -70,11 +72,13 @@
             </select>
           </div>
           <button type="button" [class]="navButtonClass" aria-label="Next month" (click)="nextMonth()">
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
           </button>
         </div>
 
-        <div class="mt-3 grid grid-cols-7 gap-1 text-center text-xs text-[var(--cxs-color-on-surface-muted)]">
+        <div class="mt-3 grid grid-cols-7 gap-1 text-center text-xs text-(--cxs-color-on-surface-muted)">
           @for (label of weekDayLabels; track label) {
             <div>{{ label }}</div>
           }

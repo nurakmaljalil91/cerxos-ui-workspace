@@ -3,6 +3,10 @@
     <cxs-menubar [items]="menubarItems" variant="surface"></cxs-menubar>
   </div>
 
+  <div class="grid gap-3">
+    <cxs-carousel [items]="carouselItems" [autoplay]="true" [interval]="5000"></cxs-carousel>
+  </div>
+
   <div class="flex flex-wrap items-center gap-3">
     <cxs-avatar [src]="avatarImage" name="Ada Lovelace"></cxs-avatar>
     <cxs-avatar name="Grace Hopper"></cxs-avatar>

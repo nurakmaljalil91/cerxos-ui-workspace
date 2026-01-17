@@ -40,7 +40,7 @@ const HEADER_ROW_CLASSES =
   'text-[var(--cxs-color-on-surface-muted)]';
 const HEADER_CELL_BASE_CLASSES = 'px-3 py-2 text-left font-semibold';
 const HEADER_BUTTON_CLASSES =
-  'inline-flex items-center gap-2 rounded-[var(--cxs-radius-md)] px-2 py-1 ' +
+  'inline-flex items-center uppercase gap-2 rounded-[var(--cxs-radius-md)] px-2 py-1 ' +
   'transition-colors hover:bg-[var(--cxs-color-surface-hover)] ' +
   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +
   'focus-visible:outline-[var(--cxs-color-focus)]';
@@ -239,14 +239,6 @@ export class CxsDataTableComponent implements OnChanges {
     }
 
     return this.sortDirection === 'asc' ? 'ascending' : 'descending';
-  }
-
-  sortLabel(column: CxsDataTableColumn): string | null {
-    if (!column.sortable || this.sortKey !== column.key) {
-      return null;
-    }
-
-    return this.sortDirection === 'asc' ? 'Asc' : 'Desc';
   }
 
   onSort(column: CxsDataTableColumn): void {
