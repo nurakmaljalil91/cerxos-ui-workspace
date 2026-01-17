@@ -3,6 +3,13 @@
     <cxs-menubar [items]="menubarItems" variant="surface"></cxs-menubar>
   </div>
 
+  <div class="flex flex-wrap items-center gap-3">
+    <cxs-avatar [src]="avatarImage" name="Ada Lovelace"></cxs-avatar>
+    <cxs-avatar name="Grace Hopper"></cxs-avatar>
+    <cxs-avatar [src]="avatarImage" name="Katherine Johnson" size="lg"></cxs-avatar>
+    <cxs-avatar name="Square" shape="square" size="sm"></cxs-avatar>
+  </div>
+
   <div class="grid gap-3">
     <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
     <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>
