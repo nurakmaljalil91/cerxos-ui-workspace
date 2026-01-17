@@ -36,6 +36,25 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+to build the library, run:
+
+```bash
+npm run build cerxos-ui
+```
+
+## Publishing
+
+To publish the library to a package registry (e.g., npm), follow these steps:
+
+1. Ensure you have built the library using the build command mentioned above.
+2. Navigate to the output directory, typically `dist/cerxos-ui`.
+3. Run the following command to publish the package:
+
+```bash
+npm publish --access public
+```
+Make sure you have the necessary permissions and are logged in to the package registry before publishing.
+
 ## Running unit tests
 
 To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
