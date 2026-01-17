@@ -1,0 +1,44 @@
+@if (open) {
+  <div [class]="overlayClass" (click)="onBackdropClick($event)">
+    <div
+      #dialogPanel
+      [class]="panelClass"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="title ? titleId : null"
+      [attr.aria-describedby]="description ? descriptionId : null"
+      [attr.aria-label]="ariaLabelValue"
+      tabindex="-1"
+      (keydown)="onKeydown($event)"
+    >
+      <div class="flex items-start gap-3">
+        <div class="flex-1">
+          @if (title) {
+            <h2 [id]="titleId" [class]="titleClass">{{ title }}</h2>
+          }
+          @if (description) {
+            <p [id]="descriptionId" [class]="descriptionClass">{{ description }}</p>
+          }
+        </div>
+        @if (dismissible) {
+          <button
+            type="button"
+            [class]="closeButtonClass"
+            aria-label="Close dialog"
+            (click)="requestClose('dismiss')"
+          >
+            X
+          </button>
+        }
+      </div>
+
+      <div [class]="bodyClass">
+        <ng-content></ng-content>
+      </div>
+
+      <div [class]="actionsClass">
+        <ng-content select="[cxsDialogActions]"></ng-content>
+      </div>
+    </div>
+  </div>
+}

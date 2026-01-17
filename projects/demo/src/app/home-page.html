@@ -10,6 +10,21 @@
     <cxs-avatar name="Square" shape="square" size="sm"></cxs-avatar>
   </div>
 
+  <div class="flex flex-wrap items-center gap-3">
+    <cxs-button variant="secondary" (click)="dialogOpen = true">Open dialog</cxs-button>
+    <cxs-dialog
+      [(open)]="dialogOpen"
+      title="Invite teammates"
+      description="Share access with your team."
+    >
+      <p>Send invites to collaborators across your workspace.</p>
+      <div cxsDialogActions>
+        <cxs-button variant="secondary" (click)="dialogOpen = false">Cancel</cxs-button>
+        <cxs-button (click)="dialogOpen = false">Send invites</cxs-button>
+      </div>
+    </cxs-dialog>
+  </div>
+
   <div class="grid gap-3">
     <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
     <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>

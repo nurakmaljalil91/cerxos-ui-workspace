@@ -12,6 +12,7 @@ export * from './lib/components/breadcrumb/breadcrumb.component';
 export * from './lib/components/button/button.component';
 export * from './lib/components/card/card.component';
 export * from './lib/components/checkbox/checkbox.component';
+export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/datepicker/datepicker.component';
 export * from './lib/components/input/input.component';
 export * from './lib/components/menubar/menubar.component';
