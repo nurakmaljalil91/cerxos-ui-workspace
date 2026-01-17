@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+// @ts-ignore
 import type { Meta, StoryObj } from '@storybook/angular';
+// @ts-ignore
+import { moduleMetadata } from '@storybook/angular';
 
 import { CxsToastComponent } from './toast.component';
 
@@ -64,7 +67,7 @@ export const Positions: Story = {
   render: () => ({
     template: `
       <div class="relative min-h-[320px]">
-        <cxs-toast open title="Top left" message="Pinned" position="top-left"></cxs-toast>
+        <cxs-toast open="" title="Top left" message="Pinned" position="top-left"></cxs-toast>
         <cxs-toast open title="Top" message="Pinned" position="top"></cxs-toast>
         <cxs-toast open title="Top right" message="Pinned" position="top-right"></cxs-toast>
         <cxs-toast open title="Left" message="Pinned" position="left"></cxs-toast>
@@ -97,7 +100,7 @@ export const Positions: Story = {
       "
     >
       <cxs-toast
-        open
+        [open]="true"
         title="Custom theme"
         message="Tokens can change the tone."
         position="bottom-right"
@@ -110,7 +113,12 @@ export const Positions: Story = {
 class ToastThemeStoryComponent {}
 
 export const ThemeOverride: Story = {
+  decorators: [
+    moduleMetadata({
+      imports: [ToastThemeStoryComponent]
+    })
+  ],
   render: () => ({
-    component: ToastThemeStoryComponent
+    template: `<cxs-toast-theme-story></cxs-toast-theme-story>`
   })
 };

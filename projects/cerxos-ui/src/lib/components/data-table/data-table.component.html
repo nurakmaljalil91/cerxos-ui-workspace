@@ -207,7 +207,14 @@
                 [style.left]="pinnedLeft(column)"
                 [style.right]="pinnedRight(column)"
               >
-                {{ cellValue(row, column) }}
+                @if (cellTemplate(column.key); as template) {
+                  <ng-container
+                    [ngTemplateOutlet]="template"
+                    [ngTemplateOutletContext]="{ $implicit: row, value: row[column.key], column }"
+                  ></ng-container>
+                } @else {
+                  {{ cellValue(row, column) }}
+                }
               </td>
             }
           </tr>

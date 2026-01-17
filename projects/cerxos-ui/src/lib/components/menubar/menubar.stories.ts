@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+// @ts-ignore
 import type { Meta, StoryObj } from '@storybook/angular';
+// @ts-ignore
+import { moduleMetadata } from '@storybook/angular';
 
 import { CxsMenubarComponent, CxsMenubarItem } from './menubar.component';
 
@@ -84,8 +87,13 @@ class MenubarFocusStoryComponent implements AfterViewInit {
 }
 
 export const Focus: Story = {
+  decorators: [
+    moduleMetadata({
+      imports: [MenubarFocusStoryComponent]
+    })
+  ],
   render: () => ({
-    component: MenubarFocusStoryComponent
+    template: `<cxs-menubar-focus-story></cxs-menubar-focus-story>`
   })
 };
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
 
 import { CxsDialogComponent } from './dialog.component';
 
@@ -92,7 +93,12 @@ export const Sizes: Story = {
 class DialogThemeStoryComponent {}
 
 export const ThemeOverride: Story = {
+  decorators: [
+    moduleMetadata({
+      imports: [DialogThemeStoryComponent]
+    })
+  ],
   render: () => ({
-    component: DialogThemeStoryComponent
+    template: `<cxs-dialog-theme-story></cxs-dialog-theme-story>`
   })
 };

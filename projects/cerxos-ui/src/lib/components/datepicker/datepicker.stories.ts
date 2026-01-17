@@ -1,4 +1,6 @@
+// @ts-ignore
 import type { Meta, StoryObj } from '@storybook/angular';
+// @ts-ignore
 import { moduleMetadata } from '@storybook/angular';
 import { FormsModule } from '@angular/forms';
 

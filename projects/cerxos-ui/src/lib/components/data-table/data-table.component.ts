@@ -1,13 +1,19 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Attribute,
   ChangeDetectionStrategy,
   Component,
+  ContentChildren,
   EventEmitter,
   Input,
   OnChanges,
   Output,
-  SimpleChanges
+  QueryList,
+  SimpleChanges,
+  TemplateRef
 } from '@angular/core';
+import { CxsDataTableCellDirective } from './data-table-cell.directive';
+import type { CxsDataTableCellContext } from './data-table-cell.directive';
 
 export type CxsDataTableAlign = 'left' | 'center' | 'right';
 export type CxsDataTableSortDirection = 'asc' | 'desc';
@@ -102,6 +108,7 @@ const RESIZE_HANDLE_CLASSES =
   selector: 'cxs-data-table',
   standalone: true,
   templateUrl: './data-table.component.html',
+  imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CxsDataTableComponent implements OnChanges {
@@ -151,6 +158,9 @@ export class CxsDataTableComponent implements OnChanges {
     id: string;
     selected: Array<Record<string, unknown>>;
   }>();
+
+  @ContentChildren(CxsDataTableCellDirective)
+  private readonly cellTemplates?: QueryList<CxsDataTableCellDirective>;
 
   protected currentPage = 1;
   protected currentPageSize = 10;
@@ -336,6 +346,14 @@ export class CxsDataTableComponent implements OnChanges {
     ]
       .filter(Boolean)
       .join(' ');
+  }
+
+  cellTemplate(columnKey: string): TemplateRef<CxsDataTableCellContext> | null {
+    if (!this.cellTemplates) {
+      return null;
+    }
+
+    return this.cellTemplates.find((template) => template.columnKey === columnKey)?.template ?? null;
   }
 
   cellValue(row: Record<string, unknown>, column: CxsDataTableColumn): string {

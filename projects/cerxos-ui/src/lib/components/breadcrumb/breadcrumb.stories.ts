@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
 
 import { CxsBreadcrumbComponent, CxsBreadcrumbItem } from './breadcrumb.component';
 
@@ -86,8 +87,13 @@ class BreadcrumbFocusStoryComponent implements AfterViewInit {
 }
 
 export const Focus: Story = {
+  decorators: [
+    moduleMetadata({
+      imports: [BreadcrumbFocusStoryComponent]
+    })
+  ],
   render: () => ({
-    component: BreadcrumbFocusStoryComponent
+    template: `<cxs-breadcrumb-focus-story></cxs-breadcrumb-focus-story>`
   })
 };
 
