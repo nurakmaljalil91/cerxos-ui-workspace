@@ -61,6 +61,27 @@
     </cxs-tooltip>
   </div>
 
+  <div class="grid gap-3 max-w-3xl">
+    <cxs-table
+      [columns]="tableColumns"
+      [data]="tableRows"
+      caption="Project status"
+      [striped]="true"
+      [bordered]="true"
+    ></cxs-table>
+  </div>
+
+  <div class="grid gap-3 max-w-4xl">
+    <cxs-data-table
+      [columns]="dataTableColumns"
+      [data]="dataTableRows"
+      caption="Team ownership"
+      [striped]="true"
+      [bordered]="true"
+      [pageSize]="3"
+    ></cxs-data-table>
+  </div>
+
   <div class="grid gap-3">
     <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
     <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>

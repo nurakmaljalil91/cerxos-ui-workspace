@@ -1,0 +1,100 @@
+<div [class]="wrapperClass">
+  <table [class]="tableClass" [attr.aria-label]="ariaLabel">
+    @if (caption) {
+      <caption class="sr-only">{{ caption }}</caption>
+    }
+    <thead>
+      <tr [class]="headerRowClass">
+        @for (column of columns; track column) {
+          <th
+            [class]="headerCellClass(column)"
+            [style.width]="column.width ?? null"
+            scope="col"
+            [attr.aria-sort]="ariaSort(column)"
+          >
+            @if (column.sortable) {
+              <button
+                type="button"
+                [class]="headerButtonClass()"
+                (click)="onSort(column)"
+              >
+                <span>{{ column.label }}</span>
+                @if (sortLabel(column)) {
+                  <span class="text-[10px] text-[var(--cxs-color-on-surface-muted)]">
+                    {{ sortLabel(column) }}
+                  </span>
+                }
+              </button>
+            } @else {
+              {{ column.label }}
+            }
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @if (loading) {
+        <tr [class]="bodyRowClass">
+          <td [class]="bodyCellClass({ key: '', label: '' })" [attr.colspan]="colSpan">
+            <span [class]="emptyRowClass">Loading...</span>
+          </td>
+        </tr>
+      } @else if (displayRows.length === 0) {
+        <tr [class]="bodyRowClass">
+          <td [class]="bodyCellClass({ key: '', label: '' })" [attr.colspan]="colSpan">
+            <span [class]="emptyRowClass">{{ emptyMessage }}</span>
+          </td>
+        </tr>
+      } @else {
+        @for (row of displayRows; track row) {
+          <tr [class]="bodyRowClass">
+            @for (column of columns; track column) {
+              <td [class]="bodyCellClass(column)">
+                {{ cellValue(row, column) }}
+              </td>
+            }
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
+
+@if (showPagination) {
+  <div [class]="paginationClass">
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        [class]="pageButtonClass"
+        [disabled]="currentPage <= 1"
+        (click)="previousPage()"
+      >
+        Previous
+      </button>
+      <button
+        type="button"
+        [class]="pageButtonClass"
+        [disabled]="currentPage >= totalPages"
+        (click)="nextPage()"
+      >
+        Next
+      </button>
+      <span class="text-[var(--cxs-color-on-surface-muted)]">{{ pageLabel }}</span>
+    </div>
+    @if (showPageSize) {
+      <label class="flex items-center gap-2 text-[var(--cxs-color-on-surface-muted)]">
+        <span>Rows</span>
+        <select
+          #pageSizeSelect
+          [class]="pageSelectClass"
+          [value]="currentPageSize"
+          (change)="onPageSizeChange(pageSizeSelect.value)"
+        >
+          @for (size of pageSizeOptions; track size) {
+            <option [value]="size">{{ size }}</option>
+          }
+        </select>
+      </label>
+    }
+  </div>
+}

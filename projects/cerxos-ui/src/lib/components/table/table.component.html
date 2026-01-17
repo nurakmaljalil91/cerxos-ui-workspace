@@ -1,0 +1,39 @@
+<div [class]="wrapperClass">
+  <table [class]="tableClass" [attr.aria-label]="ariaLabel">
+    @if (caption) {
+      <caption class="sr-only">{{ caption }}</caption>
+    }
+    <thead>
+      <tr [class]="headerRowClass">
+        @for (column of columns; track column) {
+          <th
+            [class]="headerCellClass(column)"
+            [style.width]="column.width ?? null"
+            scope="col"
+          >
+            {{ column.label }}
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @if (data.length === 0) {
+        <tr [class]="bodyRowClass">
+          <td [class]="bodyCellClass({ key: '', label: '' })" [attr.colspan]="colSpan">
+            <span [class]="emptyRowClass">{{ emptyMessage }}</span>
+          </td>
+        </tr>
+      } @else {
+        @for (row of data; track row; let rowIndex = $index) {
+          <tr [class]="bodyRowClass">
+            @for (column of columns; track column) {
+              <td [class]="bodyCellClass(column)">
+                {{ cellValue(row, column) }}
+              </td>
+            }
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
