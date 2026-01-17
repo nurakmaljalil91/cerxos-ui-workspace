@@ -14,7 +14,8 @@ import {
   CxsInputComponent,
   CxsMenubarComponent,
   CxsRadioComponent,
-  CxsSelectComponent
+  CxsSelectComponent,
+  CxsToastComponent
 } from 'cerxos-ui';
 
 @Component({
@@ -34,12 +35,18 @@ import {
     CxsInputComponent,
     CxsMenubarComponent,
     CxsRadioComponent,
-    CxsSelectComponent
+    CxsSelectComponent,
+    CxsToastComponent
   ],
   templateUrl: './home-page.html'
 })
 export class HomePageComponent {
+  toastOpen = false;
   dialogOpen = false;
+
+  showToast(): void {
+    this.toastOpen = true;
+  }
   avatarImage =
     'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27128%27 height=%27128%27 viewBox=%270 0 128 128%27%3E%3Crect width=%27128%27 height=%27128%27 fill=%27%23e2e8f0%27/%3E%3Ccircle cx=%2764%27 cy=%2752%27 r=%2722%27 fill=%27%2394a3b8%27/%3E%3Cpath d=%27M20 116c10-26 31-40 44-40s34 14 44 40%27 fill=%27%2394a3b8%27/%3E%3C/svg%3E';
   menubarItems = [

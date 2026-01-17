@@ -1,0 +1,33 @@
+@if (open) {
+  <div [class]="hostClassName">
+    <div
+      [class]="toastClass"
+      [attr.role]="role"
+      [attr.aria-live]="ariaLive"
+      [attr.aria-label]="ariaLabelValue"
+    >
+      <div class="flex-1">
+        @if (title) {
+          <p [class]="titleClass">{{ title }}</p>
+        }
+        @if (message) {
+          <p [class]="messageClass">{{ message }}</p>
+        }
+        <ng-content></ng-content>
+        <div [class]="actionsClass">
+          <ng-content select="[cxsToastAction]"></ng-content>
+        </div>
+      </div>
+      @if (dismissible) {
+        <button
+          type="button"
+          [class]="closeButtonClass"
+          aria-label="Dismiss notification"
+          (click)="requestClose('dismiss')"
+        >
+          X
+        </button>
+      }
+    </div>
+  </div>
+}

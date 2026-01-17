@@ -25,6 +25,20 @@
     </cxs-dialog>
   </div>
 
+  <div class="flex flex-wrap items-center gap-3">
+    <cxs-button variant="secondary" (click)="showToast()">Show toast</cxs-button>
+    <cxs-toast
+      maxWidth="lg"
+      [(open)]="toastOpen"
+      title="Saved"
+      message="Changes were saved."
+      [duration]="3000"
+      position="bottom-right"
+    >
+      <button cxsToastAction type="button" class="text-sm underline">Undo</button>
+    </cxs-toast>
+  </div>
+
   <div class="grid gap-3">
     <cxs-breadcrumb [items]="breadcrumbs"></cxs-breadcrumb>
     <cxs-breadcrumb [items]="breadcrumbMuted" variant="muted" separator=">"></cxs-breadcrumb>
