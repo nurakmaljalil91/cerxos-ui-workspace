@@ -65,18 +65,28 @@ export class HomePageComponent {
     {name: 'Gamma', status: 'Active', updated: 'Just now'}
   ];
   dataTableColumns: CxsDataTableColumn[] = [
-    {key: 'id', label: 'Id', sortable: true},
-    {key: 'team', label: 'Team', sortable: true},
-    {key: 'owner', label: 'Owner'},
-    {key: 'updated', label: 'Updated', align: 'right', sortable: true}
+    {key: 'team', label: 'Team', sortable: true, filterable: true, pinned: 'left', minWidth: 160},
+    {key: 'owner', label: 'Owner', filterable: true},
+    {
+      key: 'status',
+      label: 'Status',
+      filterable: true,
+      filterType: 'select',
+      filterOptions: [
+        {label: 'Active', value: 'Active'},
+        {label: 'Paused', value: 'Paused'}
+      ]
+    },
+    {key: 'updated', label: 'Updated', align: 'right', sortable: true, filterable: true}
   ];
   dataTableRows = [
-    {id: 1, team: 'Platform', owner: 'Avery', updated: 'Just now'},
-    {id: 2, team: 'Design', owner: 'Blake', updated: '1h ago'},
-    {id: 3, team: 'Product', owner: 'Casey', updated: 'Yesterday'},
-    {id: 4, team: 'Growth', owner: 'Devin', updated: '2d ago'},
-    {id: 5, team: 'Sales', owner: 'Emery', updated: 'Last week'}
+    {id: 1, team: 'Platform', owner: 'Avery', status: 'Active', updated: 'Just now'},
+    {id: 2, team: 'Design', owner: 'Blake', status: 'Paused', updated: '1h ago'},
+    {id: 3, team: 'Product', owner: 'Casey', status: 'Active', updated: 'Yesterday'},
+    {id: 4, team: 'Growth', owner: 'Devin', status: 'Active', updated: '2d ago'},
+    {id: 5, team: 'Sales', owner: 'Emery', status: 'Paused', updated: 'Last week'}
   ];
+  dataTableBulkActions = [{id: 'archive', label: 'Archive'}, {id: 'share', label: 'Share'}];
   carouselItems = [
     {
       title: 'Workspace analytics',

@@ -1,3 +1,58 @@
+@if (showToolbar) {
+  <div [class]="toolbarClass">
+    <div [class]="toolbarGroupClass">
+      @if (showGlobalSearch) {
+        <input
+          type="search"
+          [class]="toolbarInputClass"
+          placeholder="Search"
+          [value]="globalFilter"
+          (input)="onGlobalFilterChange($any($event.target).value)"
+        />
+      }
+    </div>
+    <div [class]="toolbarGroupClass">
+      @if (showFilters) {
+        <button type="button" [class]="toolbarButtonClass" (click)="filtersOpen = !filtersOpen">
+          Filters
+        </button>
+      }
+      @if (showColumnVisibility) {
+        <details class="relative">
+          <summary [class]="toolbarButtonClass">Columns</summary>
+          <div
+            class="absolute right-0 mt-2 w-48 rounded-(--cxs-radius-md) border border-(--cxs-color-border) bg-(--cxs-color-surface) p-2 shadow-(--cxs-shadow-sm)"
+          >
+            @for (column of columns; track column) {
+              <label class="flex items-center gap-2 px-2 py-1 text-sm">
+                <input
+                  type="checkbox"
+                  [checked]="columnVisibility[column.key]"
+                  (change)="toggleColumnVisibility(column.key)"
+                />
+                <span>{{ column.label }}</span>
+              </label>
+            }
+          </div>
+        </details>
+      }
+    </div>
+  </div>
+}
+
+@if (selectable && selectedCount > 0 && bulkActions.length > 0) {
+  <div [class]="bulkBarClass">
+    <span>{{ selectedCount }} selected</span>
+    <div class="flex flex-wrap items-center gap-2">
+      @for (action of bulkActions; track action) {
+        <button type="button" [class]="toolbarButtonClass" (click)="runBulkAction(action.id)">
+          {{ action.label }}
+        </button>
+      }
+    </div>
+  </div>
+}
+
 <div [class]="wrapperClass">
   <table [class]="tableClass" [attr.aria-label]="ariaLabel">
     @if (caption) {
@@ -5,10 +60,25 @@
     }
     <thead>
       <tr [class]="headerRowClass">
-        @for (column of columns; track column) {
+        @if (selectable) {
+          <th class="px-3 py-2">
+            <input
+              type="checkbox"
+              [checked]="allVisibleSelected"
+              [indeterminate]="someVisibleSelected"
+              (change)="toggleSelectAll()"
+              aria-label="Select all rows"
+            />
+          </th>
+        }
+        @for (column of visibleColumns; track column) {
           <th
-            [class]="headerCellClass(column)"
-            [style.width]="column.width ?? null"
+            class="relative"
+            [class]="headerCellClass(column) + ' ' + pinnedClass(column)"
+            [style.width]="columnWidth(column)"
+            [style.minWidth]="columnMinWidth(column)"
+            [style.left]="pinnedLeft(column)"
+            [style.right]="pinnedRight(column)"
             scope="col"
             [attr.aria-sort]="ariaSort(column)"
           >
@@ -27,7 +97,7 @@
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="h-4 w-4 text-[var(--cxs-color-on-surface-muted)]"
+                      class="h-4 w-4 text-(--cxs-color-on-surface-muted)"
                       aria-hidden="true"
                     >
                       <path
@@ -43,7 +113,7 @@
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="h-4 w-4 text-[var(--cxs-color-on-surface-muted)]"
+                      class="h-4 w-4 text-(--cxs-color-on-surface-muted)"
                       aria-hidden="true"
                     >
                       <path
@@ -58,9 +128,52 @@
             } @else {
               {{ column.label }}
             }
+            @if (column.resizable !== false) {
+              <span
+                [class]="resizeHandleClass"
+                (mousedown)="onResizeStart($event, column)"
+              ></span>
+            }
           </th>
         }
       </tr>
+      @if (showFilters && filtersOpen) {
+        <tr [class]="headerRowClass">
+          @if (selectable) {
+            <th class="px-3 py-2"></th>
+          }
+          @for (column of visibleColumns; track column) {
+            <th
+              [class]="headerCellClass(column) + ' ' + pinnedClass(column)"
+              [style.left]="pinnedLeft(column)"
+              [style.right]="pinnedRight(column)"
+            >
+              @if (column.filterable) {
+                @if (column.filterType === 'select') {
+                  <select
+                    [class]="headerFilterInputClass()"
+                    [value]="columnFilterValue(column.key)"
+                    (change)="onColumnFilterChange(column.key, $any($event.target).value)"
+                  >
+                    <option value="">All</option>
+                    @for (option of column.filterOptions ?? []; track option) {
+                      <option [value]="option.value">{{ option.label }}</option>
+                    }
+                  </select>
+                } @else {
+                  <input
+                    [class]="headerFilterInputClass()"
+                    [attr.type]="column.filterType === 'number' ? 'number' : 'text'"
+                    placeholder="Filter"
+                    [value]="columnFilterValue(column.key)"
+                    (input)="onColumnFilterChange(column.key, $any($event.target).value)"
+                  />
+                }
+              }
+            </th>
+          }
+        </tr>
+      }
     </thead>
     <tbody>
       @if (loading) {
@@ -78,8 +191,22 @@
       } @else {
         @for (row of displayRows; track row) {
           <tr [class]="bodyRowClass">
-            @for (column of columns; track column) {
-              <td [class]="bodyCellClass(column)">
+            @if (selectable) {
+              <td class="px-3 py-2">
+                <input
+                  type="checkbox"
+                  [checked]="isSelected(row)"
+                  (change)="toggleRowSelection(row)"
+                  aria-label="Select row"
+                />
+              </td>
+            }
+            @for (column of visibleColumns; track column) {
+              <td
+                [class]="bodyCellClass(column) + ' ' + pinnedClass(column)"
+                [style.left]="pinnedLeft(column)"
+                [style.right]="pinnedRight(column)"
+              >
                 {{ cellValue(row, column) }}
               </td>
             }
@@ -109,7 +236,7 @@
       >
         Next
       </button>
-      <span class="text-[var(--cxs-color-on-surface-muted)]">{{ pageLabel }}</span>
+      <span class="text-(--cxs-color-on-surface-muted)">{{ pageLabel }}</span>
     </div>
     @if (showPageSize) {
       <label class="flex items-center gap-2 text-(--cxs-color-on-surface-muted)">

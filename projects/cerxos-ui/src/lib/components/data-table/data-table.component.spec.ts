@@ -16,6 +16,10 @@ describe('CxsDataTableComponent', () => {
         [columns]="columns"
         [data]="data"
         [pageSize]="pageSize"
+        [showToolbar]="false"
+        [showFilters]="false"
+        [showColumnVisibility]="false"
+        [showGlobalSearch]="false"
       ></cxs-data-table>
     `
   })
@@ -61,8 +65,9 @@ describe('CxsDataTableComponent', () => {
     const rows = fixture.nativeElement.querySelectorAll('tbody tr') as NodeListOf<HTMLTableRowElement>;
     expect(rows.length).toBe(2);
 
-    const nextButtons = fixture.nativeElement.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
-    nextButtons[1].click();
+    const buttons = fixture.nativeElement.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
+    const nextButton = Array.from(buttons).find((button) => button.textContent?.includes('Next'));
+    nextButton?.click();
     fixture.detectChanges();
 
     const pagedRows = fixture.nativeElement.querySelectorAll('tbody tr') as NodeListOf<HTMLTableRowElement>;
