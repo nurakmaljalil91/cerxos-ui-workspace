@@ -9258,21 +9258,21 @@
                 "name": "BASE_CLASSES",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "unknown",
-                "defaultValue": "'inline-flex items-center gap-1 rounded-[var(--cxs-radius-md)] border px-2.5 py-0.5 text-xs font-medium ' +\r\n  'leading-none'"
-            },
-            {
-                "name": "BASE_CLASSES",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/cerxos-ui/src/lib/components/avatar/avatar.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "unknown",
                 "defaultValue": "'inline-flex items-center justify-center overflow-hidden border border-[var(--cxs-color-border)] ' +\n  'bg-[var(--cxs-color-primary-ghost)] text-[var(--cxs-color-primary)] font-semibold uppercase ' +\n  'select-none'"
+            },
+            {
+                "name": "BASE_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "unknown",
+                "defaultValue": "'inline-flex items-center gap-1 rounded-[var(--cxs-radius-md)] border px-2.5 py-0.5 text-xs font-medium ' +\r\n  'leading-none'"
             },
             {
                 "name": "BASE_CLASSES",
@@ -9288,21 +9288,21 @@
                 "name": "BASE_CLASSES",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "unknown",
-                "defaultValue": "'rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\r\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)]'"
-            },
-            {
-                "name": "BASE_CLASSES",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/cerxos-ui/src/lib/components/button/button.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "unknown",
                 "defaultValue": "'relative inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors ' +\r\n  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' +\r\n  'focus-visible:outline-[var(--cxs-color-focus)] disabled:pointer-events-none disabled:opacity-50'"
+            },
+            {
+                "name": "BASE_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "unknown",
+                "defaultValue": "'rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\r\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)]'"
             },
             {
                 "name": "BASE_CLASSES",
@@ -10208,21 +10208,21 @@
                 "name": "SIZE_CLASSES",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Record<CxsBadgeSize, string>",
-                "defaultValue": "{\r\n  sm: 'text-[11px]',\r\n  md: 'text-xs'\r\n}"
-            },
-            {
-                "name": "SIZE_CLASSES",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/cerxos-ui/src/lib/components/avatar/avatar.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Record<CxsAvatarSize, string>",
                 "defaultValue": "{\n  sm: 'h-8 w-8 text-[11px]',\n  md: 'h-10 w-10 text-xs',\n  lg: 'h-14 w-14 text-sm'\n}"
+            },
+            {
+                "name": "SIZE_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Record<CxsBadgeSize, string>",
+                "defaultValue": "{\r\n  sm: 'text-[11px]',\r\n  md: 'text-xs'\r\n}"
             },
             {
                 "name": "SIZE_CLASSES",
@@ -10238,21 +10238,21 @@
                 "name": "SIZE_CLASSES",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Record<CxsCardSize, string>",
-                "defaultValue": "{\r\n  sm: 'p-3',\r\n  md: 'p-5',\r\n  lg: 'p-7'\r\n}"
-            },
-            {
-                "name": "SIZE_CLASSES",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/cerxos-ui/src/lib/components/button/button.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Record<CxsButtonSize, string>",
                 "defaultValue": "{\r\n  sm: 'h-8 px-3 text-sm rounded-[var(--cxs-radius-md)]',\r\n  md: 'h-10 px-4 text-sm rounded-[var(--cxs-radius-md)]',\r\n  lg: 'h-12 px-5 text-base rounded-[var(--cxs-radius-md)]'\r\n}"
+            },
+            {
+                "name": "SIZE_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Record<CxsCardSize, string>",
+                "defaultValue": "{\r\n  sm: 'p-3',\r\n  md: 'p-5',\r\n  lg: 'p-7'\r\n}"
             },
             {
                 "name": "SIZE_CLASSES",
@@ -10558,21 +10558,21 @@
                 "name": "VARIANT_CLASSES",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Record<CxsCardVariant, string>",
-                "defaultValue": "{\r\n  surface: 'bg-[var(--cxs-color-surface)]',\r\n  muted: 'bg-[var(--cxs-color-surface-hover)]',\r\n  outline: 'bg-transparent'\r\n}"
-            },
-            {
-                "name": "VARIANT_CLASSES",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/cerxos-ui/src/lib/components/button/button.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Record<CxsButtonVariant, string>",
                 "defaultValue": "{\n  primary:\n    'bg-[var(--cxs-color-primary)] text-[var(--cxs-color-on-primary)] ' +\n    'hover:bg-[var(--cxs-color-primary-hover)] shadow-[var(--cxs-shadow-sm)]',\n  secondary:\n    'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n    'border border-[var(--cxs-color-border)] hover:bg-[var(--cxs-color-surface-hover)]',\n  ghost:\n    'bg-transparent text-[var(--cxs-color-primary)] hover:bg-[var(--cxs-color-primary-ghost)]'\n}"
+            },
+            {
+                "name": "VARIANT_CLASSES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Record<CxsCardVariant, string>",
+                "defaultValue": "{\r\n  surface: 'bg-[var(--cxs-color-surface)]',\r\n  muted: 'bg-[var(--cxs-color-surface-hover)]',\r\n  outline: 'bg-transparent'\r\n}"
             },
             {
                 "name": "VARIANT_CLASSES",
@@ -11884,38 +11884,6 @@
                     "defaultValue": "{\r\n  info:\r\n    'border-[var(--cxs-color-primary)] border-l-[var(--cxs-color-primary)] ' +\r\n    'bg-[var(--cxs-color-primary-ghost)]',\r\n  neutral:\r\n    'border-[var(--cxs-color-border)] border-l-[var(--cxs-color-border)] ' +\r\n    'bg-[var(--cxs-color-surface)]',\r\n  danger:\r\n    'border-[var(--cxs-color-danger)] border-l-[var(--cxs-color-danger)] ' +\r\n    'bg-[var(--cxs-color-surface)]'\r\n}"
                 }
             ],
-            "projects/cerxos-ui/src/lib/components/badge/badge.component.ts": [
-                {
-                    "name": "BASE_CLASSES",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "unknown",
-                    "defaultValue": "'inline-flex items-center gap-1 rounded-[var(--cxs-radius-md)] border px-2.5 py-0.5 text-xs font-medium ' +\r\n  'leading-none'"
-                },
-                {
-                    "name": "SIZE_CLASSES",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Record<CxsBadgeSize, string>",
-                    "defaultValue": "{\r\n  sm: 'text-[11px]',\r\n  md: 'text-xs'\r\n}"
-                },
-                {
-                    "name": "VARIANT_CLASSES",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Record<CxsBadgeVariant, string>",
-                    "defaultValue": "{\r\n  primary:\r\n    'border-[var(--cxs-color-primary)] bg-[var(--cxs-color-primary-ghost)] ' +\r\n    'text-[var(--cxs-color-primary)]',\r\n  neutral:\r\n    'border-[var(--cxs-color-border)] bg-[var(--cxs-color-surface)] ' +\r\n    'text-[var(--cxs-color-on-surface)]',\r\n  danger:\r\n    'border-[var(--cxs-color-danger)] bg-[var(--cxs-color-surface)] ' +\r\n    'text-[var(--cxs-color-danger)]'\r\n}"
-                }
-            ],
             "projects/cerxos-ui/src/lib/components/avatar/avatar.component.ts": [
                 {
                     "name": "BASE_CLASSES",
@@ -11956,6 +11924,38 @@
                     "deprecationMessage": "",
                     "type": "Record<CxsAvatarSize, string>",
                     "defaultValue": "{\n  sm: 'h-8 w-8 text-[11px]',\n  md: 'h-10 w-10 text-xs',\n  lg: 'h-14 w-14 text-sm'\n}"
+                }
+            ],
+            "projects/cerxos-ui/src/lib/components/badge/badge.component.ts": [
+                {
+                    "name": "BASE_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "defaultValue": "'inline-flex items-center gap-1 rounded-[var(--cxs-radius-md)] border px-2.5 py-0.5 text-xs font-medium ' +\r\n  'leading-none'"
+                },
+                {
+                    "name": "SIZE_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<CxsBadgeSize, string>",
+                    "defaultValue": "{\r\n  sm: 'text-[11px]',\r\n  md: 'text-xs'\r\n}"
+                },
+                {
+                    "name": "VARIANT_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/badge/badge.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<CxsBadgeVariant, string>",
+                    "defaultValue": "{\r\n  primary:\r\n    'border-[var(--cxs-color-primary)] bg-[var(--cxs-color-primary-ghost)] ' +\r\n    'text-[var(--cxs-color-primary)]',\r\n  neutral:\r\n    'border-[var(--cxs-color-border)] bg-[var(--cxs-color-surface)] ' +\r\n    'text-[var(--cxs-color-on-surface)]',\r\n  danger:\r\n    'border-[var(--cxs-color-danger)] bg-[var(--cxs-color-surface)] ' +\r\n    'text-[var(--cxs-color-danger)]'\r\n}"
                 }
             ],
             "projects/cerxos-ui/src/lib/components/breadcrumb/breadcrumb.component.ts": [
@@ -12050,38 +12050,6 @@
                     "defaultValue": "{\r\n  sm: 'text-xs',\r\n  md: 'text-sm',\r\n  lg: 'text-base'\r\n}"
                 }
             ],
-            "projects/cerxos-ui/src/lib/components/card/card.component.ts": [
-                {
-                    "name": "BASE_CLASSES",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "unknown",
-                    "defaultValue": "'rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\r\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)]'"
-                },
-                {
-                    "name": "SIZE_CLASSES",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Record<CxsCardSize, string>",
-                    "defaultValue": "{\r\n  sm: 'p-3',\r\n  md: 'p-5',\r\n  lg: 'p-7'\r\n}"
-                },
-                {
-                    "name": "VARIANT_CLASSES",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Record<CxsCardVariant, string>",
-                    "defaultValue": "{\r\n  surface: 'bg-[var(--cxs-color-surface)]',\r\n  muted: 'bg-[var(--cxs-color-surface-hover)]',\r\n  outline: 'bg-transparent'\r\n}"
-                }
-            ],
             "projects/cerxos-ui/src/lib/components/button/button.component.ts": [
                 {
                     "name": "BASE_CLASSES",
@@ -12112,6 +12080,38 @@
                     "deprecationMessage": "",
                     "type": "Record<CxsButtonVariant, string>",
                     "defaultValue": "{\n  primary:\n    'bg-[var(--cxs-color-primary)] text-[var(--cxs-color-on-primary)] ' +\n    'hover:bg-[var(--cxs-color-primary-hover)] shadow-[var(--cxs-shadow-sm)]',\n  secondary:\n    'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +\n    'border border-[var(--cxs-color-border)] hover:bg-[var(--cxs-color-surface-hover)]',\n  ghost:\n    'bg-transparent text-[var(--cxs-color-primary)] hover:bg-[var(--cxs-color-primary-ghost)]'\n}"
+                }
+            ],
+            "projects/cerxos-ui/src/lib/components/card/card.component.ts": [
+                {
+                    "name": "BASE_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "defaultValue": "'rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +\r\n  'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)]'"
+                },
+                {
+                    "name": "SIZE_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<CxsCardSize, string>",
+                    "defaultValue": "{\r\n  sm: 'p-3',\r\n  md: 'p-5',\r\n  lg: 'p-7'\r\n}"
+                },
+                {
+                    "name": "VARIANT_CLASSES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/cerxos-ui/src/lib/components/card/card.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<CxsCardVariant, string>",
+                    "defaultValue": "{\r\n  surface: 'bg-[var(--cxs-color-surface)]',\r\n  muted: 'bg-[var(--cxs-color-surface-hover)]',\r\n  outline: 'bg-transparent'\r\n}"
                 }
             ],
             "projects/cerxos-ui/src/lib/components/datepicker/datepicker.component.ts": [
