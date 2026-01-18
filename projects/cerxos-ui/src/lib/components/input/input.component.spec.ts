@@ -12,7 +12,11 @@ describe('CxsInputComponent', () => {
     selector: 'cxs-test-host',
     standalone: true,
     imports: [FormsModule, CxsInputComponent],
-    template: `<cxs-input [(ngModel)]="value" placeholder="Email"></cxs-input>`
+    template: `
+      <cxs-input [(ngModel)]="value" placeholder="Email">
+        <span cxsInputError>Invalid email</span>
+      </cxs-input>
+    `
   })
   class TestHostComponent {
     value = 'initial';
@@ -58,5 +62,32 @@ describe('CxsInputComponent', () => {
 
     const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     expect(input.disabled).toBeTrue();
+  });
+
+  it('renders error content when invalid', () => {
+    const component = fixture.debugElement.children[0].componentInstance as CxsInputComponent;
+    component.invalid = true;
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const errorContainer = fixture.nativeElement.querySelector(
+      `#${component.errorId}`
+    ) as HTMLElement | null;
+
+    expect(input.getAttribute('aria-describedby')).toContain(component.errorId);
+    expect(errorContainer?.textContent?.trim()).toContain('Invalid email');
+  });
+
+  it('renders a label and associates it with the input', () => {
+    const component = fixture.debugElement.children[0].componentInstance as CxsInputComponent;
+    component.label = 'Email address';
+    fixture.detectChanges();
+
+    const label = fixture.nativeElement.querySelector('label') as HTMLLabelElement;
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+
+    expect(label.textContent?.trim()).toContain('Email address');
+    expect(label.getAttribute('for')).toBe(input.getAttribute('id'));
+    expect(input.getAttribute('aria-labelledby')).toBe(label.getAttribute('id'));
   });
 });

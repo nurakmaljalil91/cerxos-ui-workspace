@@ -19,6 +19,7 @@ export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/datepicker/datepicker.component';
 export * from './lib/components/input/input.component';
 export * from './lib/components/menubar/menubar.component';
+export * from './lib/components/multi-select/multi-select.component';
 export * from './lib/components/radio/radio.component';
 export * from './lib/components/select/select.component';
 export * from './lib/components/table/table.component';

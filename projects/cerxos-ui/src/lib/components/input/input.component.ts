@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,6 +28,11 @@ const BASE_CLASSES =
   'focus-visible:outline-[var(--cxs-color-focus)] focus-visible:border-[var(--cxs-color-focus)] ' +
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60';
 
+const WRAPPER_CLASSES = 'flex w-full flex-col gap-1';
+const LABEL_BASE_CLASSES = 'font-medium text-(--cxs-color-on-surface)';
+const LABEL_DISABLED_CLASSES = 'text-[var(--cxs-color-on-surface-muted)]';
+const ERROR_BASE_CLASSES = 'text-[var(--cxs-color-danger)]';
+
 const VARIANT_CLASSES: Record<CxsInputVariant, string> = {
   outline: 'bg-[var(--cxs-color-surface)]',
   filled: 'bg-[var(--cxs-color-surface-hover)]'
@@ -38,6 +44,18 @@ const SIZE_CLASSES: Record<CxsInputSize, string> = {
   lg: 'h-12 px-4 text-base'
 };
 
+const LABEL_SIZE_CLASSES: Record<CxsInputSize, string> = {
+  sm: 'text-sm',
+  md: 'text-sm',
+  lg: 'text-base'
+};
+
+const ERROR_SIZE_CLASSES: Record<CxsInputSize, string> = {
+  sm: 'text-xs',
+  md: 'text-xs',
+  lg: 'text-sm'
+};
+
 const INVALID_CLASSES =
   'border-[var(--cxs-color-danger)] focus-visible:border-[var(--cxs-color-danger)] ' +
   'focus-visible:outline-[var(--cxs-color-danger)]';
@@ -46,6 +64,7 @@ const INVALID_CLASSES =
   selector: 'cxs-input',
   standalone: true,
   templateUrl: './input.component.html',
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
@@ -56,6 +75,8 @@ const INVALID_CLASSES =
   ]
 })
 export class CxsInputComponent implements ControlValueAccessor {
+  private static nextId = 0;
+
   @Input() value = '';
   @Input() type: CxsInputType = 'text';
   @Input() variant: CxsInputVariant = 'outline';
@@ -65,6 +86,7 @@ export class CxsInputComponent implements ControlValueAccessor {
   @Input() required = false;
   @Input() invalid = false;
   @Input() autofocus = false;
+  @Input() label?: string;
 
   @Input() id?: string;
   @Input() name?: string;
@@ -76,6 +98,8 @@ export class CxsInputComponent implements ControlValueAccessor {
   @Input() ariaDescribedby?: string;
 
   @Output() valueChange = new EventEmitter<string>();
+
+  readonly instanceId = `cxs-input-${CxsInputComponent.nextId++}`;
 
   private disabledFromControl = false;
   private onChange: (value: string) => void = () => {};
@@ -94,6 +118,62 @@ export class CxsInputComponent implements ControlValueAccessor {
     ]
       .filter(Boolean)
       .join(' ');
+  }
+
+  get wrapperClass(): string {
+    return WRAPPER_CLASSES;
+  }
+
+  get labelClass(): string {
+    return [
+      LABEL_BASE_CLASSES,
+      LABEL_SIZE_CLASSES[this.size],
+      this.isDisabled ? LABEL_DISABLED_CLASSES : ''
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  get inputId(): string | null {
+    if (this.id) {
+      return this.id;
+    }
+
+    return this.label ? this.instanceId : null;
+  }
+
+  get labelId(): string | null {
+    if (!this.label) {
+      return null;
+    }
+
+    return `${this.inputId}-label`;
+  }
+
+  get errorId(): string {
+    return `${this.instanceId}-error`;
+  }
+
+  get ariaLabelValue(): string | null {
+    if (this.label) {
+      return null;
+    }
+
+    return this.ariaLabel ?? null;
+  }
+
+  get ariaDescribedbyValue(): string | null {
+    const tokens = [this.ariaDescribedby].filter(Boolean) as string[];
+
+    if (this.invalid) {
+      tokens.push(this.errorId);
+    }
+
+    return tokens.length > 0 ? tokens.join(' ') : null;
+  }
+
+  get errorClass(): string {
+    return [ERROR_BASE_CLASSES, ERROR_SIZE_CLASSES[this.size]].join(' ');
   }
 
   writeValue(value: string | null): void {

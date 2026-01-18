@@ -1,105 +1,114 @@
-@if (useNative) {
-  <input
-    type="date"
-    [class]="inputClass"
-    [attr.id]="id"
-    [attr.name]="name"
-    [attr.min]="min"
-    [attr.max]="max"
-    [attr.placeholder]="placeholder"
-    [attr.aria-label]="ariaLabel"
-    [attr.aria-describedby]="ariaDescribedby"
-    [attr.autofocus]="autofocus ? true : null"
-    [value]="value"
-    [disabled]="isDisabled"
-    [readonly]="readonly"
-    [required]="required"
-    (input)="onInput($event)"
-    (blur)="onBlur()"
-  />
-} @else {
-  <div class="relative w-full">
+<div [class]="wrapperClass">
+  @if (label) {
+    <label [class]="labelClass" [attr.id]="labelId" [attr.for]="inputId">
+      {{ label }}
+    </label>
+  }
+  @if (useNative) {
     <input
-      type="text"
+      type="date"
       [class]="inputClass"
-      [attr.id]="id"
+      [attr.id]="inputId"
       [attr.name]="name"
+      [attr.min]="min"
+      [attr.max]="max"
       [attr.placeholder]="placeholder"
-      [attr.aria-label]="ariaLabel"
+      [attr.aria-label]="ariaLabelValue"
+      [attr.aria-labelledby]="labelId"
       [attr.aria-describedby]="ariaDescribedby"
-      [attr.aria-expanded]="isOpen ? 'true' : 'false'"
-      [attr.aria-controls]="panelId"
       [attr.autofocus]="autofocus ? true : null"
-      [attr.data-cxs-datepicker]="panelId"
       [value]="value"
       [disabled]="isDisabled"
-      [readonly]="true"
+      [readonly]="readonly"
       [required]="required"
-      (click)="open()"
-      (focus)="open()"
+      (input)="onInput($event)"
       (blur)="onBlur()"
     />
-    @if (isOpen) {
-      <div [class]="popoverClass" [attr.id]="panelId" role="dialog" aria-label="Choose date">
-        <div class="flex items-center justify-between">
-          <button type="button" [class]="navButtonClass" aria-label="Previous month" (click)="prevMonth()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-          <div class="flex items-center gap-2">
-            <select
-              [class]="selectClass"
-              [disabled]="isDisabled"
-              [value]="displayMonth.getMonth()"
-              aria-label="Month"
-              (change)="onMonthChange($event)"
-            >
-              @for (month of monthOptions; track month.value) {
-                <option [value]="month.value">{{ month.label }}</option>
-              }
-            </select>
-            <select
-              [class]="selectClass"
-              [disabled]="isDisabled"
-              [value]="displayMonth.getFullYear()"
-              aria-label="Year"
-              (change)="onYearChange($event)"
-            >
-              @for (year of yearOptions; track year) {
-                <option [value]="year">{{ year }}</option>
-              }
-            </select>
-          </div>
-          <button type="button" [class]="navButtonClass" aria-label="Next month" (click)="nextMonth()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
-        </div>
-
-        <div class="mt-3 grid grid-cols-7 gap-1 text-center text-xs text-(--cxs-color-on-surface-muted)">
-          @for (label of weekDayLabels; track label) {
-            <div>{{ label }}</div>
-          }
-        </div>
-
-        <div class="mt-2 grid grid-cols-7 gap-1" role="grid">
-          @for (day of calendarDays; track day.key) {
-            <button
-              type="button"
-              [class]="dayButtonClass(day)"
-              [disabled]="day.disabled"
-              [attr.data-date]="day.key"
-              [attr.aria-selected]="day.key === value ? 'true' : 'false'"
-              [attr.aria-current]="day.isToday ? 'date' : null"
-              (click)="onDateSelect(day)"
-            >
-              {{ day.label }}
+  } @else {
+    <div class="relative w-full">
+      <input
+        type="text"
+        [class]="inputClass"
+        [attr.id]="inputId"
+        [attr.name]="name"
+        [attr.placeholder]="placeholder"
+        [attr.aria-label]="ariaLabelValue"
+        [attr.aria-labelledby]="labelId"
+        [attr.aria-describedby]="ariaDescribedby"
+        [attr.aria-expanded]="isOpen ? 'true' : 'false'"
+        [attr.aria-controls]="panelId"
+        [attr.autofocus]="autofocus ? true : null"
+        [attr.data-cxs-datepicker]="panelId"
+        [value]="value"
+        [disabled]="isDisabled"
+        [readonly]="true"
+        [required]="required"
+        (click)="open()"
+        (focus)="open()"
+        (blur)="onBlur()"
+      />
+      @if (isOpen) {
+        <div [class]="popoverClass" [attr.id]="panelId" role="dialog" aria-label="Choose date">
+          <div class="flex items-center justify-between">
+            <button type="button" [class]="navButtonClass" aria-label="Previous month" (click)="prevMonth()">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
             </button>
-          }
+            <div class="flex items-center gap-2">
+              <select
+                [class]="selectClass"
+                [disabled]="isDisabled"
+                [value]="displayMonth.getMonth()"
+                aria-label="Month"
+                (change)="onMonthChange($event)"
+              >
+                @for (month of monthOptions; track month.value) {
+                  <option [value]="month.value">{{ month.label }}</option>
+                }
+              </select>
+              <select
+                [class]="selectClass"
+                [disabled]="isDisabled"
+                [value]="displayMonth.getFullYear()"
+                aria-label="Year"
+                (change)="onYearChange($event)"
+              >
+                @for (year of yearOptions; track year) {
+                  <option [value]="year">{{ year }}</option>
+                }
+              </select>
+            </div>
+            <button type="button" [class]="navButtonClass" aria-label="Next month" (click)="nextMonth()">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="mt-3 grid grid-cols-7 gap-1 text-center text-xs text-(--cxs-color-on-surface-muted)">
+            @for (label of weekDayLabels; track label) {
+              <div>{{ label }}</div>
+            }
+          </div>
+
+          <div class="mt-2 grid grid-cols-7 gap-1" role="grid">
+            @for (day of calendarDays; track day.key) {
+              <button
+                type="button"
+                [class]="dayButtonClass(day)"
+                [disabled]="day.disabled"
+                [attr.data-date]="day.key"
+                [attr.aria-selected]="day.key === value ? 'true' : 'false'"
+                [attr.aria-current]="day.isToday ? 'date' : null"
+                (click)="onDateSelect(day)"
+              >
+                {{ day.label }}
+              </button>
+            }
+          </div>
         </div>
-      </div>
-    }
-  </div>
-}
+      }
+    </div>
+  }
+</div>

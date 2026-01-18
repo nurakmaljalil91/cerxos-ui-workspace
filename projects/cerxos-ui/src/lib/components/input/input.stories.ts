@@ -7,6 +7,7 @@ const meta: Meta<CxsInputComponent> = {
   component: CxsInputComponent,
   args: {
     value: '',
+    label: '',
     placeholder: 'Enter text',
     variant: 'outline',
     size: 'md',
@@ -23,6 +24,7 @@ const meta: Meta<CxsInputComponent> = {
       <cxs-input
         [value]="value"
         (valueChange)="value = $event"
+        [label]="label"
         [placeholder]="placeholder"
         [variant]="variant"
         [size]="size"
@@ -68,6 +70,26 @@ export const Invalid: Story = {
 
 export const Focus: Story = {
   args: { autofocus: true, placeholder: 'Focused on load' }
+};
+
+export const WithLabel: Story = {
+  args: { label: 'Email address', placeholder: 'Enter your email' }
+};
+
+export const WithError: Story = {
+  render: () => ({
+    template: `
+      <div class="max-w-sm">
+        <cxs-input
+          label="Email address"
+          placeholder="name@company.com"
+          [invalid]="true"
+        >
+          <span cxsInputError>Enter a valid email address.</span>
+        </cxs-input>
+      </div>
+    `
+  })
 };
 
 export const ThemeOverride: Story = {

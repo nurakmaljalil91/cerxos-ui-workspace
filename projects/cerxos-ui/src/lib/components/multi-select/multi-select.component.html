@@ -1,0 +1,68 @@
+<div [class]="wrapperClass">
+  @if (label) {
+    <label [class]="labelClass" [attr.id]="labelId" [attr.for]="inputId">
+      {{ label }}
+    </label>
+  }
+  <div class="relative">
+    <div [class]="controlClass" (click)="focusInput()">
+      @for (chip of selectedOptions; track chip.value) {
+        <span [class]="chipClass">
+          <span>{{ chip.label }}</span>
+          <button
+            type="button"
+            [class]="chipRemoveClass"
+            [attr.aria-label]="'Remove ' + chip.label"
+            (mousedown)="onChipMouseDown($event)"
+            (click)="removeValue(chip.value)"
+          >
+            x
+          </button>
+        </span>
+      }
+      <input
+        #inputEl
+        type="text"
+        [class]="inputClass"
+        [attr.id]="inputId"
+        [attr.name]="name"
+        [attr.placeholder]="placeholder"
+        [attr.aria-label]="ariaLabelValue"
+        [attr.aria-labelledby]="labelId"
+        [attr.aria-describedby]="ariaDescribedby"
+        [attr.aria-expanded]="isOpen ? 'true' : 'false'"
+        [attr.aria-controls]="listId"
+        [attr.aria-invalid]="invalid ? 'true' : null"
+        [disabled]="isDisabled"
+        [readonly]="readonly || isAtMax"
+        [value]="query"
+        (input)="onQueryInput($event)"
+        (focus)="open()"
+        (blur)="onBlur()"
+        (keydown)="onKeydown($event)"
+      />
+    </div>
+    @if (isOpen) {
+      <div [class]="panelClass" [attr.id]="listId" role="listbox">
+        @if (filteredOptions.length === 0) {
+          <div [class]="emptyStateClass">
+            No matches
+          </div>
+        } @else {
+          @for (option of filteredOptions; track option.value) {
+            <button
+              type="button"
+              [class]="optionClass + (isAtMax || readonly ? ' ' + optionDisabledClass : '')"
+              [disabled]="isAtMax || readonly"
+              role="option"
+              (mousedown)="onOptionMouseDown($event)"
+              (click)="selectOption(option)"
+            >
+              <span>{{ option.label }}</span>
+            </button>
+          }
+        }
+      </div>
+    }
+  </div>
+</div>

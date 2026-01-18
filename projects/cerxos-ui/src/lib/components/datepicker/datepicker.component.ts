@@ -29,6 +29,10 @@ const BASE_CLASSES =
   'focus-visible:outline-[var(--cxs-color-focus)] focus-visible:border-[var(--cxs-color-focus)] ' +
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60';
 
+const WRAPPER_CLASSES = 'flex w-full flex-col gap-1';
+const LABEL_BASE_CLASSES = 'font-medium text-(--cxs-color-on-surface)';
+const LABEL_DISABLED_CLASSES = 'text-[var(--cxs-color-on-surface-muted)]';
+
 const VARIANT_CLASSES: Record<CxsDatepickerVariant, string> = {
   outline: 'bg-[var(--cxs-color-surface)]',
   filled: 'bg-[var(--cxs-color-surface-hover)]'
@@ -38,6 +42,12 @@ const SIZE_CLASSES: Record<CxsDatepickerSize, string> = {
   sm: 'h-8 px-3 text-sm',
   md: 'h-10 px-3 text-sm',
   lg: 'h-12 px-4 text-base'
+};
+
+const LABEL_SIZE_CLASSES: Record<CxsDatepickerSize, string> = {
+  sm: 'text-sm',
+  md: 'text-sm',
+  lg: 'text-base'
 };
 
 const INVALID_CLASSES =
@@ -84,6 +94,8 @@ const DAY_HOVER = 'hover:bg-[var(--cxs-color-surface-hover)]';
   ]
 })
 export class CxsDatepickerComponent implements ControlValueAccessor {
+  private static nextId = 0;
+
   @Input() value = '';
   @Input() variant: CxsDatepickerVariant = 'outline';
   @Input() size: CxsDatepickerSize = 'md';
@@ -93,6 +105,7 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
   @Input() required = false;
   @Input() invalid = false;
   @Input() autofocus = false;
+  @Input() label?: string;
 
   @Input() id?: string;
   @Input() name?: string;
@@ -104,8 +117,7 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
 
   @Output() valueChange = new EventEmitter<string>();
 
-  private static nextId = 0;
-  private readonly fallbackId = `cxs-datepicker-panel-${CxsDatepickerComponent.nextId++}`;
+  readonly instanceId = `cxs-datepicker-${CxsDatepickerComponent.nextId++}`;
   private disabledFromControl = false;
   private onChange: (value: string) => void = () => {};
   private onTouched: () => void = () => {};
@@ -124,7 +136,7 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
   }
 
   get panelId(): string {
-    return this.id ? `${this.id}-panel` : this.fallbackId;
+    return `${this.inputId ?? this.instanceId}-panel`;
   }
 
   get inputClass(): string {
@@ -136,6 +148,44 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
     ]
       .filter(Boolean)
       .join(' ');
+  }
+
+  get wrapperClass(): string {
+    return WRAPPER_CLASSES;
+  }
+
+  get labelClass(): string {
+    return [
+      LABEL_BASE_CLASSES,
+      LABEL_SIZE_CLASSES[this.size],
+      this.isDisabled ? LABEL_DISABLED_CLASSES : ''
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  get inputId(): string | null {
+    if (this.id) {
+      return this.id;
+    }
+
+    return this.label ? this.instanceId : null;
+  }
+
+  get labelId(): string | null {
+    if (!this.label) {
+      return null;
+    }
+
+    return `${this.inputId}-label`;
+  }
+
+  get ariaLabelValue(): string | null {
+    if (this.label) {
+      return null;
+    }
+
+    return this.ariaLabel ?? null;
   }
 
   get popoverClass(): string {

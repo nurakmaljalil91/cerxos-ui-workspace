@@ -142,45 +142,64 @@
   </div>
 
   <div class="grid gap-2 max-w-xs">
-    <cxs-datepicker [(ngModel)]="selectedDate"></cxs-datepicker>
-    <cxs-datepicker variant="filled"></cxs-datepicker>
-    <cxs-datepicker [invalid]="true"></cxs-datepicker>
-    <cxs-datepicker [disabled]="true"></cxs-datepicker>
-    <cxs-datepicker [useNative]="false" [(ngModel)]="customDate"></cxs-datepicker>
+    <cxs-datepicker label="Start date" [(ngModel)]="selectedDate"></cxs-datepicker>
+    <cxs-datepicker label="Milestone" variant="filled"></cxs-datepicker>
+    <cxs-datepicker label="Deadline" [invalid]="true"></cxs-datepicker>
+    <cxs-datepicker label="Disabled date" [disabled]="true"></cxs-datepicker>
+    <cxs-datepicker label="Schedule" [useNative]="false" [(ngModel)]="customDate"></cxs-datepicker>
   </div>
 
   <div class="grid gap-3 max-w-sm">
     <cxs-input placeholder="Email address" type="email"></cxs-input>
+    <cxs-input label='Username'></cxs-input>
     <cxs-input placeholder="Search" type="search" variant="filled"></cxs-input>
     <cxs-input placeholder="Disabled input" [disabled]="true"></cxs-input>
-    <cxs-input placeholder="Invalid input" [invalid]="true" value="Invalid"></cxs-input>
+    <cxs-input placeholder="Invalid input" [invalid]="true" value="Invalid">
+      <span cxsInputError>Enter a valid email address.</span>
+    </cxs-input>
   </div>
 
   <div class="grid gap-3 max-w-sm">
-    <cxs-select placeholder="Select a team">
+    <cxs-select label="Team" placeholder="Select a team">
       <option value="platform">Platform</option>
       <option value="design">Design</option>
       <option value="product">Product</option>
       <option value="sales">Sales</option>
     </cxs-select>
-    <cxs-select placeholder="Select a team" variant="filled">
+    <cxs-select label="Team" placeholder="Select a team" variant="filled">
       <option value="platform">Platform</option>
       <option value="design">Design</option>
       <option value="product">Product</option>
       <option value="sales">Sales</option>
     </cxs-select>
-    <cxs-select placeholder="Disabled select" [disabled]="true">
+    <cxs-select label="Team" placeholder="Disabled select" [disabled]="true">
       <option value="platform">Platform</option>
       <option value="design">Design</option>
       <option value="product">Product</option>
       <option value="sales">Sales</option>
     </cxs-select>
-    <cxs-select placeholder="Invalid select" [invalid]="true">
+    <cxs-select label="Team" placeholder="Invalid select" [invalid]="true">
       <option value="platform">Platform</option>
       <option value="design">Design</option>
       <option value="product">Product</option>
       <option value="sales">Sales</option>
     </cxs-select>
+  </div>
+
+  <div class="grid gap-3 max-w-sm">
+    <cxs-multi-select
+      label="Teams"
+      [options]="multiSelectOptions"
+      [(ngModel)]="selectedTeams"
+      placeholder="Search teams"
+    ></cxs-multi-select>
+    <cxs-multi-select
+      label="Max 2 teams"
+      [options]="multiSelectOptions"
+      [(ngModel)]="selectedTeamsLimited"
+      [maxSelections]="2"
+      placeholder="Pick up to 2"
+    ></cxs-multi-select>
   </div>
 
   <div class="grid gap-2 max-w-sm">

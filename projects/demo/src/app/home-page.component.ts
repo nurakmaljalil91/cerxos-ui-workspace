@@ -15,6 +15,7 @@ import {
   CxsDataTableComponent,
   CxsInputComponent,
   CxsMenubarComponent,
+  CxsMultiSelectComponent,
   CxsRadioComponent,
   CxsSelectComponent,
   CxsTableComponent,
@@ -41,6 +42,7 @@ import {
     CxsDataTableComponent,
     CxsInputComponent,
     CxsMenubarComponent,
+    CxsMultiSelectComponent,
     CxsRadioComponent,
     CxsSelectComponent,
     CxsTableComponent,
@@ -86,6 +88,15 @@ export class HomePageComponent {
     {id: 4, team: 'Growth', owner: 'Devin', status: 'Active', updated: '2d ago'},
     {id: 5, team: 'Sales', owner: 'Emery', status: 'Paused', updated: 'Last week'}
   ];
+  multiSelectOptions = [
+    {label: 'Platform', value: 'platform'},
+    {label: 'Design', value: 'design'},
+    {label: 'Product', value: 'product'},
+    {label: 'Sales', value: 'sales'},
+    {label: 'Growth', value: 'growth'}
+  ];
+  selectedTeams = ['platform', 'design'];
+  selectedTeamsLimited = ['platform'];
   dataTableBulkActions = [{id: 'archive', label: 'Archive'}, {id: 'share', label: 'Share'}];
   carouselItems = [
     {

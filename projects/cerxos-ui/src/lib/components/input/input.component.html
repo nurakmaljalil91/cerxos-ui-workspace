@@ -1,20 +1,33 @@
-<input
-  [class]="inputClass"
-  [attr.id]="id"
-  [attr.name]="name"
-  [attr.type]="type"
-  [attr.placeholder]="placeholder"
-  [attr.autocomplete]="autocomplete"
-  [attr.inputmode]="inputmode"
-  [attr.spellcheck]="spellcheck === null ? null : spellcheck"
-  [attr.aria-label]="ariaLabel"
-  [attr.aria-describedby]="ariaDescribedby"
-  [attr.aria-invalid]="invalid ? 'true' : null"
-  [attr.autofocus]="autofocus ? true : null"
-  [disabled]="isDisabled"
-  [readonly]="readonly"
-  [required]="required"
-  [value]="value"
-  (input)="onInput($event)"
-  (blur)="onBlur()"
-/>
+<div [class]="wrapperClass">
+  @if (label) {
+    <label [class]="labelClass" [attr.id]="labelId" [attr.for]="inputId">
+      {{ label }}
+    </label>
+  }
+  <input
+    [class]="inputClass"
+    [attr.id]="inputId"
+    [attr.name]="name"
+    [attr.type]="type"
+    [attr.placeholder]="placeholder"
+    [attr.autocomplete]="autocomplete"
+    [attr.inputmode]="inputmode"
+    [attr.spellcheck]="spellcheck === null ? null : spellcheck"
+    [attr.aria-label]="ariaLabelValue"
+    [attr.aria-labelledby]="labelId"
+    [attr.aria-describedby]="ariaDescribedbyValue"
+    [attr.aria-invalid]="invalid ? 'true' : null"
+    [attr.autofocus]="autofocus ? true : null"
+    [disabled]="isDisabled"
+    [readonly]="readonly"
+    [required]="required"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  @if (invalid) {
+    <div [class]="errorClass" [attr.id]="errorId" aria-live="polite">
+      <ng-content select="[cxsInputError]"></ng-content>
+    </div>
+  }
+</div>
