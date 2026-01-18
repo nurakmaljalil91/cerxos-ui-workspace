@@ -3,6 +3,141 @@
     <cxs-menubar [items]="menubarItems" variant="surface"></cxs-menubar>
   </div>
 
+  <div class="grid gap-6">
+    <cxs-tabs>
+      <cxs-tab-panel id="overview" label="Overview">
+        <h3 class="text-base font-semibold">Overview</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Customers ipsum dolor sit amet consectetur. Non vitae facilisis urna tortor placerat.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="notification" label="Notification">
+        <h3 class="text-base font-semibold">Notification</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Stay on top of alerts and delivery preferences.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="analytics" label="Analytics">
+        <h3 class="text-base font-semibold">Analytics</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Review KPIs and time-series trends across teams.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="customers" label="Customers">
+        <h3 class="text-base font-semibold">Customers</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Track engagement, segments, and outreach health.
+        </p>
+      </cxs-tab-panel>
+    </cxs-tabs>
+
+    <div class="text-sm font-semibold text-(--cxs-color-on-surface)">Tabs with underline and icon</div>
+    <cxs-tabs>
+      <cxs-tab-panel id="overview-icon">
+        <ng-template cxsTabLabel>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="4" width="7" height="7" rx="1"></rect>
+            <rect x="13" y="4" width="7" height="7" rx="1"></rect>
+            <rect x="4" y="13" width="7" height="7" rx="1"></rect>
+            <rect x="13" y="13" width="7" height="7" rx="1"></rect>
+          </svg>
+          <span>Overview</span>
+        </ng-template>
+        <h3 class="text-base font-semibold">Overview</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Quick glance at workspace activity and trend lines.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="notification-icon">
+        <ng-template cxsTabLabel>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5"></path>
+            <path d="M9 17a3 3 0 0 0 6 0"></path>
+          </svg>
+          <span>Notification</span>
+        </ng-template>
+        <h3 class="text-base font-semibold">Notification</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Stay on top of alerts and routing rules.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="analytics-icon">
+        <ng-template cxsTabLabel>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 19h16"></path>
+            <path d="M6 16V8"></path>
+            <path d="M12 16V5"></path>
+            <path d="M18 16v-7"></path>
+          </svg>
+          <span>Analytics</span>
+        </ng-template>
+        <h3 class="text-base font-semibold">Analytics</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Compare KPIs and channel performance.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="customers-icon">
+        <ng-template cxsTabLabel>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="9" cy="7" r="3"></circle>
+            <circle cx="17" cy="7" r="3"></circle>
+            <path d="M4 19c0-3 2.5-5 5-5"></path>
+            <path d="M14 19c0-3 2.5-5 5-5"></path>
+          </svg>
+          <span>Customers</span>
+        </ng-template>
+        <h3 class="text-base font-semibold">Customers</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Review customer segments and pipeline health.
+        </p>
+      </cxs-tab-panel>
+    </cxs-tabs>
+
+    <div class="text-sm font-semibold text-(--cxs-color-on-surface)">Tabs with badge</div>
+    <cxs-tabs>
+      <cxs-tab-panel id="overview-badge">
+        <ng-template cxsTabLabel>
+          <span>Overview</span>
+          <cxs-badge variant="neutral" size="sm">8</cxs-badge>
+        </ng-template>
+        <h3 class="text-base font-semibold">Overview</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Account summary and outstanding tasks.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="notification-badge">
+        <ng-template cxsTabLabel>
+          <span>Notification</span>
+          <cxs-badge variant="neutral" size="sm">3</cxs-badge>
+        </ng-template>
+        <h3 class="text-base font-semibold">Notification</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Alert streams and saved rules.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="analytics-badge">
+        <ng-template cxsTabLabel>
+          <span>Analytics</span>
+          <cxs-badge variant="neutral" size="sm">4</cxs-badge>
+        </ng-template>
+        <h3 class="text-base font-semibold">Analytics</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Channel performance and KPIs.
+        </p>
+      </cxs-tab-panel>
+      <cxs-tab-panel id="customers-badge">
+        <ng-template cxsTabLabel>
+          <span>Customers</span>
+          <cxs-badge variant="neutral" size="sm">12</cxs-badge>
+        </ng-template>
+        <h3 class="text-base font-semibold">Customers</h3>
+        <p class="mt-1 text-sm text-(--cxs-color-on-surface-muted)">
+          Customer list and engagement status.
+        </p>
+      </cxs-tab-panel>
+    </cxs-tabs>
+  </div>
+
   <div class="grid gap-3">
     <cxs-carousel [items]="carouselItems" [autoplay]="true" [interval]="5000"></cxs-carousel>
   </div>
@@ -49,8 +184,6 @@
       label="Enable notifications"
     ></cxs-toggle>
     <cxs-toggle [disabled]="true" label="Disabled toggle"></cxs-toggle>
-    <cxs-toggle size="sm" label="Small toggle"></cxs-toggle>
-    <cxs-toggle size="lg" label="Large toggle"></cxs-toggle>
   </div>
 
   <div class="flex flex-wrap items-center gap-3">

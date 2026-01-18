@@ -1,0 +1,35 @@
+<div [class]="wrapperClass">
+  <div [class]="tabListClass" role="tablist" [attr.aria-label]="ariaLabel">
+    @for (panel of panelList; track panel.resolvedId) {
+      <button
+        type="button"
+        [class]="tabButtonClass(panel)"
+        role="tab"
+        [attr.id]="panel.tabId"
+        [attr.aria-controls]="panel.panelId"
+        [attr.aria-selected]="isActive(panel) ? 'true' : 'false'"
+        [disabled]="panel.disabled"
+        (click)="selectTab(panel)"
+      >
+        @if (panel.labelTemplate) {
+          <ng-container [ngTemplateOutlet]="panel.labelTemplate.templateRef"></ng-container>
+        } @else {
+          <span>{{ panelLabel(panel) }}</span>
+        }
+      </button>
+    }
+  </div>
+
+  @if (activePanel) {
+    <div [class]="panelWrapperClass">
+      <div
+        [class]="panelClass"
+        role="tabpanel"
+        [attr.id]="activePanel.panelId"
+        [attr.aria-labelledby]="activePanel.tabId"
+      >
+        <ng-container [ngTemplateOutlet]="activePanel.templateRef"></ng-container>
+      </div>
+    </div>
+  }
+</div>

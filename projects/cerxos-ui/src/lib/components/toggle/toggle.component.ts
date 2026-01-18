@@ -18,30 +18,30 @@ const TRACK_BASE_CLASSES =
   'focus-visible:outline-[var(--cxs-color-focus)] disabled:pointer-events-none disabled:opacity-60';
 
 const TRACK_SIZE_CLASSES: Record<CxsToggleSize, string> = {
-  sm: 'h-5 w-9 p-0.5',
+  sm: 'h-6 w-11 p-0.5',
   md: 'h-6 w-11 p-0.5',
-  lg: 'h-8 w-14 p-0.5'
+  lg: 'h-6 w-11 p-0.5'
 };
 
 const TRACK_STATE_CLASSES = {
   on: 'bg-[var(--cxs-color-primary)] border-[var(--cxs-color-primary)]',
-  off: 'bg-[var(--cxs-color-surface)] border-[var(--cxs-color-border)]'
+  off: 'bg-[var(--cxs-color-surface-hover)] border-[var(--cxs-color-border)]'
 };
 
 const THUMB_BASE_CLASSES =
-  'absolute left-0.5 top-0.5 rounded-full transition-transform duration-200 ease-out';
+  'absolute left-0.5 top-1/2 -translate-y-1/2 rounded-full transition-transform duration-200 ease-out';
 
 const THUMB_SIZE_CLASSES: Record<CxsToggleSize, string> = {
-  sm: 'h-4 w-4',
+  sm: 'h-5 w-5',
   md: 'h-5 w-5',
-  lg: 'h-7 w-7'
+  lg: 'h-5 w-5'
 };
 
 const THUMB_STATE_CLASSES = {
   on: {
-    sm: 'translate-x-[18px] bg-[var(--cxs-color-on-primary)]',
-    md: 'translate-x-[22px] bg-[var(--cxs-color-on-primary)]',
-    lg: 'translate-x-[26px] bg-[var(--cxs-color-on-primary)]'
+    sm: 'translate-x-[20px] bg-[var(--cxs-color-on-primary)]',
+    md: 'translate-x-[20px] bg-[var(--cxs-color-on-primary)]',
+    lg: 'translate-x-[20px] bg-[var(--cxs-color-on-primary)]'
   },
   off: 'translate-x-0 bg-[var(--cxs-color-surface)]'
 };
