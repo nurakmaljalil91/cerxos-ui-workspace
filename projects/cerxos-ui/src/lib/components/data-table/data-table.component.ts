@@ -95,9 +95,17 @@ const TOOLBAR_INPUT_CLASSES =
   'bg-[var(--cxs-color-surface)] px-3 py-2 text-sm text-[var(--cxs-color-on-surface)] ' +
   'placeholder:text-[var(--cxs-color-on-surface-muted)] focus-visible:outline focus-visible:outline-2 ' +
   'focus-visible:outline-offset-2 focus-visible:outline-[var(--cxs-color-focus)]';
+const TOOLBAR_INPUT_INLINE_CLASSES =
+  'w-full sm:w-64 rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +
+  'bg-[var(--cxs-color-surface)] px-3 py-2 text-sm text-[var(--cxs-color-on-surface)] ' +
+  'placeholder:text-[var(--cxs-color-on-surface-muted)] focus-visible:outline focus-visible:outline-2 ' +
+  'focus-visible:outline-offset-2 focus-visible:outline-[var(--cxs-color-focus)]';
 const TOOLBAR_BUTTON_CLASSES =
   'inline-flex items-center justify-center rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +
   'px-3 py-2 text-sm transition-colors hover:bg-[var(--cxs-color-surface-hover)]';
+const TITLE_BAR_CLASSES = 'mb-3 flex flex-wrap items-start justify-between gap-3';
+const TITLE_TEXT_CLASSES = 'text-base font-semibold text-(--cxs-color-on-surface)';
+const SUBTITLE_TEXT_CLASSES = 'text-sm text-(--cxs-color-on-surface-muted)';
 const BULK_BAR_CLASSES =
   'mb-3 flex flex-wrap items-center justify-between gap-3 rounded-[var(--cxs-radius-md)] ' +
   'border border-[var(--cxs-color-border)] bg-[var(--cxs-color-surface)] px-3 py-2 text-sm';
@@ -115,6 +123,8 @@ export class CxsDataTableComponent implements OnChanges {
   @Input() columns: CxsDataTableColumn[] = [];
   @Input() data: Array<Record<string, unknown>> = [];
   @Input() caption?: string;
+  @Input() title?: string;
+  @Input() subtitle?: string;
   @Input() ariaLabel = 'Data table';
   @Input() striped = false;
   @Input() bordered = false;
@@ -256,8 +266,24 @@ export class CxsDataTableComponent implements OnChanges {
     return TOOLBAR_INPUT_CLASSES;
   }
 
+  get toolbarInputInlineClass(): string {
+    return TOOLBAR_INPUT_INLINE_CLASSES;
+  }
+
   get toolbarButtonClass(): string {
     return TOOLBAR_BUTTON_CLASSES;
+  }
+
+  get titleBarClass(): string {
+    return TITLE_BAR_CLASSES;
+  }
+
+  get titleTextClass(): string {
+    return TITLE_TEXT_CLASSES;
+  }
+
+  get subtitleTextClass(): string {
+    return SUBTITLE_TEXT_CLASSES;
   }
 
   get bulkBarClass(): string {
@@ -305,6 +331,10 @@ export class CxsDataTableComponent implements OnChanges {
 
   get selectedCount(): number {
     return this.selectedKeys.length;
+  }
+
+  get hasTitleBlock(): boolean {
+    return Boolean(this.title || this.subtitle);
   }
 
   get allVisibleSelected(): boolean {

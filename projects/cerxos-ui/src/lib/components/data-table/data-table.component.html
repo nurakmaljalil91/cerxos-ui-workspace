@@ -1,4 +1,52 @@
-@if (showToolbar) {
+@if (hasTitleBlock) {
+  <div [class]="titleBarClass">
+    <div class="min-w-0">
+      @if (title) {
+        <div [class]="titleTextClass">{{ title }}</div>
+      }
+      @if (subtitle) {
+        <div [class]="subtitleTextClass">{{ subtitle }}</div>
+      }
+    </div>
+    @if (showToolbar) {
+      <div class="flex flex-wrap items-center gap-2">
+        @if (showGlobalSearch) {
+          <input
+            type="search"
+            [class]="toolbarInputInlineClass"
+            placeholder="Search"
+            [value]="globalFilter"
+            (input)="onGlobalFilterChange($any($event.target).value)"
+          />
+        }
+        @if (showFilters) {
+          <button type="button" [class]="toolbarButtonClass" (click)="filtersOpen = !filtersOpen">
+            Filters
+          </button>
+        }
+        @if (showColumnVisibility) {
+          <details class="relative">
+            <summary [class]="toolbarButtonClass">Columns</summary>
+            <div
+              class="absolute right-0 mt-2 w-48 rounded-(--cxs-radius-md) border border-(--cxs-color-border) bg-(--cxs-color-surface) p-2 shadow-(--cxs-shadow-sm)"
+            >
+              @for (column of columns; track column) {
+                <label class="flex items-center gap-2 px-2 py-1 text-sm">
+                  <input
+                    type="checkbox"
+                    [checked]="columnVisibility[column.key]"
+                    (change)="toggleColumnVisibility(column.key)"
+                  />
+                  <span>{{ column.label }}</span>
+                </label>
+              }
+            </div>
+          </details>
+        }
+      </div>
+    }
+  </div>
+} @else if (showToolbar) {
   <div [class]="toolbarClass">
     <div [class]="toolbarGroupClass">
       @if (showGlobalSearch) {
@@ -61,7 +109,7 @@
     <thead>
       <tr [class]="headerRowClass">
         @if (selectable) {
-          <th class="px-3 py-2">
+          <th class="px-3 py-2 text-left">
             <input
               type="checkbox"
               [checked]="allVisibleSelected"
@@ -140,7 +188,7 @@
       @if (showFilters && filtersOpen) {
         <tr [class]="headerRowClass">
           @if (selectable) {
-            <th class="px-3 py-2"></th>
+            <th class="px-3 py-2 text-left"></th>
           }
           @for (column of visibleColumns; track column) {
             <th
@@ -164,7 +212,6 @@
                   <input
                     [class]="headerFilterInputClass()"
                     [attr.type]="column.filterType === 'number' ? 'number' : 'text'"
-                    placeholder="Filter"
                     [value]="columnFilterValue(column.key)"
                     (input)="onColumnFilterChange(column.key, $any($event.target).value)"
                   />

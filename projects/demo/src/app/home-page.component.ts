@@ -88,6 +88,8 @@ export class HomePageComponent {
     {id: 4, team: 'Growth', owner: 'Devin', status: 'Active', updated: '2d ago'},
     {id: 5, team: 'Sales', owner: 'Emery', status: 'Paused', updated: 'Last week'}
   ];
+  dataTableTitle = 'Team ownership';
+  dataTableSubtitle = 'Monitor active projects and assignments.';
   multiSelectOptions = [
     {label: 'Platform', value: 'platform'},
     {label: 'Design', value: 'design'},

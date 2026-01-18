@@ -32,6 +32,8 @@ const meta: Meta<CxsDataTableComponent> = {
     columns,
     data,
     caption: 'Project status table',
+    title: '',
+    subtitle: '',
     striped: true,
     bordered: true,
     compact: false,
@@ -48,6 +50,8 @@ const meta: Meta<CxsDataTableComponent> = {
         [columns]="columns"
         [data]="data"
         [caption]="caption"
+        [title]="title"
+        [subtitle]="subtitle"
         [striped]="striped"
         [bordered]="bordered"
         [compact]="compact"
@@ -88,6 +92,13 @@ export const Filters: Story = {
   args: {
     showFilters: true,
     showGlobalSearch: true
+  }
+};
+
+export const TitleAndSubtitle: Story = {
+  args: {
+    title: 'Team ownership',
+    subtitle: 'Review access assignments and status in one place.'
   }
 };
 
