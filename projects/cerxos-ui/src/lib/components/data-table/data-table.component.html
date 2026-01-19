@@ -11,13 +11,29 @@
     @if (showToolbar) {
       <div class="flex flex-wrap items-center gap-2">
         @if (showGlobalSearch) {
-          <input
-            type="search"
-            [class]="toolbarInputInlineClass"
-            placeholder="Search"
-            [value]="globalFilter"
-            (input)="onGlobalFilterChange($any($event.target).value)"
-          />
+          <div [class]="toolbarInputWrapperClass">
+            <svg
+              [class]="toolbarInputIconClass"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-4.35-4.35m1.85-5.65a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"
+              />
+            </svg>
+            <input
+              type="search"
+              [class]="toolbarInputInlineClass"
+              placeholder="Search..."
+              [value]="globalFilter"
+              (input)="onGlobalFilterChange($any($event.target).value)"
+            />
+          </div>
         }
         @if (showFilters) {
           <button type="button" [class]="toolbarButtonClass" (click)="filtersOpen = !filtersOpen">
@@ -50,13 +66,29 @@
   <div [class]="toolbarClass">
     <div [class]="toolbarGroupClass">
       @if (showGlobalSearch) {
-        <input
-          type="search"
-          [class]="toolbarInputClass"
-          placeholder="Search"
-          [value]="globalFilter"
-          (input)="onGlobalFilterChange($any($event.target).value)"
-        />
+        <div [class]="toolbarInputWrapperClass">
+          <svg
+            [class]="toolbarInputIconClass"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-4.35-4.35m1.85-5.65a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"
+            />
+          </svg>
+          <input
+            type="search"
+            [class]="toolbarInputClass"
+            placeholder="Search..."
+            [value]="globalFilter"
+            (input)="onGlobalFilterChange($any($event.target).value)"
+          />
+        </div>
       }
     </div>
     <div [class]="toolbarGroupClass">

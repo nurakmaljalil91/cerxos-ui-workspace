@@ -3,6 +3,7 @@
  */
 
 export * from './lib/cerxos-ui';
+export * from './lib/components/action-menu/action-menu.component';
 export * from './lib/components/alert/alert.component';
 export * from './lib/components/accordion/accordion.component';
 export * from './lib/components/accordion/accordion-item.component';

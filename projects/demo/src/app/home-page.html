@@ -3,6 +3,14 @@
     <cxs-menubar [items]="menubarItems" variant="surface"></cxs-menubar>
   </div>
 
+  <div class="grid gap-2">
+    <div class="text-sm font-semibold text-(--cxs-color-on-surface)">Action menu</div>
+    <div class="flex flex-wrap items-center gap-3">
+      <cxs-action-menu [items]="actionMenuItems"></cxs-action-menu>
+      <cxs-action-menu [items]="actionMenuItems" align="start"></cxs-action-menu>
+    </div>
+  </div>
+
   <div class="grid gap-6">
     <cxs-tabs>
       <cxs-tab-panel id="overview" label="Overview">

@@ -38,6 +38,8 @@ bulkActions = [{ id: 'archive', label: 'Archive' }];
 - `loading`: boolean (default: `false`)
 - `emptyMessage`: string (default: `No data available`)
 - `emptyCell`: string (default: `—`)
+- `allowOverflow`: boolean (default: `false`)
+- `columnBorders`: boolean (default: `false`)
 
 - `pageSize`: number (default: `10`)
 - `pageIndex`: number (default: `1`)

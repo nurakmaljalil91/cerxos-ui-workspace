@@ -1,0 +1,51 @@
+<div class="relative inline-flex">
+  <button
+    #trigger
+    type="button"
+    [class]="triggerClass"
+    aria-haspopup="menu"
+    [attr.aria-expanded]="isOpen"
+    [attr.aria-controls]="menuId"
+    [attr.aria-label]="ariaLabel"
+    (click)="toggle()"
+    (keydown)="onTriggerKeydown($event)"
+  >
+    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <circle cx="4" cy="10" r="1.5"></circle>
+      <circle cx="10" cy="10" r="1.5"></circle>
+      <circle cx="16" cy="10" r="1.5"></circle>
+    </svg>
+  </button>
+
+  @if (isOpen) {
+    <div
+      #menu
+      [class]="menuClass"
+      [attr.id]="menuId"
+      role="menu"
+      [attr.aria-label]="menuLabel"
+      [style.top.px]="menuPosition?.top"
+      [style.left.px]="menuPosition?.left"
+      (keydown)="onMenuKeydown($event)"
+    >
+      @if (items.length) {
+        @for (item of items; track item.value) {
+          <button
+            #menuItem
+            type="button"
+            role="menuitem"
+            [class]="getItemClass(item)"
+            [attr.data-disabled]="isItemDisabled(item) ? '' : null"
+            [attr.aria-disabled]="isItemDisabled(item) ? 'true' : null"
+            [disabled]="isItemDisabled(item)"
+            (click)="onItemClick(item)"
+          >
+            {{ item.label }}
+          </button>
+        }
+      } @else {
+        <span [class]="emptyStateClass">No actions</span>
+      }
+    </div>
+  }
+</div>

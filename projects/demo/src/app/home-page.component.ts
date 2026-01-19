@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
+  CxsActionMenuComponent,
+  CxsActionMenuItem,
   CxsAlertComponent,
   CxsAccordionComponent,
   CxsAccordionItemComponent,
@@ -24,13 +26,16 @@ import {
   CxsTableComponent,
   CxsToggleComponent,
   CxsToastComponent,
-  CxsTooltipComponent, CxsTableColumn, CxsDataTableColumn
+  CxsTooltipComponent,
+  CxsTableColumn,
+  CxsDataTableColumn
 } from 'cerxos-ui';
 
 @Component({
   selector: 'demo-home-page',
   imports: [
     FormsModule,
+    CxsActionMenuComponent,
     CxsAlertComponent,
     CxsAccordionComponent,
     CxsAccordionItemComponent,
@@ -125,6 +130,12 @@ export class HomePageComponent {
       image: 'https://picsum.photos/900/400?6',
       alt: 'Automation preview'
     }
+  ];
+  actionMenuItems: CxsActionMenuItem[] = [
+    {label: 'Edit user', value: 'edit-user'},
+    {label: 'Edit roles', value: 'edit-roles'},
+    {label: 'Edit groups', value: 'edit-groups'},
+    {label: 'Delete user', value: 'delete-user', tone: 'danger'}
   ];
 
   showToast(): void {

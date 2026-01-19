@@ -43,17 +43,21 @@ export interface CxsDataTableSort {
   direction: CxsDataTableSortDirection;
 }
 
-const WRAPPER_BASE_CLASSES = 'w-full overflow-hidden';
+const WRAPPER_BASE_CLASSES = 'w-full overflow-x-auto';
+const WRAPPER_OVERFLOW_HIDDEN_CLASSES = 'overflow-y-hidden';
+const WRAPPER_OVERFLOW_VISIBLE_CLASSES = 'overflow-y-visible';
 const WRAPPER_BORDERED_CLASSES =
   'rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)]';
 
-const TABLE_BASE_CLASSES = 'w-full border-collapse text-sm text-[var(--cxs-color-on-surface)]';
+const TABLE_BASE_CLASSES =
+  'w-full min-w-[max-content] border-collapse text-sm text-[var(--cxs-color-on-surface)]';
 const TABLE_COMPACT_CLASSES = 'text-xs';
 
 const HEADER_ROW_CLASSES =
   'border-b border-[var(--cxs-color-border)] text-xs font-semibold ' +
   'text-[var(--cxs-color-on-surface-muted)]';
 const HEADER_CELL_BASE_CLASSES = 'px-3 py-2 text-left';
+const COLUMN_BORDER_CLASSES = 'border-l border-[var(--cxs-color-border)] first:border-l-0';
 const HEADER_BUTTON_CLASSES =
   'inline-flex items-center gap-2 rounded-[var(--cxs-radius-md)] px-2 py-1 ' +
   'transition-colors hover:bg-[var(--cxs-color-surface-hover)] ' +
@@ -92,14 +96,17 @@ const TOOLBAR_CLASSES =
 const TOOLBAR_GROUP_CLASSES = 'flex flex-wrap items-center gap-2';
 const TOOLBAR_INPUT_CLASSES =
   'w-full rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +
-  'bg-[var(--cxs-color-surface)] px-3 py-2 text-sm text-[var(--cxs-color-on-surface)] ' +
+  'bg-[var(--cxs-color-surface)] pl-9 pr-3 py-2 text-sm text-[var(--cxs-color-on-surface)] ' +
   'placeholder:text-[var(--cxs-color-on-surface-muted)] focus-visible:outline focus-visible:outline-2 ' +
   'focus-visible:outline-offset-2 focus-visible:outline-[var(--cxs-color-focus)]';
 const TOOLBAR_INPUT_INLINE_CLASSES =
   'w-full sm:w-64 rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +
-  'bg-[var(--cxs-color-surface)] px-3 py-2 text-sm text-[var(--cxs-color-on-surface)] ' +
+  'bg-[var(--cxs-color-surface)] pl-9 pr-3 py-2 text-sm text-[var(--cxs-color-on-surface)] ' +
   'placeholder:text-[var(--cxs-color-on-surface-muted)] focus-visible:outline focus-visible:outline-2 ' +
   'focus-visible:outline-offset-2 focus-visible:outline-[var(--cxs-color-focus)]';
+const TOOLBAR_INPUT_WRAPPER_CLASSES = 'relative';
+const TOOLBAR_INPUT_ICON_CLASSES =
+  'pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-(--cxs-color-on-surface-muted)';
 const TOOLBAR_BUTTON_CLASSES =
   'inline-flex items-center justify-center rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +
   'px-3 py-2 text-sm transition-colors hover:bg-[var(--cxs-color-surface-hover)]';
@@ -132,6 +139,8 @@ export class CxsDataTableComponent implements OnChanges {
   @Input() loading = false;
   @Input() emptyMessage = 'No data available';
   @Input() emptyCell = '—';
+  @Input() allowOverflow = false;
+  @Input() columnBorders = false;
 
   @Input() pageSize = 10;
   @Input() pageIndex = 1;
@@ -212,6 +221,7 @@ export class CxsDataTableComponent implements OnChanges {
   get wrapperClass(): string {
     return [
       WRAPPER_BASE_CLASSES,
+      this.allowOverflow ? WRAPPER_OVERFLOW_VISIBLE_CLASSES : WRAPPER_OVERFLOW_HIDDEN_CLASSES,
       this.bordered ? WRAPPER_BORDERED_CLASSES : '',
       this.hostClass
     ]
@@ -268,6 +278,14 @@ export class CxsDataTableComponent implements OnChanges {
 
   get toolbarInputInlineClass(): string {
     return TOOLBAR_INPUT_INLINE_CLASSES;
+  }
+
+  get toolbarInputWrapperClass(): string {
+    return TOOLBAR_INPUT_WRAPPER_CLASSES;
+  }
+
+  get toolbarInputIconClass(): string {
+    return TOOLBAR_INPUT_ICON_CLASSES;
   }
 
   get toolbarButtonClass(): string {
@@ -352,6 +370,7 @@ export class CxsDataTableComponent implements OnChanges {
   headerCellClass(column: CxsDataTableColumn): string {
     return [
       HEADER_CELL_BASE_CLASSES,
+      this.columnBorders ? COLUMN_BORDER_CLASSES : '',
       ALIGN_CLASSES[column.align ?? 'left'],
       column.headerClass ?? ''
     ]
@@ -371,6 +390,7 @@ export class CxsDataTableComponent implements OnChanges {
     return [
       BODY_CELL_BASE_CLASSES,
       this.compact ? BODY_CELL_COMPACT_CLASSES : '',
+      this.columnBorders ? COLUMN_BORDER_CLASSES : '',
       ALIGN_CLASSES[column.align ?? 'left'],
       column.cellClass ?? ''
     ]
