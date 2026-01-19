@@ -258,31 +258,28 @@ export class CxsActionMenuComponent {
 
     const rect = trigger.getBoundingClientRect();
     const offset = 8;
-    this.menuPosition = {
-      top: rect.bottom + offset,
-      left: rect.left
-    };
 
     setTimeout(() => {
       const menuEl = this.menu?.nativeElement;
       const menuRect = menuEl?.getBoundingClientRect();
-      if (!menuRect) {
-        return;
-      }
+      const measuredWidth = menuRect?.width ?? 0;
+      const measuredHeight = menuRect?.height ?? 0;
+      const menuWidth = measuredWidth > 1 ? measuredWidth : 160;
+      const menuHeight = measuredHeight > 1 ? measuredHeight : 0;
 
       let top = rect.bottom + offset;
-      let left = this.align === 'end' ? rect.right - menuRect.width : rect.left;
+      let left = this.align === 'end' ? rect.right - menuWidth : rect.left;
 
-      if (top + menuRect.height > window.innerHeight) {
-        top = rect.top - menuRect.height - offset;
+      if (top + menuHeight > window.innerHeight) {
+        top = rect.top - menuHeight - offset;
       }
 
       if (top < offset) {
         top = offset;
       }
 
-      if (left + menuRect.width > window.innerWidth - offset) {
-        left = Math.max(offset, window.innerWidth - menuRect.width - offset);
+      if (left + menuWidth > window.innerWidth - offset) {
+        left = Math.max(offset, window.innerWidth - menuWidth - offset);
       }
 
       if (left < offset) {
