@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4210",
     "build": "ng build",
     "build:cerxos-ui": "ng build cerxos-ui --configuration production",
     "watch": "ng build --watch --configuration development",
