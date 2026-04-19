@@ -52,14 +52,29 @@ describe('CxsToastComponent', () => {
     expect(toast.textContent).toContain('Changes were saved.');
   });
 
-  it('dismisses when clicking the close button', () => {
+  it('applies the toast animation class', () => {
+    const toast = fixture.nativeElement.querySelector('[role="status"]') as HTMLElement;
+
+    expect(toast.classList).toContain('cxs-toast-panel');
+  });
+
+  it('dismisses when clicking the close button', fakeAsync(() => {
     const closeButton = fixture.nativeElement.querySelector('button[aria-label="Dismiss notification"]') as HTMLButtonElement;
     closeButton.click();
     fixture.detectChanges();
 
     expect(host.open).toBeFalse();
     expect(host.reason).toBe('dismiss');
-  });
+
+    const toast = fixture.nativeElement.querySelector('[role="status"]') as HTMLElement;
+    expect(toast).toBeTruthy();
+    expect(toast.classList).toContain('cxs-toast-panel-exit');
+
+    tick(220);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('[role="status"]')).toBeNull();
+  }));
 
   it('auto-dismisses after duration', fakeAsync(() => {
     host.duration = 1000;
@@ -69,5 +84,8 @@ describe('CxsToastComponent', () => {
 
     expect(host.open).toBeFalse();
     expect(host.reason).toBe('timeout');
+
+    tick(220);
+    fixture.detectChanges();
   }));
 });

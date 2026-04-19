@@ -16,9 +16,9 @@ export type CxsDialogSize = 'sm' | 'md' | 'lg';
 export type CxsDialogCloseReason = 'dismiss' | 'backdrop' | 'escape';
 
 const OVERLAY_CLASSES =
-  'fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.45)] p-4';
+  'cxs-dialog-overlay fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.45)] p-4';
 const PANEL_BASE_CLASSES =
-  'w-full rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +
+  'cxs-dialog-panel w-full rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] ' +
   'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] shadow-[var(--cxs-shadow-sm)] ' +
   'p-6 outline-none';
 
@@ -44,6 +44,7 @@ const CLOSE_BUTTON_CLASSES =
   selector: 'cxs-dialog',
   standalone: true,
   templateUrl: './dialog.component.html',
+  styleUrl: './dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CxsDialogComponent implements OnChanges, AfterViewInit {

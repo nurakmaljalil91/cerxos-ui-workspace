@@ -1,8 +1,10 @@
 import {
   Attribute,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
+  HostBinding,
   Input,
   OnChanges,
   OnDestroy,
@@ -38,8 +40,10 @@ const POSITION_CLASSES: Record<CxsToastPosition, string> = {
 };
 
 const BASE_CLASSES =
-  'pointer-events-auto flex w-full items-start gap-3 rounded-[var(--cxs-radius-md)] ' +
+  'cxs-toast-panel pointer-events-auto flex w-full items-start gap-3 rounded-[var(--cxs-radius-md)] ' +
   'border px-4 py-3 shadow-[var(--cxs-shadow-sm)]';
+const EXIT_CLASSES = 'cxs-toast-panel-exit';
+const EXIT_ANIMATION_MS = 220;
 
 const WIDTH_CLASSES: Record<CxsToastMaxWidth, string> = {
   sm: 'max-w-sm',
@@ -74,6 +78,7 @@ const CLOSE_BUTTON_CLASSES =
   selector: 'cxs-toast',
   standalone: true,
   templateUrl: './toast.component.html',
+  styleUrl: './toast.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CxsToastComponent implements OnChanges, OnDestroy {
@@ -90,11 +95,26 @@ export class CxsToastComponent implements OnChanges, OnDestroy {
   @Output() openChange = new EventEmitter<boolean>();
   @Output() dismissed = new EventEmitter<CxsToastCloseReason>();
 
-  private timeoutId: ReturnType<typeof setTimeout> | null = null;
+  rendered = false;
+  exiting = false;
 
-  constructor(@Attribute('class') private readonly hostClass: string | null) {}
+  private timeoutId: ReturnType<typeof setTimeout> | null = null;
+  private exitTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  constructor(
+    @Attribute('class') private readonly hostClass: string | null,
+    private readonly changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['open']) {
+      if (this.open) {
+        this.showToast();
+      } else {
+        this.startExitAnimation();
+      }
+    }
+
     if (changes['open'] || changes['duration']) {
       this.resetTimer();
     }
@@ -102,10 +122,16 @@ export class CxsToastComponent implements OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.clearTimer();
+    this.clearExitTimer();
   }
 
   get hostClassName(): string {
     return [HOST_BASE_CLASSES, POSITION_CLASSES[this.position]].join(' ');
+  }
+
+  @HostBinding('attr.data-cxs-toast-position')
+  get positionAttribute(): CxsToastPosition {
+    return this.position;
   }
 
   get toastClass(): string {
@@ -113,6 +139,7 @@ export class CxsToastComponent implements OnChanges, OnDestroy {
       BASE_CLASSES,
       WIDTH_CLASSES[this.maxWidth],
       VARIANT_CLASSES[this.variant],
+      this.exiting ? EXIT_CLASSES : null,
       this.hostClass
     ]
       .filter(Boolean)
@@ -154,6 +181,31 @@ export class CxsToastComponent implements OnChanges, OnDestroy {
   requestClose(reason: CxsToastCloseReason): void {
     this.openChange.emit(false);
     this.dismissed.emit(reason);
+    this.startExitAnimation();
+  }
+
+  private showToast(): void {
+    this.clearExitTimer();
+    this.rendered = true;
+    this.exiting = false;
+  }
+
+  private startExitAnimation(): void {
+    if (!this.rendered || this.exiting) {
+      return;
+    }
+
+    this.clearTimer();
+    this.clearExitTimer();
+    this.exiting = true;
+    this.changeDetectorRef.markForCheck();
+
+    this.exitTimeoutId = setTimeout(() => {
+      this.rendered = false;
+      this.exiting = false;
+      this.exitTimeoutId = null;
+      this.changeDetectorRef.markForCheck();
+    }, EXIT_ANIMATION_MS);
   }
 
   private resetTimer(): void {
@@ -170,6 +222,13 @@ export class CxsToastComponent implements OnChanges, OnDestroy {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
       this.timeoutId = null;
+    }
+  }
+
+  private clearExitTimer(): void {
+    if (this.exitTimeoutId) {
+      clearTimeout(this.exitTimeoutId);
+      this.exitTimeoutId = null;
     }
   }
 }

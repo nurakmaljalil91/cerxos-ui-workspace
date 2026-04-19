@@ -56,6 +56,14 @@ describe('CxsDialogComponent', () => {
     expect(dialog.textContent).toContain('Invite teammates');
   });
 
+  it('applies appear animation classes to the overlay and panel', () => {
+    const dialog = fixture.nativeElement.querySelector('[role="dialog"]') as HTMLElement;
+    const overlay = dialog.parentElement as HTMLElement;
+
+    expect(overlay.classList).toContain('cxs-dialog-overlay');
+    expect(dialog.classList).toContain('cxs-dialog-panel');
+  });
+
   it('closes when clicking the backdrop', () => {
     const overlay = fixture.nativeElement.querySelector('[role="dialog"]')?.parentElement as HTMLElement;
     overlay.dispatchEvent(new MouseEvent('click', { bubbles: true }));

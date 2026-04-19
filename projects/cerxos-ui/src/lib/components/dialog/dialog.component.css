@@ -1,0 +1,42 @@
+:host {
+  display: contents;
+}
+
+.cxs-dialog-overlay {
+  animation: cxs-dialog-overlay-appear 220ms ease-out;
+}
+
+.cxs-dialog-panel {
+  animation: cxs-dialog-panel-appear 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+  will-change: opacity, transform;
+}
+
+@keyframes cxs-dialog-overlay-appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cxs-dialog-panel-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cxs-dialog-overlay,
+  .cxs-dialog-panel {
+    animation: none;
+  }
+}
