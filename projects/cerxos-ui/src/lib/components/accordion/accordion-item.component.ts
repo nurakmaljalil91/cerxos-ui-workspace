@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgIf } from '@angular/common';
+
 
 export type CxsAccordionItemSize = 'sm' | 'md' | 'lg';
 

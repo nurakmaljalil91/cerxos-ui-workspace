@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -64,7 +64,7 @@ const INVALID_CLASSES =
   selector: 'cxs-input',
   standalone: true,
   templateUrl: './input.component.html',
-  imports: [CommonModule],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {

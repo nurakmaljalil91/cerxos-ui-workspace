@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -85,7 +85,7 @@ const INVALID_CLASSES =
 @Component({
   selector: 'cxs-multi-select',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './multi-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
