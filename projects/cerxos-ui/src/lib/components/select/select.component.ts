@@ -6,7 +6,7 @@ import {
   Input,
   Output
 } from '@angular/core';
-import { NgIf } from '@angular/common';
+
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export type CxsSelectVariant = 'outline' | 'filled';
@@ -48,7 +48,7 @@ const INVALID_CLASSES =
 @Component({
   selector: 'cxs-select',
   standalone: true,
-  imports: [NgIf],
+  imports: [],
   templateUrl: './select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
