@@ -48,15 +48,23 @@ describe('CxsThemeDirective', () => {
 
   it('follows system preference when mode is system', () => {
     const element = fixture.nativeElement.querySelector('div') as HTMLElement;
-    let listener: ((event: MediaQueryListEvent) => void) | null = null;
+    const callbacks: { listener?: (event: MediaQueryListEvent) => void } = {};
+    const mediaQueryState = { matches: false };
 
     const mediaQuery = {
-      matches: false,
-      addEventListener: (_: string, cb: (event: MediaQueryListEvent) => void) => {
-        listener = cb;
+      get matches() {
+        return mediaQueryState.matches;
       },
-      removeEventListener: () => {}
-    } as MediaQueryList;
+      media: '(prefers-color-scheme: dark)',
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: (_: string, cb: (event: MediaQueryListEvent) => void) => {
+        callbacks.listener = cb;
+      },
+      removeEventListener: () => {},
+      dispatchEvent: () => true
+    } as unknown as MediaQueryList;
 
     const originalMatchMedia = window.matchMedia;
     Object.defineProperty(window, 'matchMedia', {
@@ -69,8 +77,15 @@ describe('CxsThemeDirective', () => {
 
     expect(element.classList.contains('cxs-theme-dark')).toBeFalse();
 
-    mediaQuery.matches = true;
-    listener?.({ matches: true } as MediaQueryListEvent);
+    mediaQueryState.matches = true;
+    const onPreferenceChange = callbacks.listener;
+
+    if (!onPreferenceChange) {
+      fail('Expected matchMedia listener to be registered.');
+      return;
+    }
+
+    onPreferenceChange({ matches: true } as MediaQueryListEvent);
 
     expect(element.classList.contains('cxs-theme-dark')).toBeTrue();
 

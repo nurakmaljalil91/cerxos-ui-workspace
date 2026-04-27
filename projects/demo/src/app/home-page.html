@@ -240,7 +240,11 @@
   <div class="flex flex-wrap items-center gap-4">
     <cxs-button>Primary</cxs-button>
     <cxs-button variant="secondary">Secondary</cxs-button>
+    <cxs-button variant="danger">Danger</cxs-button>
     <cxs-button variant="ghost">Ghost</cxs-button>
+    <cxs-button icon="plus">Create</cxs-button>
+    <cxs-button variant="secondary" icon="user">Profile</cxs-button>
+    <cxs-button variant="ghost" icon="search" [iconOnly]="true" ariaLabel="Search workspace"></cxs-button>
     <cxs-button variant="secondary">
       <svg cxsButtonIcon aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
@@ -251,6 +255,14 @@
     <cxs-button size="lg">Large</cxs-button>
     <cxs-button [loading]="true">Loading</cxs-button>
     <cxs-button [disabled]="true">Disabled</cxs-button>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-4 text-[var(--cxs-color-primary)]">
+    <cxs-icon name="user" label="User profile"></cxs-icon>
+    <cxs-icon name="search"></cxs-icon>
+    <cxs-icon name="plus"></cxs-icon>
+    <cxs-icon name="bell"></cxs-icon>
+    <cxs-icon name="chevron-right"></cxs-icon>
   </div>
 
   <cxs-accordion>

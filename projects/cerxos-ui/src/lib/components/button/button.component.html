@@ -3,6 +3,7 @@
   [attr.type]="type"
   [disabled]="isDisabled"
   [attr.aria-busy]="loading ? 'true' : null"
+  [attr.aria-label]="ariaLabelValue"
 >
   @if (loading) {
     <span
@@ -10,8 +11,20 @@
       aria-hidden="true"
     ></span>
   }
+
+  @if (leadingIconName; as iconName) {
+    <cxs-icon [name]="iconName" [size]="size"></cxs-icon>
+  }
+
   <ng-content select="[cxsButtonIcon]"></ng-content>
-  <span class="truncate">
-    <ng-content></ng-content>
-  </span>
+
+  @if (!iconOnly) {
+    <span class="truncate">
+      <ng-content></ng-content>
+    </span>
+  }
+
+  @if (trailingIconName; as iconName) {
+    <cxs-icon [name]="iconName" [size]="size"></cxs-icon>
+  }
 </button>

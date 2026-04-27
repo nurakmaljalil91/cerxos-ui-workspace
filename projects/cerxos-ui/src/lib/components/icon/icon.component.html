@@ -1,0 +1,19 @@
+<svg
+  [attr.viewBox]="icon.viewBox"
+  [class]="iconClass"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  [attr.role]="label ? 'img' : null"
+  [attr.aria-hidden]="label ? null : 'true'"
+  [attr.aria-labelledby]="titleId"
+>
+  @if (titleId) {
+    <title [id]="titleId">{{ label }}</title>
+  }
+
+  @for (path of icon.paths; track path) {
+    <path [attr.d]="path" stroke-width="1.75"></path>
+  }
+</svg>

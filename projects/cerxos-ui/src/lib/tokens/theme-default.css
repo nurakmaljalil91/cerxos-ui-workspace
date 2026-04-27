@@ -3,6 +3,8 @@
   --cxs-color-primary-hover: #17613a;
   --cxs-color-primary-ghost: rgba(31, 122, 74, 0.12);
   --cxs-color-on-primary: #ffffff;
+  --cxs-color-danger-hover: #b91c1c;
+  --cxs-color-on-danger: #ffffff;
   --cxs-color-surface: #ffffff;
   --cxs-color-surface-hover: #f6f8fa;
   --cxs-color-on-surface: #0f172a;

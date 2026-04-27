@@ -4,6 +4,8 @@
   --cxs-color-primary-hover: #16a34a;
   --cxs-color-primary-ghost: rgba(34, 197, 94, 0.16);
   --cxs-color-on-primary: #0b0f0e;
+  --cxs-color-danger-hover: #ef4444;
+  --cxs-color-on-danger: #0b0f0e;
   --cxs-color-surface: #0b0f0e;
   --cxs-color-surface-hover: #111827;
   --cxs-color-on-surface: #e2e8f0;

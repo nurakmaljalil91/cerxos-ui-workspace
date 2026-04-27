@@ -9,11 +9,24 @@ const meta: Meta<CxsButtonComponent> = {
     variant: 'primary',
     size: 'md',
     disabled: false,
-    loading: false
+    loading: false,
+    icon: undefined,
+    iconPosition: 'start',
+    iconOnly: false,
+    ariaLabel: undefined
   },
   render: (args) => ({
     props: args,
-    template: `<cxs-button [variant]="variant" [size]="size" [disabled]="disabled" [loading]="loading">
+    template: `<cxs-button
+      [variant]="variant"
+      [size]="size"
+      [disabled]="disabled"
+      [loading]="loading"
+      [icon]="icon"
+      [iconPosition]="iconPosition"
+      [iconOnly]="iconOnly"
+      [ariaLabel]="ariaLabel"
+    >
       Button
     </cxs-button>`
   })
@@ -26,6 +39,10 @@ export const Primary: Story = {};
 
 export const Secondary: Story = {
   args: { variant: 'secondary' }
+};
+
+export const Danger: Story = {
+  args: { variant: 'danger' }
 };
 
 export const Ghost: Story = {
@@ -52,16 +69,37 @@ export const Loading: Story = {
   args: { loading: true }
 };
 
-export const WithIcon: Story = {
+export const WithNamedIcon: Story = {
+  args: {
+    variant: 'secondary',
+    icon: 'user'
+  }
+};
+
+export const TrailingIcon: Story = {
+  args: {
+    icon: 'chevron-right',
+    iconPosition: 'end'
+  }
+};
+
+export const CircleIcon: Story = {
   render: () => ({
     template: `
-      <cxs-button variant="outline">
-        <svg
-          cxsButtonIcon
-          aria-hidden="true"
-          class="h-5 w-5"
-          viewBox="0 0 24 24"
-        >
+      <div class="flex items-center gap-3">
+        <cxs-button variant="secondary" icon="user" [iconOnly]="true" ariaLabel="Open profile"></cxs-button>
+        <cxs-button variant="ghost" icon="search" [iconOnly]="true" ariaLabel="Search"></cxs-button>
+        <cxs-button icon="plus" [iconOnly]="true" ariaLabel="Create item"></cxs-button>
+      </div>
+    `
+  })
+};
+
+export const WithProjectedIcon: Story = {
+  render: () => ({
+    template: `
+      <cxs-button variant="secondary">
+        <svg cxsButtonIcon aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
         </svg>
         Continue

@@ -18,6 +18,7 @@ export * from './lib/components/data-table/data-table-cell.directive';
 export * from './lib/components/data-table/data-table.component';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/datepicker/datepicker.component';
+export * from './lib/components/icon/icon.component';
 export * from './lib/components/input/input.component';
 export * from './lib/components/menubar/menubar.component';
 export * from './lib/components/multi-select/multi-select.component';
