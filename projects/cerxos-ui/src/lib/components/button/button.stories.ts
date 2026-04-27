@@ -45,6 +45,10 @@ export const Danger: Story = {
   args: { variant: 'danger' }
 };
 
+export const Outline: Story = {
+  args: { variant: 'outline' }
+};
+
 export const Ghost: Story = {
   args: { variant: 'ghost' }
 };
@@ -87,6 +91,7 @@ export const CircleIcon: Story = {
   render: () => ({
     template: `
       <div class="flex items-center gap-3">
+        <cxs-button variant="outline" icon="search" [iconOnly]="true" ariaLabel="Search"></cxs-button>
         <cxs-button variant="secondary" icon="user" [iconOnly]="true" ariaLabel="Open profile"></cxs-button>
         <cxs-button variant="ghost" icon="search" [iconOnly]="true" ariaLabel="Search"></cxs-button>
         <cxs-button icon="plus" [iconOnly]="true" ariaLabel="Create item"></cxs-button>

@@ -1,0 +1,76 @@
+.cxs-slider {
+  --cxs-slider-track-color: var(--cxs-color-surface-hover);
+  --cxs-slider-thumb-color: var(--cxs-color-surface);
+  cursor: pointer;
+}
+
+.cxs-slider--sm {
+  --cxs-slider-track-height: 0.375rem;
+  --cxs-slider-thumb-size: 1rem;
+}
+
+.cxs-slider--md {
+  --cxs-slider-track-height: 0.5rem;
+  --cxs-slider-thumb-size: 1.125rem;
+}
+
+.cxs-slider--lg {
+  --cxs-slider-track-height: 0.625rem;
+  --cxs-slider-thumb-size: 1.25rem;
+}
+
+.cxs-slider::-webkit-slider-runnable-track {
+  height: var(--cxs-slider-track-height);
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--cxs-slider-fill) 0%,
+    var(--cxs-slider-fill) var(--cxs-slider-percent),
+    var(--cxs-slider-track-color) var(--cxs-slider-percent),
+    var(--cxs-slider-track-color) 100%
+  );
+}
+
+.cxs-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--cxs-slider-thumb-size);
+  height: var(--cxs-slider-thumb-size);
+  margin-top: calc((var(--cxs-slider-track-height) - var(--cxs-slider-thumb-size)) / 2);
+  border: 2px solid var(--cxs-slider-fill);
+  border-radius: 9999px;
+  background: var(--cxs-slider-thumb-color);
+  box-shadow: var(--cxs-shadow-sm);
+}
+
+.cxs-slider::-moz-range-track {
+  height: var(--cxs-slider-track-height);
+  border: 0;
+  border-radius: 9999px;
+  background: var(--cxs-slider-track-color);
+}
+
+.cxs-slider::-moz-range-progress {
+  height: var(--cxs-slider-track-height);
+  border-radius: 9999px;
+  background: var(--cxs-slider-fill);
+}
+
+.cxs-slider::-moz-range-thumb {
+  width: var(--cxs-slider-thumb-size);
+  height: var(--cxs-slider-thumb-size);
+  border: 2px solid var(--cxs-slider-fill);
+  border-radius: 9999px;
+  background: var(--cxs-slider-thumb-color);
+  box-shadow: var(--cxs-shadow-sm);
+}
+
+.cxs-slider:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--cxs-color-focus);
+  outline-offset: 2px;
+}
+
+.cxs-slider:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--cxs-color-focus);
+  outline-offset: 2px;
+}

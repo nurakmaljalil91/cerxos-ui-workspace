@@ -19,8 +19,11 @@ import {
   CxsInputComponent,
   CxsMenubarComponent,
   CxsMultiSelectComponent,
+  CxsProgressBarComponent,
   CxsRadioComponent,
   CxsSelectComponent,
+  CxsSkeletonComponent,
+  CxsSliderComponent,
   CxsTabLabelDirective,
   CxsTabPanelComponent,
   CxsTabsComponent,
@@ -53,8 +56,11 @@ import {
     CxsInputComponent,
     CxsMenubarComponent,
     CxsMultiSelectComponent,
+    CxsProgressBarComponent,
     CxsRadioComponent,
     CxsSelectComponent,
+    CxsSkeletonComponent,
+    CxsSliderComponent,
     CxsTabLabelDirective,
     CxsTabPanelComponent,
     CxsTabsComponent,
@@ -69,6 +75,8 @@ export class HomePageComponent {
   toastOpen = false;
   dialogOpen = false;
   notificationsEnabled = true;
+  sliderValue = 42;
+  dangerSliderValue = 68;
   tableColumns: CxsTableColumn[] = [
     {key: 'name', label: 'Name'},
     {key: 'status', label: 'Status'},

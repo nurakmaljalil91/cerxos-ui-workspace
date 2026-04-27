@@ -2,7 +2,7 @@ import { Attribute, ChangeDetectionStrategy, Component, Input } from '@angular/c
 
 import { CxsIconComponent, CxsIconName } from '../icon/icon.component';
 
-export type CxsButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type CxsButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline';
 export type CxsButtonSize = 'sm' | 'md' | 'lg';
 export type CxsButtonIconPosition = 'start' | 'end';
 
@@ -16,11 +16,14 @@ const VARIANT_CLASSES: Record<CxsButtonVariant, string> = {
     'bg-[var(--cxs-color-primary)] text-[var(--cxs-color-on-primary)] ' +
     'hover:bg-[var(--cxs-color-primary-hover)] shadow-[var(--cxs-shadow-sm)]',
   danger:
-    'bg-[var(--cxs-color-danger)] text-[var(--cxs-color-on-danger)] ' +
-    'hover:bg-[var(--cxs-color-danger-hover)] shadow-[var(--cxs-shadow-sm)]',
+    'bg-[var(--cxs-color-danger-surface)] text-[var(--cxs-color-danger)] ' +
+    'hover:bg-[var(--cxs-color-danger-surface-hover)] shadow-[var(--cxs-shadow-sm)]',
   secondary:
     'bg-[var(--cxs-color-surface)] text-[var(--cxs-color-on-surface)] ' +
     'border border-[var(--cxs-color-border)] hover:bg-[var(--cxs-color-surface-hover)]',
+  outline:
+    'border border-[var(--cxs-color-border)] bg-transparent text-[var(--cxs-color-primary)] ' +
+    'hover:bg-[var(--cxs-color-primary-ghost)]',
   ghost:
     'bg-transparent text-[var(--cxs-color-primary)] hover:bg-[var(--cxs-color-primary-ghost)]'
 };

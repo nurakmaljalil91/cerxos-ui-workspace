@@ -33,7 +33,7 @@ With projected SVG icon:
 
 ## Inputs
 
-- `variant`: `primary` | `secondary` | `ghost` | `danger` (default: `primary`)
+- `variant`: `primary` | `secondary` | `ghost` | `danger` | `outline` (default: `primary`)
 - `size`: `sm` | `md` | `lg` (default: `md`)
 - `disabled`: boolean (default: `false`)
 - `loading`: boolean (default: `false`)
@@ -50,8 +50,8 @@ With projected SVG icon:
 - `--cxs-color-primary-ghost`
 - `--cxs-color-on-primary`
 - `--cxs-color-danger`
-- `--cxs-color-danger-hover`
-- `--cxs-color-on-danger`
+- `--cxs-color-danger-surface`
+- `--cxs-color-danger-surface-hover`
 - `--cxs-color-surface`
 - `--cxs-color-surface-hover`
 - `--cxs-color-on-surface`

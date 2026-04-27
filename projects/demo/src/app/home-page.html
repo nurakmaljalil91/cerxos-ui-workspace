@@ -241,9 +241,11 @@
     <cxs-button>Primary</cxs-button>
     <cxs-button variant="secondary">Secondary</cxs-button>
     <cxs-button variant="danger">Danger</cxs-button>
+    <cxs-button variant="outline">Outline</cxs-button>
     <cxs-button variant="ghost">Ghost</cxs-button>
     <cxs-button icon="plus">Create</cxs-button>
     <cxs-button variant="secondary" icon="user">Profile</cxs-button>
+    <cxs-button variant="outline" icon="search" [iconOnly]="true" ariaLabel="Search workspace"></cxs-button>
     <cxs-button variant="ghost" icon="search" [iconOnly]="true" ariaLabel="Search workspace"></cxs-button>
     <cxs-button variant="secondary">
       <svg cxsButtonIcon aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24">
@@ -263,6 +265,36 @@
     <cxs-icon name="plus"></cxs-icon>
     <cxs-icon name="bell"></cxs-icon>
     <cxs-icon name="chevron-right"></cxs-icon>
+  </div>
+
+  <div class="grid max-w-lg gap-4">
+    <cxs-progress-bar [value]="72" label="Workspace adoption" [showValue]="true"></cxs-progress-bar>
+    <cxs-progress-bar variant="neutral" [value]="48" label="Migration status"></cxs-progress-bar>
+    <cxs-progress-bar variant="danger" [value]="28" label="Error budget" [showValue]="true"></cxs-progress-bar>
+    <cxs-progress-bar label="Syncing workspace" [indeterminate]="true" [showValue]="true"></cxs-progress-bar>
+  </div>
+
+  <div class="grid max-w-lg gap-4">
+    <cxs-slider [(ngModel)]="sliderValue" label="Volume" [showValue]="true"></cxs-slider>
+    <cxs-slider
+      [(ngModel)]="dangerSliderValue"
+      variant="danger"
+      label="Risk threshold"
+      [showValue]="true"
+    ></cxs-slider>
+  </div>
+
+  <div class="grid max-w-lg gap-4">
+    <cxs-skeleton></cxs-skeleton>
+    <div class="flex items-start gap-3">
+      <cxs-skeleton variant="circle" size="lg"></cxs-skeleton>
+      <div class="flex flex-1 flex-col gap-2">
+        <cxs-skeleton width="45%"></cxs-skeleton>
+        <cxs-skeleton></cxs-skeleton>
+        <cxs-skeleton width="70%"></cxs-skeleton>
+      </div>
+    </div>
+    <cxs-skeleton variant="block" height="6rem"></cxs-skeleton>
   </div>
 
   <cxs-accordion>

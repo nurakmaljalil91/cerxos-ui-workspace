@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.cxs-skeleton {
+  position: relative;
+}
+
+.cxs-skeleton--animated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--cxs-color-skeleton-highlight),
+    transparent
+  );
+  animation: cxs-skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes cxs-skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

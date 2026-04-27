@@ -1,0 +1,30 @@
+<div [class]="wrapperClass">
+  @if (label || showValue) {
+    <div [class]="headerClass">
+      @if (label) {
+        <span [id]="labelId" [class]="labelClass">{{ label }}</span>
+      }
+
+      @if (showValue) {
+        <span [class]="valueClass">{{ statusText }}</span>
+      }
+    </div>
+  }
+
+  <div
+    [class]="trackClass"
+    role="progressbar"
+    [attr.aria-label]="ariaLabelValue"
+    [attr.aria-labelledby]="label ? labelId : null"
+    [attr.aria-valuemin]="0"
+    [attr.aria-valuemax]="normalizedMax"
+    [attr.aria-valuenow]="ariaValueNow"
+    [attr.aria-valuetext]="ariaValueText"
+  >
+    @if (indeterminate) {
+      <div [class]="indeterminateFillClass" aria-hidden="true"></div>
+    } @else {
+      <div [class]="fillClass" [style.width.%]="progressPercent"></div>
+    }
+  </div>
+</div>

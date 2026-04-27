@@ -1,0 +1,34 @@
+<div [class]="wrapperClass">
+  @if (label || showValue) {
+    <div [class]="headerClass">
+      @if (label) {
+        <label [for]="inputId" [id]="labelId" [class]="labelClass">{{ label }}</label>
+      }
+
+      @if (showValue) {
+        <span [class]="valueClass">{{ valueText }}</span>
+      }
+    </div>
+  }
+
+  <input
+    type="range"
+    [class]="sliderClass"
+    [id]="inputId"
+    [name]="name || null"
+    [disabled]="isDisabled"
+    [required]="required"
+    [value]="clampedValue"
+    [attr.min]="normalizedMin"
+    [attr.max]="normalizedMax"
+    [attr.step]="normalizedStep"
+    [attr.aria-label]="ariaLabelValue"
+    [attr.aria-labelledby]="labelId"
+    [attr.aria-describedby]="ariaDescribedbyValue"
+    [attr.aria-valuetext]="valueText"
+    [style.--cxs-slider-percent]="progressPercent + '%'"
+    [style.--cxs-slider-fill]="fillColor"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+</div>

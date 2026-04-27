@@ -72,8 +72,22 @@ describe('CxsButtonComponent', () => {
     fixture.detectChanges();
 
     const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
-    expect(button.className).toContain('bg-[var(--cxs-color-danger)]');
-    expect(button.className).toContain('text-[var(--cxs-color-on-danger)]');
+    expect(button.className).toContain('bg-[var(--cxs-color-danger-surface)]');
+    expect(button.className).toContain('text-[var(--cxs-color-danger)]');
+  });
+
+  it('applies outline styles to icon-only buttons', () => {
+    host.variant = 'outline';
+    host.icon = 'search';
+    host.iconOnly = true;
+    host.ariaLabel = 'Search workspace';
+    host.label = '';
+    fixture.detectChanges();
+
+    const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+    expect(button.className).toContain('border-[var(--cxs-color-border)]');
+    expect(button.className).toContain('bg-transparent');
+    expect(button.classList.contains('rounded-full')).toBeTrue();
   });
 
   it('renders a named icon', () => {

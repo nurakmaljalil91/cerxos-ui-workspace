@@ -1,0 +1,9 @@
+<div
+  [class]="skeletonClass"
+  [attr.role]="role"
+  [attr.aria-label]="ariaLabelValue"
+  [attr.aria-live]="role ? 'polite' : null"
+  [attr.aria-hidden]="role ? null : 'true'"
+  [style.width]="resolvedWidth"
+  [style.height]="resolvedHeight"
+></div>
