@@ -35,3 +35,6 @@ export * from './lib/components/toggle/toggle.component';
 export * from './lib/components/toast/toast.component';
 export * from './lib/components/tooltip/tooltip.component';
 export * from './lib/directives/theme/theme.directive';
+export * from './lib/formatters/currency.pipe';
+export * from './lib/formatters/date.pipe';
+export * from './lib/formatters/preference-formatting.service';
