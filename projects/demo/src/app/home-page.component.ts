@@ -15,6 +15,8 @@ import {
   CxsCarouselComponent,
   CxsDatepickerComponent,
   CxsDataTableComponent,
+  CxsHabitGridComponent,
+  CxsHabitGridDayToggle,
   CxsIconComponent,
   CxsInputComponent,
   CxsMenubarComponent,
@@ -52,6 +54,7 @@ import {
     CxsCarouselComponent,
     CxsDatepickerComponent,
     CxsDataTableComponent,
+    CxsHabitGridComponent,
     CxsIconComponent,
     CxsInputComponent,
     CxsMenubarComponent,
@@ -77,6 +80,9 @@ export class HomePageComponent {
   notificationsEnabled = true;
   sliderValue = 42;
   dangerSliderValue = 68;
+  habitDoneDates: string[] = Array.from({length: 91}, (_, i) =>
+    new Date(Date.UTC(2026, 6, 6 + i)).toISOString().slice(0, 10)
+  ).filter((_, i) => i % 4 !== 0);
   tableColumns: CxsTableColumn[] = [
     {key: 'name', label: 'Name'},
     {key: 'status', label: 'Status'},
@@ -176,4 +182,10 @@ export class HomePageComponent {
   partial = true;
   selectedDate = '2024-04-01';
   customDate = '2024-03-10';
+
+  onHabitDayToggle(event: CxsHabitGridDayToggle): void {
+    this.habitDoneDates = event.done
+      ? [...this.habitDoneDates, event.date]
+      : this.habitDoneDates.filter((date) => date !== event.date);
+  }
 }

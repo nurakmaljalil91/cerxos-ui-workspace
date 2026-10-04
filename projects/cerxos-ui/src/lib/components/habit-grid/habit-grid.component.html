@@ -1,0 +1,54 @@
+<div class="inline-flex max-w-full flex-col gap-1 overflow-x-auto">
+  <div
+    role="grid"
+    class="flex flex-col gap-[var(--cxs-habit-grid-gap,3px)]"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-readonly]="interactive ? null : 'true'"
+  >
+    @for (isoDay of dayRows; track isoDay) {
+      <div role="row" class="flex items-center gap-[var(--cxs-habit-grid-gap,3px)]">
+        <span
+          role="rowheader"
+          class="w-8 shrink-0 text-[10px] leading-none text-[var(--cxs-color-on-surface-muted)]"
+        >
+          {{ weekdayLabel(isoDay) }}
+        </span>
+        @for (week of weeks; track week.start) {
+          @let day = dayAt(week, isoDay);
+          @if (day.state === 'padding') {
+            <span role="gridcell" aria-hidden="true" [class]="cellClass(day)"></span>
+          } @else {
+            <span
+              role="gridcell"
+              [class]="cellClass(day)"
+              [attr.data-date]="day.date"
+              [attr.data-state]="day.state"
+              [attr.aria-label]="day.label"
+              [attr.aria-selected]="day.state === 'done'"
+              [attr.aria-disabled]="interactive && !isToggleable(day) ? 'true' : null"
+              [attr.tabindex]="tabIndexFor(day)"
+              (click)="onCellClick(day)"
+              (keydown)="onCellKeydown($event, day)"
+            ></span>
+          }
+        }
+      </div>
+    }
+  </div>
+
+  @if (hasWeeklyProgress) {
+    <div class="flex items-center gap-[var(--cxs-habit-grid-gap,3px)]" data-testid="cxs-habit-grid-progress">
+      <span class="w-8 shrink-0" aria-hidden="true"></span>
+      @for (week of weeks; track week.start) {
+        <span
+          class="w-[var(--cxs-habit-grid-cell-size,0.875rem)] shrink-0 overflow-visible whitespace-nowrap text-center text-[9px] leading-none text-[var(--cxs-color-on-surface-muted)]"
+          [class.font-semibold]="week.doneCount >= (weeklyTarget ?? 0)"
+          [attr.aria-label]="week.progressAriaLabel"
+          [attr.title]="week.progressAriaLabel"
+        >
+          {{ week.progressLabel }}
+        </span>
+      }
+    </div>
+  }
+</div>

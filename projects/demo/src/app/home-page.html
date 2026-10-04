@@ -267,6 +267,29 @@
     <cxs-icon name="chevron-right"></cxs-icon>
   </div>
 
+  <div class="grid gap-4">
+    <cxs-habit-grid
+      from="2026-07-06"
+      to="2026-10-04"
+      today="2026-10-04"
+      startDate="2026-07-08"
+      [doneDates]="habitDoneDates"
+      [interactive]="true"
+      ariaLabel="10K Steps a day history"
+      (dayToggle)="onHabitDayToggle($event)"
+    ></cxs-habit-grid>
+    <cxs-habit-grid
+      from="2026-07-06"
+      to="2026-10-04"
+      today="2026-10-04"
+      [doneDates]="habitDoneDates"
+      [scheduledDays]="[1, 3, 5]"
+      [weeklyTarget]="3"
+      accentColor="#22c55e"
+      ariaLabel="Gym history"
+    ></cxs-habit-grid>
+  </div>
+
   <div class="grid max-w-lg gap-4">
     <cxs-progress-bar [value]="72" label="Workspace adoption" [showValue]="true"></cxs-progress-bar>
     <cxs-progress-bar variant="neutral" [value]="48" label="Migration status"></cxs-progress-bar>
