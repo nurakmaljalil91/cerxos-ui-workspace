@@ -32,7 +32,11 @@ describe('CxsDatepickerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('renders the bound value', () => {
+  it('renders the bound value', async () => {
+    // ngModel writes its initial value asynchronously; let it settle before asserting.
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     expect(input.value).toBe('2024-01-15');
   });

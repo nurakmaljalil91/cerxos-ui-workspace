@@ -33,7 +33,11 @@ describe('CxsSelectComponent', () => {
     fixture.detectChanges();
   });
 
-  it('renders the placeholder when value is empty', () => {
+  it('renders the placeholder when value is empty', async () => {
+    // ngModel writes its initial value asynchronously; let it settle before asserting.
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     const select = fixture.nativeElement.querySelector('select') as HTMLSelectElement;
     expect(select.value).toBe('');
     expect(select.selectedOptions[0].textContent?.trim()).toBe('Pick one');

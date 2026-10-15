@@ -32,7 +32,11 @@ describe('CxsInputComponent', () => {
     fixture.detectChanges();
   });
 
-  it('renders the provided value', () => {
+  it('renders the provided value', async () => {
+    // ngModel writes its initial value asynchronously; let it settle before asserting.
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     expect(input.value).toBe('initial');
   });

@@ -43,8 +43,8 @@ describe('CxsCarouselComponent', () => {
   });
 
   it('renders slides', () => {
-    const slides = fixture.nativeElement.querySelectorAll('div > div > div') as NodeListOf<HTMLElement>;
-    expect(slides.length).toBe(3);
+    const track = fixture.nativeElement.querySelector('cxs-carousel > div > div') as HTMLElement;
+    expect(track.children.length).toBe(3);
   });
 
   it('moves to next slide when clicking next', () => {

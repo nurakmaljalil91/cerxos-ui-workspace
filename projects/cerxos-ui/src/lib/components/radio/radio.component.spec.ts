@@ -36,7 +36,11 @@ describe('CxsRadioComponent', () => {
     expect(labels[0].textContent?.trim()).toContain('Basic');
   });
 
-  it('marks the matching value as checked', () => {
+  it('marks the matching value as checked', async () => {
+    // ngModel writes its initial value asynchronously; let it settle before asserting.
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     const inputs = fixture.nativeElement.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
     expect(inputs[0].checked).toBeTrue();
     expect(inputs[1].checked).toBeFalse();

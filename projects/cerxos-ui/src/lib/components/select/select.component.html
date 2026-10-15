@@ -20,7 +20,11 @@
       (blur)="onBlur()"
       >
       @if (placeholder) {
-        <option [value]="placeholderValue" disabled>
+        <option
+          [value]="placeholderValue"
+          [selected]="selectValue === placeholderValue"
+          disabled
+          >
           {{ placeholder }}
         </option>
       }
