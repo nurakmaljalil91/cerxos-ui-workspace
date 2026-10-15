@@ -1,5 +1,9 @@
 @if (open) {
-  <div [class]="overlayClass" (click)="onBackdropClick($event)">
+  <div
+    [class]="overlayClass"
+    (pointerdown)="onBackdropPointerDown($event)"
+    (click)="onBackdropClick($event)"
+  >
     <div
       #dialogPanel
       [class]="panelClass"

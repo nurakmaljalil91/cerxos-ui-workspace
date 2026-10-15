@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CxsDialogCloseReason, CxsDialogComponent } from './dialog.component';
@@ -14,6 +14,7 @@ describe('CxsDialogComponent', () => {
     template: `
       <cxs-dialog
         [open]="open"
+        [closeOnBackdrop]="closeOnBackdrop()"
         title="Invite teammates"
         description="Share access with your team."
         (openChange)="onOpenChange($event)"
@@ -29,6 +30,7 @@ describe('CxsDialogComponent', () => {
   })
   class TestHostComponent {
     open = true;
+    readonly closeOnBackdrop = signal(true);
     lastReason?: CxsDialogCloseReason;
 
     onOpenChange(value: boolean): void {
@@ -64,13 +66,70 @@ describe('CxsDialogComponent', () => {
     expect(dialog.classList).toContain('cxs-dialog-panel');
   });
 
-  it('closes when clicking the backdrop', () => {
-    const overlay = fixture.nativeElement.querySelector('[role="dialog"]')?.parentElement as HTMLElement;
-    overlay.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+  function getOverlay(): HTMLElement {
+    return fixture.nativeElement.querySelector('[role="dialog"]')?.parentElement as HTMLElement;
+  }
+
+  function getPanel(): HTMLElement {
+    return fixture.nativeElement.querySelector('[role="dialog"]') as HTMLElement;
+  }
+
+  function pressOn(target: HTMLElement): void {
+    target.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
+  }
+
+  function clickOn(target: HTMLElement): void {
+    target.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     fixture.detectChanges();
+  }
+
+  it('closes when pressing and releasing on the backdrop', () => {
+    const overlay = getOverlay();
+    pressOn(overlay);
+    clickOn(overlay);
 
     expect(host.open).toBeFalse();
     expect(host.lastReason).toBe('backdrop');
+  });
+
+  it('stays open when a press inside the panel is released on the backdrop', () => {
+    pressOn(getPanel());
+    // The browser targets the click at the common ancestor: the overlay.
+    clickOn(getOverlay());
+
+    expect(host.open).toBeTrue();
+    expect(host.lastReason).toBeUndefined();
+  });
+
+  it('stays open when a press on the backdrop is released inside the panel', () => {
+    pressOn(getOverlay());
+    clickOn(getPanel());
+
+    expect(host.open).toBeTrue();
+    expect(host.lastReason).toBeUndefined();
+  });
+
+  it('stays open on a backdrop click when closeOnBackdrop is false', () => {
+    host.closeOnBackdrop.set(false);
+    fixture.detectChanges();
+
+    const overlay = getOverlay();
+    pressOn(overlay);
+    clickOn(overlay);
+
+    expect(host.open).toBeTrue();
+    expect(host.lastReason).toBeUndefined();
+  });
+
+  it('closes when pressing Escape with closeOnBackdrop false', () => {
+    host.closeOnBackdrop.set(false);
+    fixture.detectChanges();
+
+    getPanel().dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    fixture.detectChanges();
+
+    expect(host.open).toBeFalse();
+    expect(host.lastReason).toBe('escape');
   });
 
   it('closes when pressing Escape', () => {

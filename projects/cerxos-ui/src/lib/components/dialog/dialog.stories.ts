@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
+import { CxsInputComponent } from '../input/input.component';
 import { CxsDialogComponent } from './dialog.component';
 
 const meta: Meta<CxsDialogComponent> = {
@@ -49,6 +50,53 @@ export default meta;
 type Story = StoryObj<CxsDialogComponent>;
 
 export const Default: Story = {};
+
+export const FormDialog: Story = {
+  decorators: [
+    moduleMetadata({
+      imports: [CxsInputComponent]
+    })
+  ],
+  args: {
+    title: 'Add transaction',
+    description: 'Clicking outside does not close a form dialog. Use ✕, Cancel or Escape.',
+    closeOnBackdrop: false
+  },
+  render: (args) => ({
+    props: { ...args },
+    template: `
+      <cxs-dialog
+        [(open)]="open"
+        [title]="title"
+        [description]="description"
+        [size]="size"
+        [dismissible]="dismissible"
+        [closeOnBackdrop]="closeOnBackdrop"
+        [closeOnEscape]="closeOnEscape"
+      >
+        <div class="flex flex-col gap-4">
+          <cxs-input label="Name" placeholder="Groceries"></cxs-input>
+          <cxs-input label="Amount" type="number" placeholder="0.00"></cxs-input>
+        </div>
+        <div cxsDialogActions>
+          <button
+            type="button"
+            class="rounded-[var(--cxs-radius-md)] px-3 py-2 text-sm"
+            (click)="open = false"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="rounded-[var(--cxs-radius-md)] bg-[var(--cxs-color-primary)] px-3 py-2 text-sm text-[var(--cxs-color-on-primary)]"
+          >
+            Save
+          </button>
+        </div>
+      </cxs-dialog>
+    `
+  })
+};
 
 export const Sizes: Story = {
   render: () => ({

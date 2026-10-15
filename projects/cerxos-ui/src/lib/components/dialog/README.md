@@ -29,6 +29,24 @@ Token-driven dialog component with focus management and basic accessibility.
 - `closeOnBackdrop`: boolean (default: `true`)
 - `closeOnEscape`: boolean (default: `true`)
 
+## Closing behavior
+
+- **Backdrop**: when `closeOnBackdrop` is `true`, the dialog closes only when the pointer press
+  *and* its release both land on the backdrop. A press that starts inside the panel (for example,
+  selecting text in an input) and is released over the backdrop does not close the dialog.
+- **Escape**: when `closeOnEscape` is `true`, pressing Escape while focus is in the dialog closes it.
+- **Close button**: rendered when `dismissible` is `true`.
+
+For dialogs that contain a form, set `[closeOnBackdrop]="false"` so an accidental click outside
+cannot discard what the user typed. Keep `closeOnEscape` enabled so keyboard users can still
+dismiss the dialog.
+
+```html
+<cxs-dialog [(open)]="formOpen" title="Add transaction" [closeOnBackdrop]="false">
+  <!-- form fields -->
+</cxs-dialog>
+```
+
 ## Outputs
 
 - `openChange`: emits `false` when the dialog requests close

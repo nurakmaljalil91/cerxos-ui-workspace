@@ -67,6 +67,8 @@ export class CxsDialogComponent implements OnChanges, AfterViewInit {
   readonly titleId = `cxs-dialog-title-${CxsDialogComponent.nextId++}`;
   readonly descriptionId = `cxs-dialog-description-${CxsDialogComponent.nextId++}`;
 
+  private pressStartedOnBackdrop = false;
+
   constructor(@Attribute('class') private readonly hostClass: string | null) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -124,12 +126,21 @@ export class CxsDialogComponent implements OnChanges, AfterViewInit {
     this.closed.emit(reason);
   }
 
+  onBackdropPointerDown(event: PointerEvent): void {
+    this.pressStartedOnBackdrop = event.target === event.currentTarget;
+  }
+
   onBackdropClick(event: MouseEvent): void {
+    // A click only counts as a backdrop click when the press also started on the backdrop,
+    // so dragging a text selection out of the panel does not close the dialog.
+    const pressStartedOnBackdrop = this.pressStartedOnBackdrop;
+    this.pressStartedOnBackdrop = false;
+
     if (!this.closeOnBackdrop || !this.open) {
       return;
     }
 
-    if (event.target === event.currentTarget) {
+    if (pressStartedOnBackdrop && event.target === event.currentTarget) {
       this.requestClose('backdrop');
     }
   }
