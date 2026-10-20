@@ -28,17 +28,9 @@ This command will compile your project, and the build artifacts will be placed i
 
 ### Publishing the Library
 
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/cerxos-ui
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
+Publishing is triggered by a maintainer-pushed version tag. Follow the
+[workspace release instructions](https://github.com/nurakmaljalil91/cerxos-ui-workspace#publishing-cerxos-ui) for the
+version, tag, npm trusted publisher setup, and verification steps.
 
 ## Running unit tests
 

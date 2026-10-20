@@ -1,0 +1,55 @@
+name: Publish Cerxos UI to npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cerxos-ui-npm-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+
+      - name: Verify release tag
+        run: node scripts/verify-release-tag.mjs "$GITHUB_REF_NAME"
+
+      - name: Use an npm version that supports trusted publishing
+        run: npm install --global 'npm@^11.5.1'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test library
+        run: npx ng test cerxos-ui --watch=false --browsers=ChromeHeadless
+
+      - name: Build library
+        run: npm run build:cerxos-ui
+
+      - name: Inspect publishable package
+        working-directory: dist/cerxos-ui
+        run: |
+          node -e "const p = require('./package.json'); if (p.name !== 'cerxos-ui' || 'v' + p.version !== process.env.GITHUB_REF_NAME) process.exit(1)"
+          test -f styles/tailwind.css
+          test -f tokens/theme-default.css
+          test -f tokens/theme-dark.css
+          npm pack --dry-run
+
+      - name: Publish to npm
+        working-directory: dist/cerxos-ui
+        run: npm publish --access public
