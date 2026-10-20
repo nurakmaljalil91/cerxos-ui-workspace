@@ -206,6 +206,33 @@
     </cxs-tooltip>
   </div>
 
+  <div class="grid gap-2">
+    <div class="text-sm font-semibold text-(--cxs-color-on-surface)">Hover card</div>
+    <div class="flex items-center gap-3">
+      <cxs-hover-card>
+        <a
+          cxsHoverCardTrigger
+          href="https://github.com/nurakmaljalil91/cerxos-ui-workspace"
+          class="font-medium text-(--cxs-color-primary) underline"
+        >
+          Cerxos UI
+        </a>
+        <div cxsHoverCardContent ariaLabel="Cerxos UI preview" align="start">
+          <h3 class="font-semibold">Cerxos UI</h3>
+          <p class="mt-1 text-(--cxs-color-on-surface-muted)">
+            Shared, themeable components for Cerxos applications.
+          </p>
+          <a
+            href="https://github.com/nurakmaljalil91/cerxos-ui-workspace"
+            class="mt-3 inline-block text-(--cxs-color-primary) underline"
+          >
+            View the component library
+          </a>
+        </div>
+      </cxs-hover-card>
+    </div>
+  </div>
+
   <div class="grid gap-3 max-w-3xl">
     <cxs-table
       [columns]="tableColumns"
