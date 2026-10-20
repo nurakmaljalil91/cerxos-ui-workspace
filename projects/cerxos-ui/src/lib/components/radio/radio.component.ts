@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   forwardRef,
+  inject,
   Input,
   Output
 } from '@angular/core';
@@ -68,6 +70,7 @@ const INVALID_CLASSES =
   ]
 })
 export class CxsRadioComponent implements ControlValueAccessor {
+  private readonly changeDetector = inject(ChangeDetectorRef);
   @Input() value = '';
   @Input() name?: string;
   @Input() variant: CxsRadioVariant = 'primary';
@@ -127,6 +130,7 @@ export class CxsRadioComponent implements ControlValueAccessor {
 
   writeValue(value: string | null): void {
     this.selectedValue = value ?? null;
+    this.changeDetector.markForCheck();
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -139,6 +143,7 @@ export class CxsRadioComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabledFromControl = isDisabled;
+    this.changeDetector.markForCheck();
   }
 
   onRadioChange(event: Event): void {

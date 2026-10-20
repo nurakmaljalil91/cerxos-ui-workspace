@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   forwardRef,
+  inject,
   Input,
   Output
 } from '@angular/core';
@@ -61,6 +63,7 @@ const MARK_SIZE_CLASSES: Record<CxsCheckboxSize, string> = {
   ]
 })
 export class CxsCheckboxComponent implements ControlValueAccessor {
+  private readonly changeDetector = inject(ChangeDetectorRef);
   @Input() checked = false;
   @Input() indeterminate = false;
   @Input() disabled = false;
@@ -115,6 +118,7 @@ export class CxsCheckboxComponent implements ControlValueAccessor {
 
   writeValue(value: boolean | null): void {
     this.checked = value ?? false;
+    this.changeDetector.markForCheck();
   }
 
   registerOnChange(fn: (value: boolean) => void): void {
@@ -127,6 +131,7 @@ export class CxsCheckboxComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabledFromControl = isDisabled;
+    this.changeDetector.markForCheck();
   }
 
   onCheckboxChange(event: Event): void {

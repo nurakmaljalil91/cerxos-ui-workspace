@@ -1,6 +1,7 @@
 
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -8,7 +9,8 @@ import {
   Input,
   Output,
   ViewChild,
-  forwardRef
+  forwardRef,
+  inject
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -97,6 +99,7 @@ const INVALID_CLASSES =
   ]
 })
 export class CxsMultiSelectComponent implements ControlValueAccessor {
+  private readonly changeDetector = inject(ChangeDetectorRef);
   private static nextId = 0;
 
   @Input() options: CxsMultiSelectOption[] = [];
@@ -241,6 +244,7 @@ export class CxsMultiSelectComponent implements ControlValueAccessor {
 
   writeValue(value: string[] | null): void {
     this.value = value ? [...value] : [];
+    this.changeDetector.markForCheck();
   }
 
   registerOnChange(fn: (value: string[]) => void): void {
@@ -253,6 +257,7 @@ export class CxsMultiSelectComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabledFromControl = isDisabled;
+    this.changeDetector.markForCheck();
   }
 
   focusInput(): void {

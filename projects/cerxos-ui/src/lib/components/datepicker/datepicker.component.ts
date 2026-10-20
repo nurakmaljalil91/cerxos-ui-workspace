@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   HostListener,
   forwardRef,
+  inject,
   Input,
   Output
 } from '@angular/core';
@@ -94,6 +96,7 @@ const DAY_HOVER = 'hover:bg-[var(--cxs-color-surface-hover)]';
   ]
 })
 export class CxsDatepickerComponent implements ControlValueAccessor {
+  private readonly changeDetector = inject(ChangeDetectorRef);
   private static nextId = 0;
 
   @Input() value = '';
@@ -218,6 +221,7 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
   writeValue(value: string | null): void {
     this.value = value ?? '';
     this.syncDisplayMonthWithValue();
+    this.changeDetector.markForCheck();
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -230,6 +234,7 @@ export class CxsDatepickerComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabledFromControl = isDisabled;
+    this.changeDetector.markForCheck();
   }
 
   onInput(event: Event): void {

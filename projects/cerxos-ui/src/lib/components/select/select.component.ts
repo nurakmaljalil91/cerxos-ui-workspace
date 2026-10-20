@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   forwardRef,
+  inject,
   Input,
   Output
 } from '@angular/core';
@@ -60,6 +62,7 @@ const INVALID_CLASSES =
   ]
 })
 export class CxsSelectComponent implements ControlValueAccessor {
+  private readonly changeDetector = inject(ChangeDetectorRef);
   private static nextId = 0;
 
   @Input() value = '';
@@ -148,6 +151,7 @@ export class CxsSelectComponent implements ControlValueAccessor {
 
   writeValue(value: string | null): void {
     this.value = value ?? '';
+    this.changeDetector.markForCheck();
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -160,6 +164,7 @@ export class CxsSelectComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabledFromControl = isDisabled;
+    this.changeDetector.markForCheck();
   }
 
   onSelectChange(event: Event): void {

@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   forwardRef,
+  inject,
   Input,
   Output
 } from '@angular/core';
@@ -53,6 +55,7 @@ const INPUT_VARIANT_CLASSES: Record<CxsSliderVariant, string> = {
   ]
 })
 export class CxsSliderComponent implements ControlValueAccessor {
+  private readonly changeDetector = inject(ChangeDetectorRef);
   private static nextId = 0;
 
   @Input() value = 0;
@@ -177,6 +180,7 @@ export class CxsSliderComponent implements ControlValueAccessor {
 
   writeValue(value: number | null): void {
     this.value = value ?? this.normalizedMin;
+    this.changeDetector.markForCheck();
   }
 
   registerOnChange(fn: (value: number) => void): void {
@@ -189,6 +193,7 @@ export class CxsSliderComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabledFromControl = isDisabled;
+    this.changeDetector.markForCheck();
   }
 
   onInput(event: Event): void {
