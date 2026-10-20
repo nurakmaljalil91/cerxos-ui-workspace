@@ -1,0 +1,29 @@
+<fieldset class="min-w-0" [disabled]="isDisabled" [attr.aria-invalid]="invalid ? 'true' : null">
+  @if (label) {
+    <legend class="mb-1 text-sm font-medium text-[var(--cxs-color-on-surface)]">{{ label }}</legend>
+  }
+  <div class="flex flex-wrap gap-3">
+    @for (option of options; track option.value) {
+      <label class="relative inline-flex">
+        <input
+          class="peer sr-only"
+          type="radio"
+          [name]="groupId"
+          [value]="option.value"
+          [checked]="value === option.value"
+          [disabled]="isDisabled"
+          [required]="required"
+          [attr.aria-invalid]="invalid ? 'true' : null"
+          (change)="select(option.value)"
+          (blur)="markTouched()"
+        />
+        <span [class]="chipClass(option)">
+          @if (value === option.value) {
+            <span aria-hidden="true">&#10003;</span>
+          }
+          {{ option.label }}
+        </span>
+      </label>
+    }
+  </div>
+</fieldset>

@@ -28,6 +28,7 @@ export * from './lib/components/tabs/tabs.component';
 export * from './lib/components/tabs/tab-panel.component';
 export * from './lib/components/tabs/tab-label.directive';
 export * from './lib/components/radio/radio.component';
+export * from './lib/components/radio-chip-group/radio-chip-group.component';
 export * from './lib/components/select/select.component';
 export * from './lib/components/skeleton/skeleton.component';
 export * from './lib/components/slider/slider.component';

@@ -351,6 +351,14 @@
     <cxs-badge size="sm">Small</cxs-badge>
   </div>
 
+  <div class="max-w-lg">
+    <cxs-radio-chip-group
+      label="Transaction type"
+      [options]="transactionTypeOptions"
+      [(ngModel)]="transactionType"
+    />
+  </div>
+
   <div class="grid gap-2 max-w-xs">
     <cxs-datepicker label="Start date" [(ngModel)]="selectedDate"></cxs-datepicker>
     <cxs-datepicker label="Milestone" variant="filled"></cxs-datepicker>

@@ -23,6 +23,7 @@ import {
   CxsMultiSelectComponent,
   CxsProgressBarComponent,
   CxsRadioComponent,
+  CxsRadioChipGroupComponent,
   CxsSelectComponent,
   CxsSkeletonComponent,
   CxsSliderComponent,
@@ -61,6 +62,7 @@ import {
     CxsMultiSelectComponent,
     CxsProgressBarComponent,
     CxsRadioComponent,
+    CxsRadioChipGroupComponent,
     CxsSelectComponent,
     CxsSkeletonComponent,
     CxsSliderComponent,
@@ -75,6 +77,11 @@ import {
   templateUrl: './home-page.html'
 })
 export class HomePageComponent {
+  transactionType: string | null = null;
+  transactionTypeOptions = [
+    {label: 'Credit', value: 'Credit', tone: 'primary'},
+    {label: 'Debit', value: 'Debit', tone: 'danger'}
+  ] as const;
   toastOpen = false;
   dialogOpen = false;
   notificationsEnabled = true;
