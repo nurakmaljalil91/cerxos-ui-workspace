@@ -35,6 +35,7 @@ export * from './lib/components/select/select.component';
 export * from './lib/components/skeleton/skeleton.component';
 export * from './lib/components/slider/slider.component';
 export * from './lib/components/table/table.component';
+export * from './lib/components/textarea/textarea.component';
 export * from './lib/components/toggle/toggle.component';
 export * from './lib/components/toast/toast.component';
 export * from './lib/components/tooltip/tooltip.component';

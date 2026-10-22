@@ -34,6 +34,7 @@ import {
   CxsTabPanelComponent,
   CxsTabsComponent,
   CxsTableComponent,
+  CxsTextareaComponent,
   CxsToggleComponent,
   CxsToastComponent,
   CxsTooltipComponent,
@@ -77,6 +78,7 @@ import {
     CxsTabPanelComponent,
     CxsTabsComponent,
     CxsTableComponent,
+    CxsTextareaComponent,
     CxsToggleComponent,
     CxsToastComponent,
     CxsTooltipComponent
@@ -193,6 +195,7 @@ export class HomePageComponent {
   ];
   tier = 'starter';
   newsletter = true;
+  notes = 'First line\nSecond line';
   alerts = false;
   partial = true;
   selectedDate = '2024-04-01';

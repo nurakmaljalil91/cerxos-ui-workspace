@@ -407,6 +407,15 @@
   </div>
 
   <div class="grid gap-3 max-w-sm">
+    <cxs-textarea label="Notes" [(ngModel)]="notes"></cxs-textarea>
+    <cxs-textarea label="Summary" variant="filled" [rows]="5" placeholder="Describe the project"></cxs-textarea>
+    <cxs-textarea label="Disabled notes" [disabled]="true" value="Read only"></cxs-textarea>
+    <cxs-textarea label="Bio" [invalid]="true" resize="none">
+      <span cxsTextareaError>Bio must be under 500 characters.</span>
+    </cxs-textarea>
+  </div>
+
+  <div class="grid gap-3 max-w-sm">
     <cxs-select label="Team" placeholder="Select a team">
       <option value="platform">Platform</option>
       <option value="design">Design</option>
