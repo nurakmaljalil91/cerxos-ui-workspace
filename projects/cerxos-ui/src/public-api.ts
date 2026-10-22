@@ -16,6 +16,7 @@ export * from './lib/components/checkbox/checkbox.component';
 export * from './lib/components/carousel/carousel.component';
 export * from './lib/components/data-table/data-table-cell.directive';
 export * from './lib/components/data-table/data-table.component';
+export * from './lib/components/data-table/data-table-page-size-storage';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/datepicker/datepicker.component';
 export * from './lib/components/habit-grid/habit-grid.component';

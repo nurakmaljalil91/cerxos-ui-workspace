@@ -4,16 +4,24 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   Output,
   QueryList,
   SimpleChanges,
-  TemplateRef
+  TemplateRef,
+  ViewChild
 } from '@angular/core';
 import { CxsDataTableCellDirective } from './data-table-cell.directive';
 import type { CxsDataTableCellContext } from './data-table-cell.directive';
+import {
+  readCxsDataTablePageSize,
+  writeCxsDataTablePageSize
+} from './data-table-page-size-storage';
+import type { CxsDataTablePageSize } from './data-table-page-size-storage';
 
 export type CxsDataTableAlign = 'left' | 'center' | 'right';
 export type CxsDataTableSortDirection = 'asc' | 'desc';
@@ -72,7 +80,7 @@ const HEADER_FILTER_INPUT_CLASSES =
 const BODY_ROW_BASE_CLASSES = 'border-b border-[var(--cxs-color-border)] last:border-b-0';
 const BODY_ROW_STRIPED_CLASSES = 'odd:bg-[var(--cxs-color-surface)] even:bg-[var(--cxs-color-surface-hover)]';
 
-const BODY_CELL_BASE_CLASSES = 'px-3 py-2 align-top';
+const BODY_CELL_BASE_CLASSES = 'px-3 py-2 align-middle';
 const BODY_CELL_COMPACT_CLASSES = 'px-2 py-1.5';
 
 const ALIGN_CLASSES: Record<CxsDataTableAlign, string> = {
@@ -144,7 +152,8 @@ export class CxsDataTableComponent implements OnChanges {
 
   @Input() pageSize = 10;
   @Input() pageIndex = 1;
-  @Input() pageSizeOptions: number[] = [10, 20, 50];
+  @Input() pageSizeOptions: CxsDataTablePageSize[] = [10, 20, 50];
+  @Input() pageSizeStorageKey?: string;
   @Input() showPagination = true;
   @Input() showPageSize = true;
   @Input() manualPagination = false;
@@ -181,8 +190,14 @@ export class CxsDataTableComponent implements OnChanges {
   @ContentChildren(CxsDataTableCellDirective)
   private readonly cellTemplates?: QueryList<CxsDataTableCellDirective>;
 
+  @ViewChild('columnsPanel', { read: ElementRef })
+  private readonly columnsPanel?: ElementRef<HTMLDetailsElement>;
+
+  @ViewChild('columnsPanelSummary', { read: ElementRef })
+  private readonly columnsPanelSummary?: ElementRef<HTMLElement>;
+
   protected currentPage = 1;
-  protected currentPageSize = 10;
+  protected selectedPageSize: CxsDataTablePageSize = 10;
   protected globalFilter = '';
   protected columnFilters: Record<string, string> = {};
   protected columnVisibility: Record<string, boolean> = {};
@@ -192,6 +207,7 @@ export class CxsDataTableComponent implements OnChanges {
   protected pinnedOffsetsLeft: Record<string, number> = {};
   protected pinnedOffsetsRight: Record<string, number> = {};
   protected filtersOpen = true;
+  protected columnsPanelOpen = false;
 
   private resizeStartX = 0;
   private resizeStartWidth = 0;
@@ -203,7 +219,14 @@ export class CxsDataTableComponent implements OnChanges {
       this.currentPage = Math.max(1, this.pageIndex);
     }
     if (changes['pageSize']) {
-      this.currentPageSize = Math.max(1, this.pageSize);
+      this.selectedPageSize = this.pageSize === 0 ? 'all' : Math.max(1, this.pageSize);
+    }
+    if ((changes['pageSizeStorageKey'] || changes['pageSizeOptions']) && this.pageSizeStorageKey) {
+      this.selectedPageSize = readCxsDataTablePageSize(
+        this.pageSizeStorageKey,
+        this.pageSizeOptions,
+        this.selectedPageSize
+      );
     }
     if (changes['columns']) {
       this.initializeVisibility();
@@ -325,7 +348,15 @@ export class CxsDataTableComponent implements OnChanges {
   }
 
   get totalPages(): number {
-    return Math.max(1, Math.ceil(this.totalItems / this.currentPageSize));
+    if (this.selectedPageSize === 'all') {
+      return 1;
+    }
+
+    return Math.max(1, Math.ceil(this.totalItems / this.selectedPageSize));
+  }
+
+  get pageSizeValue(): string {
+    return String(this.selectedPageSize);
   }
 
   get pageLabel(): string {
@@ -335,12 +366,12 @@ export class CxsDataTableComponent implements OnChanges {
   get displayRows(): Array<Record<string, unknown>> {
     const filtered = this.manualFilter ? this.data : this.getFilteredData(this.data);
     const sorted = this.manualSort ? filtered : this.getSortedData(filtered);
-    if (this.manualPagination) {
+    if (this.manualPagination || this.selectedPageSize === 'all') {
       return sorted;
     }
 
-    const start = (this.currentPage - 1) * this.currentPageSize;
-    return sorted.slice(start, start + this.currentPageSize);
+    const start = (this.currentPage - 1) * this.selectedPageSize;
+    return sorted.slice(start, start + this.selectedPageSize);
   }
 
   get visibleColumns(): CxsDataTableColumn[] {
@@ -504,14 +535,30 @@ export class CxsDataTableComponent implements OnChanges {
     this.goToPage(this.currentPage - 1);
   }
 
+  pageSizeLabel(size: CxsDataTablePageSize): string {
+    return size === 'all' ? 'All' : String(size);
+  }
+
+  isPageSizeSelected(size: CxsDataTablePageSize): boolean {
+    return size === this.selectedPageSize;
+  }
+
   onPageSizeChange(value: string): void {
-    const nextSize = Number(value);
-    if (!Number.isFinite(nextSize) || nextSize <= 0) {
-      return;
+    let nextSize: CxsDataTablePageSize;
+    if (value === 'all') {
+      nextSize = 'all';
+    } else {
+      nextSize = Number(value);
+      if (!Number.isFinite(nextSize) || nextSize <= 0) {
+        return;
+      }
     }
 
-    this.currentPageSize = nextSize;
-    this.pageSizeChange.emit(nextSize);
+    this.selectedPageSize = nextSize;
+    if (this.pageSizeStorageKey) {
+      writeCxsDataTablePageSize(this.pageSizeStorageKey, nextSize);
+    }
+    this.pageSizeChange.emit(nextSize === 'all' ? 0 : nextSize);
     this.goToPage(1);
   }
 
@@ -529,6 +576,33 @@ export class CxsDataTableComponent implements OnChanges {
 
   columnFilterValue(columnKey: string): string {
     return this.columnFilters[columnKey] || '';
+  }
+
+  onColumnsPanelToggle(event: Event): void {
+    this.columnsPanelOpen = (event.target as HTMLDetailsElement).open;
+  }
+
+  closeColumnsPanel(restoreFocus: boolean): void {
+    if (!this.columnsPanelOpen) {
+      return;
+    }
+
+    this.columnsPanelOpen = false;
+    if (restoreFocus) {
+      this.columnsPanelSummary?.nativeElement.focus();
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.columnsPanelOpen) {
+      return;
+    }
+
+    const target = event.target as Node | null;
+    if (target && !this.columnsPanel?.nativeElement.contains(target)) {
+      this.closeColumnsPanel(false);
+    }
   }
 
   toggleColumnVisibility(columnKey: string): void {

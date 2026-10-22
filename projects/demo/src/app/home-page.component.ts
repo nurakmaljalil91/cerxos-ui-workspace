@@ -38,7 +38,8 @@ import {
   CxsToastComponent,
   CxsTooltipComponent,
   CxsTableColumn,
-  CxsDataTableColumn
+  CxsDataTableColumn,
+  CxsDataTablePageSize
 } from 'cerxos-ui';
 
 @Component({
@@ -128,6 +129,7 @@ export class HomePageComponent {
     {id: 4, team: 'Growth', owner: 'Devin', status: 'Active', updated: '2d ago'},
     {id: 5, team: 'Sales', owner: 'Emery', status: 'Paused', updated: 'Last week'}
   ];
+  dataTablePageSizeOptions: CxsDataTablePageSize[] = [3, 10, 'all'];
   dataTableTitle = 'Team ownership';
   dataTableSubtitle = 'Monitor active projects and assignments.';
   multiSelectOptions = [

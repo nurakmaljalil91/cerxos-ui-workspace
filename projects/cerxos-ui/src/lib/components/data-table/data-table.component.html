@@ -1,3 +1,29 @@
+<ng-template #columnsPanelTemplate>
+  <details
+    #columnsPanel
+    class="relative"
+    [open]="columnsPanelOpen"
+    (toggle)="onColumnsPanelToggle($event)"
+    (keydown.escape)="closeColumnsPanel(true)"
+  >
+    <summary #columnsPanelSummary [class]="toolbarButtonClass">Columns</summary>
+    <div
+      class="absolute right-0 z-40 mt-2 w-48 rounded-(--cxs-radius-md) border border-(--cxs-color-border) bg-(--cxs-color-surface) p-2 shadow-(--cxs-shadow-sm)"
+    >
+      @for (column of columns; track column) {
+        <label class="flex items-center gap-2 px-2 py-1 text-sm">
+          <input
+            type="checkbox"
+            [checked]="columnVisibility[column.key]"
+            (change)="toggleColumnVisibility(column.key)"
+          />
+          <span>{{ column.label }}</span>
+        </label>
+      }
+    </div>
+  </details>
+</ng-template>
+
 @if (hasTitleBlock) {
   <div [class]="titleBarClass">
     <div class="min-w-0">
@@ -41,23 +67,7 @@
           </button>
         }
         @if (showColumnVisibility) {
-          <details class="relative">
-            <summary [class]="toolbarButtonClass">Columns</summary>
-            <div
-              class="absolute right-0 mt-2 w-48 rounded-(--cxs-radius-md) border border-(--cxs-color-border) bg-(--cxs-color-surface) p-2 shadow-(--cxs-shadow-sm)"
-            >
-              @for (column of columns; track column) {
-                <label class="flex items-center gap-2 px-2 py-1 text-sm">
-                  <input
-                    type="checkbox"
-                    [checked]="columnVisibility[column.key]"
-                    (change)="toggleColumnVisibility(column.key)"
-                  />
-                  <span>{{ column.label }}</span>
-                </label>
-              }
-            </div>
-          </details>
+          <ng-container [ngTemplateOutlet]="columnsPanelTemplate"></ng-container>
         }
       </div>
     }
@@ -98,23 +108,7 @@
         </button>
       }
       @if (showColumnVisibility) {
-        <details class="relative">
-          <summary [class]="toolbarButtonClass">Columns</summary>
-          <div
-            class="absolute right-0 mt-2 w-48 rounded-(--cxs-radius-md) border border-(--cxs-color-border) bg-(--cxs-color-surface) p-2 shadow-(--cxs-shadow-sm)"
-          >
-            @for (column of columns; track column) {
-              <label class="flex items-center gap-2 px-2 py-1 text-sm">
-                <input
-                  type="checkbox"
-                  [checked]="columnVisibility[column.key]"
-                  (change)="toggleColumnVisibility(column.key)"
-                />
-                <span>{{ column.label }}</span>
-              </label>
-            }
-          </div>
-        </details>
+        <ng-container [ngTemplateOutlet]="columnsPanelTemplate"></ng-container>
       }
     </div>
   </div>
@@ -330,11 +324,11 @@
         <select
           #pageSizeSelect
           [class]="pageSelectClass"
-          [value]="currentPageSize"
+          [value]="pageSizeValue"
           (change)="onPageSizeChange(pageSizeSelect.value)"
         >
           @for (size of pageSizeOptions; track size) {
-            <option [value]="size">{{ size }}</option>
+            <option [value]="size" [selected]="isPageSizeSelected(size)">{{ pageSizeLabel(size) }}</option>
           }
         </select>
       </label>

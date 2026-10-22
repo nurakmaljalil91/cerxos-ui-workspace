@@ -39,6 +39,8 @@ const meta: Meta<CxsDataTableComponent> = {
     compact: false,
     pageSize: 3,
     pageIndex: 1,
+    pageSizeOptions: [10, 20, 50],
+    pageSizeStorageKey: undefined,
     selectable: true,
     rowKey: 'id',
     bulkActions: [{ id: 'archive', label: 'Archive' }]
@@ -57,6 +59,8 @@ const meta: Meta<CxsDataTableComponent> = {
         [compact]="compact"
         [pageSize]="pageSize"
         [pageIndex]="pageIndex"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageSizeStorageKey]="pageSizeStorageKey"
         [selectable]="selectable"
         [rowKey]="rowKey"
         [bulkActions]="bulkActions"
@@ -79,6 +83,14 @@ export const ManualPagination: Story = {
     manualPagination: true,
     total: 42,
     data: data.slice(0, 3)
+  }
+};
+
+export const PageSizeWithAll: Story = {
+  args: {
+    pageSize: 3,
+    pageSizeOptions: [3, 10, 'all'],
+    pageSizeStorageKey: 'storybook.data-table'
   }
 };
 
