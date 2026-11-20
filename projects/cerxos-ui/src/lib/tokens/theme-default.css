@@ -16,6 +16,18 @@
   --cxs-color-skeleton-base: #e2e8f0;
   --cxs-color-skeleton-highlight: rgba(255, 255, 255, 0.7);
   --cxs-color-focus: #f59e0b;
+  /* Chart tokens: categorical order validated with the dataviz validator against #ffffff.
+     Slots 3-5 are below 3:1 on light, so charts using them must show values or a table. */
+  --cxs-chart-series-1: #2a78d6;
+  --cxs-chart-series-2: #eb6834;
+  --cxs-chart-series-3: #1baf7a;
+  --cxs-chart-series-4: #eda100;
+  --cxs-chart-series-5: #e87ba4;
+  --cxs-chart-series-6: #008300;
+  --cxs-chart-axis: #94a3b8;
+  --cxs-chart-grid: #e2e8f0;
+  --cxs-chart-label: #64748b;
+  --cxs-chart-radius: 4px;
   --cxs-radius-md: 8px;
   --cxs-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.16);
 }

@@ -8,6 +8,7 @@ import {
   CxsAccordionItemComponent,
   CxsAvatarComponent,
   CxsBadgeComponent,
+  CxsBarChartComponent,
   CxsBreadcrumbComponent,
   CxsButtonComponent,
   CxsDialogComponent,
@@ -49,6 +50,7 @@ import {
     FormsModule,
     CxsActionMenuComponent,
     CxsAlertComponent,
+    CxsBarChartComponent,
     CxsAccordionComponent,
     CxsAccordionItemComponent,
     CxsAvatarComponent,
@@ -86,6 +88,15 @@ import {
   templateUrl: './home-page.html'
 })
 export class HomePageComponent {
+  readonly chartMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  readonly chartIncomeSpending = [
+    { name: 'Income', values: [8600, 8600, 9100, 8600, 12400, 8600] },
+    { name: 'Spending', values: [5200, 4700, 6100, 5300, 7900, 4800] }
+  ];
+  readonly chartCategories = ['Food', 'Transportation', 'Housing', 'Health', 'Shopping'];
+  readonly chartCategorySpending = [{ name: 'Spending', values: [7200, 3100, 2900, 2400, 2100] }];
+  selectedChartCategory = '';
+  readonly formatChartMoney = (v: number) => `RM ${v.toLocaleString()}`;
   transactionType: string | null = null;
   transactionTypeOptions = [
     {label: 'Credit', value: 'Credit', tone: 'primary'},

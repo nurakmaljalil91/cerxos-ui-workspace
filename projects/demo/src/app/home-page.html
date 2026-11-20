@@ -319,6 +319,29 @@
     ></cxs-habit-grid>
   </div>
 
+  <div class="grid gap-6" data-testid="bar-chart-demo">
+    <cxs-bar-chart
+      ariaLabel="Monthly income and spending"
+      [categories]="chartMonths"
+      [series]="chartIncomeSpending"
+      [valueFormat]="formatChartMoney"
+    ></cxs-bar-chart>
+    <div class="max-w-lg">
+      <cxs-bar-chart
+        ariaLabel="Spending by category"
+        orientation="horizontal"
+        [selectable]="true"
+        [categories]="chartCategories"
+        [series]="chartCategorySpending"
+        [valueFormat]="formatChartMoney"
+        (barSelect)="selectedChartCategory = $event.category"
+      ></cxs-bar-chart>
+      <p class="mt-2 text-sm text-[var(--cxs-color-on-surface-muted)]">
+        Selected category: {{ selectedChartCategory || 'none' }}
+      </p>
+    </div>
+  </div>
+
   <div class="grid max-w-lg gap-4">
     <cxs-progress-bar [value]="72" label="Workspace adoption" [showValue]="true"></cxs-progress-bar>
     <cxs-progress-bar variant="neutral" [value]="48" label="Migration status"></cxs-progress-bar>

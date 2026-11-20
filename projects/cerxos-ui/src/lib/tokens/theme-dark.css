@@ -17,6 +17,17 @@
   --cxs-color-skeleton-base: #1f2937;
   --cxs-color-skeleton-highlight: rgba(148, 163, 184, 0.22);
   --cxs-color-focus: #f59e0b;
+  /* Chart tokens: same hues stepped for the dark surface, validated against #0b0f0e. */
+  --cxs-chart-series-1: #3987e5;
+  --cxs-chart-series-2: #d95926;
+  --cxs-chart-series-3: #199e70;
+  --cxs-chart-series-4: #c98500;
+  --cxs-chart-series-5: #d55181;
+  --cxs-chart-series-6: #0ca30c;
+  --cxs-chart-axis: #475569;
+  --cxs-chart-grid: #1f2937;
+  --cxs-chart-label: #94a3b8;
+  --cxs-chart-radius: 4px;
   --cxs-radius-md: 8px;
   --cxs-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
 }

@@ -1,0 +1,198 @@
+<figure class="cxs-bar-chart__figure flex w-full flex-col gap-2" role="figure" [attr.aria-label]="ariaLabel">
+  @if (showLegend() && !empty()) {
+    <ul class="m-0 flex list-none flex-wrap gap-x-4 gap-y-1 p-0 text-xs text-[var(--cxs-chart-label)]" data-testid="legend">
+      @for (s of series; track $index) {
+        <li class="inline-flex items-center gap-1.5">
+          <span
+            aria-hidden="true"
+            class="inline-block h-2.5 w-2.5 rounded-sm"
+            data-testid="legend-swatch"
+            [style.background-color]="seriesColor($index)"
+          ></span>
+          <span>{{ s.name }}</span>
+        </li>
+      }
+    </ul>
+  }
+
+  @if (empty()) {
+    <p
+      class="m-0 flex min-h-24 items-center justify-center text-sm text-[var(--cxs-color-on-surface-muted)]"
+      data-testid="empty"
+    >
+      {{ emptyMessage }}
+    </p>
+  } @else {
+    @let chart = layout();
+    <div class="cxs-bar-chart__plot">
+      <svg
+        class="cxs-bar-chart__svg"
+        [attr.viewBox]="'0 0 ' + chart.width + ' ' + chart.height"
+        [attr.height]="chart.height"
+        preserveAspectRatio="none"
+        [attr.aria-hidden]="selectable ? null : 'true'"
+        [attr.role]="selectable ? 'group' : null"
+        [attr.aria-label]="selectable ? ariaLabel : null"
+        focusable="false"
+      >
+        <!-- Gridlines and value-axis tick labels -->
+        @for (tick of chart.ticks; track tick.value) {
+          @if (vertical()) {
+            <line
+              data-testid="gridline"
+              [attr.x1]="chart.plot.x"
+              [attr.x2]="chart.plot.x + chart.plot.width"
+              [attr.y1]="tick.pos"
+              [attr.y2]="tick.pos"
+              stroke="var(--cxs-chart-grid)"
+              stroke-width="1"
+            />
+            <text
+              data-testid="tick"
+              [attr.x]="chart.plot.x - 6"
+              [attr.y]="tick.pos"
+              text-anchor="end"
+              dominant-baseline="middle"
+              font-size="11"
+              fill="var(--cxs-chart-label)"
+            >{{ tick.label }}</text>
+          } @else {
+            <line
+              data-testid="gridline"
+              [attr.x1]="tick.pos"
+              [attr.x2]="tick.pos"
+              [attr.y1]="chart.plot.y"
+              [attr.y2]="chart.plot.y + chart.plot.height"
+              stroke="var(--cxs-chart-grid)"
+              stroke-width="1"
+            />
+            <text
+              data-testid="tick"
+              [attr.x]="tick.pos"
+              [attr.y]="chart.plot.y + chart.plot.height + 16"
+              text-anchor="middle"
+              font-size="11"
+              fill="var(--cxs-chart-label)"
+            >{{ tick.label }}</text>
+          }
+        }
+
+        <!-- Bars -->
+        @for (bar of chart.bars; track bar.key) {
+          <path
+            data-testid="bar"
+            [attr.d]="bar.path"
+            [attr.fill]="seriesColor(bar.seriesIndex)"
+            [attr.data-category]="bar.category"
+            [attr.data-series]="bar.seriesName"
+            [attr.data-value]="bar.value"
+          />
+        }
+
+        <!-- Zero baseline, drawn over the bars' square ends -->
+        @if (vertical()) {
+          <line
+            data-testid="baseline"
+            [attr.x1]="chart.plot.x"
+            [attr.x2]="chart.plot.x + chart.plot.width"
+            [attr.y1]="chart.zero"
+            [attr.y2]="chart.zero"
+            stroke="var(--cxs-chart-axis)"
+            stroke-width="1"
+          />
+        } @else {
+          <line
+            data-testid="baseline"
+            [attr.x1]="chart.zero"
+            [attr.x2]="chart.zero"
+            [attr.y1]="chart.plot.y"
+            [attr.y2]="chart.plot.y + chart.plot.height"
+            stroke="var(--cxs-chart-axis)"
+            stroke-width="1"
+          />
+        }
+
+        <!-- Category labels (full label in <title> and in the tooltip) -->
+        @for (label of chart.labels; track $index) {
+          <text
+            data-testid="category-label"
+            [attr.x]="label.x"
+            [attr.y]="label.y"
+            [attr.text-anchor]="label.anchor"
+            dominant-baseline="middle"
+            font-size="12"
+            fill="var(--cxs-chart-label)"
+          ><title>{{ label.full }}</title>{{ label.text }}</text>
+        }
+
+        <!-- Hit targets: larger than the bars, carry hover, focus and selection -->
+        @for (bar of chart.bars; track bar.key) {
+          <rect
+            class="cxs-bar-chart__hit"
+            data-testid="bar-hit"
+            [attr.x]="bar.hit.x"
+            [attr.y]="bar.hit.y"
+            [attr.width]="bar.hit.width"
+            [attr.height]="bar.hit.height"
+            fill="transparent"
+            [attr.role]="selectable ? 'button' : null"
+            [attr.tabindex]="selectable ? 0 : null"
+            [attr.aria-label]="selectable ? barLabel(bar) : null"
+            [style.cursor]="selectable ? 'pointer' : null"
+            (mouseenter)="showTooltip(bar)"
+            (mouseleave)="hideTooltip(bar)"
+            (focus)="showTooltip(bar)"
+            (blur)="hideTooltip(bar)"
+            (click)="select(bar)"
+            (keydown.enter)="select(bar, $event)"
+            (keydown.space)="select(bar, $event)"
+          />
+        }
+      </svg>
+
+      @if (activeBar(); as bar) {
+        <div
+          class="cxs-bar-chart__tooltip z-10 whitespace-nowrap rounded-[var(--cxs-radius-md)] border border-[var(--cxs-color-border)] bg-[var(--cxs-color-surface)] px-2 py-1 text-xs text-[var(--cxs-color-on-surface)] shadow-[var(--cxs-shadow-sm)]"
+          data-testid="tooltip"
+          aria-hidden="true"
+          [style.left.%]="tooltipLeft(bar)"
+          [style.top.%]="tooltipTop(bar)"
+          [style.margin-top.px]="-6"
+        >
+          <div class="font-medium">{{ bar.category }}</div>
+          <div class="flex items-center gap-1.5 text-[var(--cxs-color-on-surface-muted)]">
+            <span
+              aria-hidden="true"
+              class="inline-block h-2 w-2 rounded-sm"
+              [style.background-color]="seriesColor(bar.seriesIndex)"
+            ></span>
+            <span>{{ bar.seriesName }}</span>
+            <span class="font-medium text-[var(--cxs-color-on-surface)]">{{ bar.formattedValue }}</span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <table class="cxs-bar-chart__sr-only" data-testid="data-table">
+      <caption>{{ ariaLabel }}</caption>
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          @for (s of series; track $index) {
+            <th scope="col">{{ s.name }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (category of categories; track $index; let c = $index) {
+          <tr>
+            <th scope="row">{{ category }}</th>
+            @for (s of series; track $index) {
+              <td>{{ cellValue(s, c) }}</td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</figure>

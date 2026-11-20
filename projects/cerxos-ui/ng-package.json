@@ -15,5 +15,8 @@
       "glob": "theme-*.css",
       "output": "tokens"
     }
+  ],
+  "allowedNonPeerDependencies": [
+    "d3-scale"
   ]
 }
