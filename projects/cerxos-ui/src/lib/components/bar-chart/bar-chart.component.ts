@@ -35,8 +35,18 @@ export interface CxsBarChartSelection {
   seriesIndex: number;
 }
 
-/** Number of series colors defined by the chart tokens; further series reuse the last slot. */
-const SERIES_TOKEN_COUNT = 6;
+/**
+ * Light-theme defaults for the series tokens, used as CSS `var()` fallbacks so the chart keeps
+ * its colors when the host's theme CSS predates the chart tokens. Further series reuse slot 6.
+ */
+const SERIES_FALLBACKS = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#008300'];
+
+/** Chrome colors with fallbacks, for the same reason. */
+export const CXS_BAR_CHART_COLORS = {
+  axis: 'var(--cxs-chart-axis, #94a3b8)',
+  grid: 'var(--cxs-chart-grid, #e2e8f0)',
+  label: 'var(--cxs-chart-label, #64748b)'
+} as const;
 const DEFAULT_WIDTH = 600;
 const DEFAULT_HEIGHT = 280;
 
@@ -122,6 +132,8 @@ export class CxsBarChartComponent {
   /** Category labels, in display order. */
   @Input() set categories(value: readonly string[] | null | undefined) {
     this.categoriesSig.set(value ?? []);
+    // New data invalidates any tooltip for the previous data.
+    this.activeBar.set(null);
   }
   get categories(): readonly string[] {
     return this.categoriesSig();
@@ -130,6 +142,7 @@ export class CxsBarChartComponent {
   /** Series to draw; each has one value per category. */
   @Input() set series(value: readonly CxsBarChartSeries[] | null | undefined) {
     this.seriesSig.set(value ?? []);
+    this.activeBar.set(null);
   }
   get series(): readonly CxsBarChartSeries[] {
     return this.seriesSig();
@@ -214,9 +227,11 @@ export class CxsBarChartComponent {
 
   /** CSS color for a series, from the chart tokens. */
   seriesColor(index: number): string {
-    const slot = Math.min(index, SERIES_TOKEN_COUNT - 1) + 1;
-    return `var(--cxs-chart-series-${slot})`;
+    const slot = Math.min(index, SERIES_FALLBACKS.length - 1);
+    return `var(--cxs-chart-series-${slot + 1}, ${SERIES_FALLBACKS[slot]})`;
   }
+
+  readonly colors = CXS_BAR_CHART_COLORS;
 
   /** Formats a value with the configured formatter. */
   format(value: number): string {

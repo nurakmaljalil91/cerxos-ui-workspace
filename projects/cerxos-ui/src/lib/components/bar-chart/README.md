@@ -71,4 +71,6 @@ Horizontal, selectable bars, for drill-down:
 - `--cxs-color-surface`, `--cxs-color-border`, `--cxs-color-on-surface`, `--cxs-color-on-surface-muted`, `--cxs-radius-md`, `--cxs-shadow-sm`: the tooltip.
 - `--cxs-color-focus`: the focus outline.
 
+Every chart token has a built-in fallback, the light-theme value, so the chart keeps its colors even when a host app loads an older theme file without the `--cxs-chart-*` tokens.
+
 The default series colors were validated for color-blind separation against `#ffffff` (light) and `#0b0f0e` (dark). In light mode, slots 3–5 are below 3:1 contrast against the surface. Charts using three or more series should keep values readable without hover, for example with a visible table or labels.

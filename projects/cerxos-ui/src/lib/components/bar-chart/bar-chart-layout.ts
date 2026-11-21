@@ -172,11 +172,24 @@ export function computeBarChartLayout(input: BarChartLayoutInput): BarChartLayou
   };
 
   const valueLength = vertical ? plot.height : plot.width;
-  const tickCount = Math.max(2, Math.floor(valueLength / (vertical ? 56 : 80)));
-  const valueScale = scaleLinear()
-    .domain([min, max])
-    .nice(tickCount)
-    .range(vertical ? [plot.y + plot.height, plot.y] : [plot.x, plot.x + plot.width]);
+  const range: [number, number] = vertical ? [plot.y + plot.height, plot.y] : [plot.x, plot.x + plot.width];
+  const buildScale = (count: number) => scaleLinear().domain([min, max]).nice(count).range(range);
+
+  // Start from a density target, then thin the ticks until their labels fit: on a horizontal
+  // axis labels sit side by side, so each tick needs room for its label plus a gap.
+  let tickCount = Math.max(2, Math.floor(valueLength / (vertical ? 56 : 80)));
+  let valueScale = buildScale(tickCount);
+  while (tickCount > 2) {
+    const values = valueScale.ticks(tickCount);
+    const needed = vertical
+      ? 16
+      : Math.max(...values.map((v) => input.format(v).length)) * CHAR_WIDTH + 16;
+    if (values.length < 2 || valueLength / (values.length - 1) >= needed) {
+      break;
+    }
+    tickCount -= 1;
+    valueScale = buildScale(tickCount);
+  }
 
   const categoryScale = scaleBand<number>()
     .domain(categoryIndices)

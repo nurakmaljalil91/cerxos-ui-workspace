@@ -173,8 +173,8 @@ describe('CxsBarChartComponent', () => {
       expect(legend.textContent).toContain('Income');
       expect(legend.textContent).toContain('Spending');
       const swatches = all('legend-swatch') as HTMLElement[];
-      expect(swatches[0].style.backgroundColor).toBe('var(--cxs-chart-series-1)');
-      expect(swatches[1].style.backgroundColor).toBe('var(--cxs-chart-series-2)');
+      expect(swatches[0].style.backgroundColor).toContain('var(--cxs-chart-series-1');
+      expect(swatches[1].style.backgroundColor).toContain('var(--cxs-chart-series-2');
     });
 
     it('hides the legend for a single series', async () => {
@@ -189,10 +189,32 @@ describe('CxsBarChartComponent', () => {
       await render();
 
       const bar = all('bar')[0];
-      expect(bar.getAttribute('fill')).toBe('var(--cxs-chart-series-1)');
+      expect(bar.getAttribute('fill')).toBe('var(--cxs-chart-series-1, #2a78d6)');
       expect(getComputedStyle(bar).fill).toBe('rgb(1, 2, 3)');
       const swatch = all('legend-swatch')[0] as HTMLElement;
       expect(getComputedStyle(swatch).backgroundColor).toBe('rgb(1, 2, 3)');
+    });
+
+    it('falls back to built-in colors when the theme does not define chart tokens', async () => {
+      await render();
+
+      // The test host loads no theme CSS, so the series token is undefined here.
+      expect(getComputedStyle(all('bar')[0]).fill).toBe('rgb(42, 120, 214)');
+      expect(getComputedStyle(all('legend-swatch')[1] as HTMLElement).backgroundColor).toBe('rgb(235, 104, 52)');
+      expect(getComputedStyle(one('gridline')!).stroke).toBe('rgb(226, 232, 240)');
+    });
+
+    it('thins horizontal ticks so wide labels do not overlap', async () => {
+      host.orientation = 'horizontal';
+      host.categories = ['Other', 'Food'];
+      host.series = [{ name: 'Spending', values: [-14329.5, 57800] }];
+      host.valueFormat = (v) => `RM ${v.toLocaleString('en-MY', { minimumFractionDigits: 2 })}`;
+      await render();
+
+      const ticks = (all('tick') as SVGTextElement[]).map((t) => t.getBBox());
+      for (let i = 1; i < ticks.length; i++) {
+        expect(ticks[i].x).toBeGreaterThanOrEqual(ticks[i - 1].x + ticks[i - 1].width);
+      }
     });
 
     it('exposes its data to assistive technology as a named table', async () => {
@@ -316,6 +338,20 @@ describe('CxsBarChartComponent', () => {
       const svg = el().querySelector('svg')!;
       expect(svg.getAttribute('aria-hidden')).toBeNull();
       expect(svg.getAttribute('aria-label')).toBe('Monthly income and spending');
+    });
+
+    it('clears the tooltip when the data changes', async () => {
+      host.selectable = true;
+      await render();
+      all('bar-hit')[0].dispatchEvent(new MouseEvent('mouseenter'));
+      fixture.detectChanges();
+      expect(one('tooltip')).not.toBeNull();
+
+      host.categories = ['Dining Out', 'Groceries'];
+      host.series = [{ name: 'Spending', values: [400, 200] }];
+      await render();
+
+      expect(one('tooltip')).toBeNull();
     });
 
     it('keeps bars out of the tab order and emits nothing when not selectable', async () => {
