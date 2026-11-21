@@ -13,7 +13,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export type CxsCheckboxSize = 'sm' | 'md' | 'lg';
 
 const WRAPPER_BASE = 'inline-flex items-center gap-2 select-none';
-const WRAPPER_ENABLED = 'cursor-pointer';
 const WRAPPER_DISABLED = 'cursor-not-allowed opacity-60';
 
 const LABEL_BASE = 'text-[var(--cxs-color-on-surface)]';
@@ -88,10 +87,7 @@ export class CxsCheckboxComponent implements ControlValueAccessor {
   }
 
   get wrapperClass(): string {
-    return [
-      WRAPPER_BASE,
-      this.isDisabled ? WRAPPER_DISABLED : WRAPPER_ENABLED
-    ].join(' ');
+    return this.isDisabled ? `${WRAPPER_BASE} ${WRAPPER_DISABLED}` : WRAPPER_BASE;
   }
 
   get labelClass(): string {

@@ -85,4 +85,15 @@ describe('CxsRadioChipGroupComponent', () => {
     fixture.detectChanges();
     expect(radios(fixture).every((radio) => radio.disabled)).toBeTrue();
   });
+
+  it('leaves the enabled chip cursor to the global rule and marks disabled chips as not-allowed', () => {
+    const chips = () =>
+      Array.from(fixture.nativeElement.querySelectorAll('label > span')) as HTMLSpanElement[];
+    expect(chips().length).toBe(2);
+    expect(chips().every((chip) => !chip.className.includes('cursor-'))).toBeTrue();
+
+    host.type.disable();
+    fixture.detectChanges();
+    expect(chips().every((chip) => chip.className.includes('cursor-not-allowed'))).toBeTrue();
+  });
 });

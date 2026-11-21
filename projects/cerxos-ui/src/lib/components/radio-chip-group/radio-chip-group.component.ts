@@ -20,7 +20,7 @@ export interface CxsRadioChipOption {
 
 const CHIP_BASE =
   'inline-flex items-center gap-2 rounded-[var(--cxs-radius-md)] border ' +
-  'font-medium transition-colors cursor-pointer select-none ' +
+  'font-medium transition-colors select-none ' +
   'peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 ' +
   'peer-focus-visible:outline-[var(--cxs-color-focus)]';
 

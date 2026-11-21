@@ -498,4 +498,49 @@
     <cxs-checkbox [indeterminate]="partial">Partially selected</cxs-checkbox>
     <cxs-checkbox [disabled]="true" label="Disabled option"></cxs-checkbox>
   </div>
+
+  <div class="grid gap-3" data-testid="cursor-states-demo">
+    <h2 class="text-sm font-semibold text-[var(--cxs-color-on-surface)]">Cursor states</h2>
+    <div class="flex flex-wrap items-center gap-3">
+      <cxs-button data-cursor="pointer">Enabled button</cxs-button>
+      <cxs-button [disabled]="true" data-cursor="disabled">Disabled button</cxs-button>
+      <button type="button" class="rounded border px-3 py-1" data-cursor="pointer">Native button</button>
+      <button type="button" class="rounded border px-3 py-1" disabled data-cursor="disabled">
+        Native disabled
+      </button>
+      <span role="button" tabindex="0" class="rounded border px-3 py-1" data-cursor="pointer">
+        role="button" span
+      </span>
+      <span role="button" tabindex="-1" aria-disabled="true" class="rounded border px-3 py-1 opacity-60" data-cursor="disabled">
+        aria-disabled span
+      </span>
+    </div>
+    <div class="flex flex-wrap items-center gap-4">
+      <cxs-checkbox label="Enabled checkbox" data-cursor="pointer"></cxs-checkbox>
+      <cxs-checkbox [disabled]="true" label="Disabled checkbox" data-cursor="disabled"></cxs-checkbox>
+      <cxs-radio name="cursor-demo" value="a" data-cursor="pointer">Enabled radio</cxs-radio>
+      <cxs-radio name="cursor-demo" value="b" [disabled]="true" data-cursor="disabled">Disabled radio</cxs-radio>
+    </div>
+    <div class="flex flex-wrap items-center gap-4">
+      <cxs-radio-chip-group label="Enabled chips" [options]="transactionTypeOptions" data-cursor="pointer" />
+      <cxs-radio-chip-group
+        label="Disabled chips"
+        [options]="transactionTypeOptions"
+        [disabled]="true"
+        data-cursor="disabled"
+      />
+    </div>
+    <div class="flex flex-wrap items-center gap-4">
+      <select class="rounded border px-2 py-1" data-cursor="pointer">
+        <option>Native select</option>
+      </select>
+      <div class="w-48" data-cursor="pointer">
+        <cxs-slider [(ngModel)]="sliderValue" label="Slider"></cxs-slider>
+      </div>
+      <details data-cursor="pointer">
+        <summary>Summary toggle</summary>
+        <p class="text-sm">Details content</p>
+      </details>
+    </div>
+  </div>
 </section>

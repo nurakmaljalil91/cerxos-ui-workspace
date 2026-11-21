@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "../../cerxos-ui/src/lib/tokens/theme-default.css";
-@import "../../cerxos-ui/src/lib/tokens/theme-dark.css";
+/* Same shared stylesheet the shell and MFEs import (tokens + global base rules). */
+@import "../../cerxos-ui/src/lib/styles/tailwind.css";
 
 :root {
   color-scheme: light;

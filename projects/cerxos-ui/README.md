@@ -2,6 +2,20 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
 
+## Interactive cursor
+
+Tailwind v4's preflight resets buttons to `cursor: default`. `cerxos-ui/styles/tailwind.css` (imported by the shell and every MFE) restores a pointer cursor in `@layer base` for enabled interactive elements:
+
+- `button` and `[role="button"]` (unless `:disabled` / `aria-disabled="true"`)
+- `summary`, `label[for]`, and labels wrapping an enabled checkbox, radio or color input
+- `select`, checkbox / radio / color / range / button / submit / reset inputs (unless disabled)
+- the file input's `::file-selector-button`
+
+Conventions:
+
+- **Clickable non-button elements must use button semantics**: `role="button"`, `tabindex="0"`, and Enter (and ideally Space) handling. CSS cannot see `(click)` bindings, so a bare `div`/`span` with a click handler gets no pointer.
+- **Don't add `cursor-pointer` to elements the rule already covers.** Use `cursor-*` utilities only to override (e.g. `cursor-not-allowed` for disabled states, `cursor-col-resize`); utilities always win over the base layer.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:

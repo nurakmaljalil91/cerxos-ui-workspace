@@ -72,4 +72,12 @@ describe('CxsRadioComponent', () => {
     const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     expect(input.disabled).toBeTrue();
   });
+
+  it('leaves the enabled cursor to the global rule and marks disabled as not-allowed', () => {
+    const component = fixture.debugElement.children[0].componentInstance as CxsRadioComponent;
+    expect(component.wrapperClass).not.toContain('cursor-');
+
+    component.disabled = true;
+    expect(component.wrapperClass).toContain('cursor-not-allowed');
+  });
 });

@@ -1,3 +1,30 @@
 @import "../tokens/theme-default.css";
 @import "../tokens/theme-dark.css";
 @import "tailwindcss";
+
+/*
+ * Interactive cursor: Tailwind v4 preflight resets buttons to `cursor: default`.
+ * Restore a pointer for enabled interactive elements. This lives in the base
+ * layer, so any `cursor-*` utility (e.g. `cursor-not-allowed`) still wins.
+ * Clickable non-button elements must use role="button" to opt in.
+ */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  label[for],
+  label:has(input:is([type="checkbox"], [type="radio"], [type="color"]):not(:disabled)),
+  select:not(:disabled),
+  input:is(
+      [type="checkbox"],
+      [type="radio"],
+      [type="color"],
+      [type="range"],
+      [type="button"],
+      [type="submit"],
+      [type="reset"]
+    ):not(:disabled),
+  input[type="file"]:not(:disabled)::file-selector-button {
+    cursor: pointer;
+  }
+}

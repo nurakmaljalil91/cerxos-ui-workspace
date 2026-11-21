@@ -317,6 +317,8 @@ describe('CxsBarChartComponent', () => {
 
       const hits = all('bar-hit') as SVGRectElement[];
       expect(hits.every((h) => h.getAttribute('tabindex') === '0' && h.getAttribute('role') === 'button')).toBeTrue();
+      // The pointer cursor comes from the global [role="button"] rule, not an inline style.
+      expect(hits.every((h) => !h.style.cursor)).toBeTrue();
       expect(hits.map((h) => h.getAttribute('aria-label'))).toEqual(['Food, 600', 'Transport, 400']);
 
       hits[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));

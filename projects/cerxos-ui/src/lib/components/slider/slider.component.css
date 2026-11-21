@@ -1,7 +1,6 @@
 .cxs-slider {
   --cxs-slider-track-color: var(--cxs-color-surface-hover);
   --cxs-slider-thumb-color: var(--cxs-color-surface);
-  cursor: pointer;
 }
 
 .cxs-slider--sm {
